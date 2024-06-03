@@ -1,0 +1,67 @@
+a,a:after,dd,div,dl,dt,form,h1,h2,h3,h4,h5,h6,i,img,input,li,ol,p,td,textarea,th,ul{margin:0;padding:0}
+li{list-style:none}
+em,i{font-style:normal}
+a,a:hover{text-decoration:none}
+img{vertical-align:top}
+span{color:#797263}
+.wrap{max-width:720px;margin:auto}
+.kalendar{overflow:auto}
+.kalendar_left{float:left;margin-left:10px}
+.kalendar_left li{width:20px;margin-top:10px}
+.kalendar_right{float:right;width:40px}
+.kalendar_right li{width:20px;float:left;margin:10px 0 0}
+.kalendar_mid{margin-top:10px;width:100%;text-align:center;position:relative}
+.kalendar_mid em{font-size:18px}
+.hm{font-size:80px;color:#d4473d;font-weight:700}
+.jq{font-size:16px;margin-top:10px;color:green;font-weight:700}
+.index_leftarrow,.index_rightarrow{position:absolute;display:block;width:30px;height:30px}
+.index_leftarrow{background:url(/img/index_leftarrow.png) no-repeat;background-size:30px auto;top:50%;left:18%;margin-top:-15px}
+.index_rightarrow{background:url(/img/index_rightarrow.png) no-repeat;background-size:30px auto;top:50%;right:18%;margin-top:-15px}
+.index_content{width:98%;margin:20px auto;padding-top:10px;position:relative}
+.huabianfoot,.huabiantop{position:absolute;width:100%;height:50px}
+.huabiantop{background:url(/img/huabian_01.png) no-repeat;background-size:100% auto;top:0;left:0}
+.huabianfoot{background:url(/img/huabian_02.png) no-repeat;background-size:100% auto;bottom:-40px;left:0}
+.huabianleft,.huabianright{background:url(/img/huabian_03.png) repeat-y;position:absolute;width:1px;height:92%}
+.huabianleft{left:0;top:20px}
+.huabianright{right:0;top:20px}
+.index_content_yj{width:95%;margin:0 auto;overflow:auto;margin-top:10px}
+.index_content_yjleft{width:13%;float:left}
+.index_content_yjleft span{display:block;width:30px;height:30px;background:#d4473d;text-align:center;border-radius:15px;line-height:30px;color:#fff;font-size:20px}
+.index_content_yjright{float:left;width:87%}
+.index_content_yjright li{float:left;margin-left:5px;color:#797263;line-height:22px}
+.index_jileft span{background:#000}
+.index_content_jx{border-bottom:1px solid #ccc;overflow:auto;margin-top:0px;position:relative}
+.index_content_jx dl{float:left;width:49.8%}
+.index_content_jx dl.index_content_jx_border{position:relative}
+.h6,.index_content_jx dl dt{height:40px;background:url(/img/bgm_01.png) repeat;line-height:40px;text-align:center}
+.index_content_jx dl dd{line-height:24px;padding-left:8px;float:left;color:#797263}
+.index_content_jx .index_jx_border{position:absolute;width:1px;height:100%;background:#ddd;top:0;left:50%}
+.index_content_foot{margin:10px 0}
+.index_content_foot p{margin-left:10px;line-height:26px}
+.index_content_foot p span{margin-left:5px}
+
+.footer_list{border-bottom:1px solid #ccc;overflow:auto;position:relative}
+.footer_shichen{width:50px;height:50px;float:left}
+.footer_shichen em{display:block;width:20px;position:absolute;top:40%;left:20px}
+.footer_right{width:82%;float:left;border-left:1px solid #ccc;position:relative}
+.footer_right_time{margin:5px 0 5px 10px}
+.footer_right_xcs{margin:0 0 10px 10px}
+.footer_yj{margin:5px 0 10px 10px;overflow:auto}
+.footer_yjleft{width:12%;float:left}
+.footer_yjleft span{display:block;width:26px;height:26px;background:#d4473d;text-align:center;line-height:26px;border-radius:13px;color:#fff;font-size:18px}
+.footer_yjright{float:left;width:88%}
+.footer_yjright li{float:left;margin-left:5px;line-height:24px;color:#797263}
+.footer_jileft span{background:#000}
+.footer_jx{width:26px;height:26px;color:#fff;text-align:center;line-height:26px;border-radius:13px;font-size:18px;position:absolute;top:5px;right:0}
+.footer_ji{background:#f2c9c6}
+.footer_xiong{background:#c9c9c9}
+
+.scroll{width:40px;height:40px;background:#d4473d;border-radius:30px;position:fixed;bottom:60px;right:10px;display:none}
+.scroll i{display:block;width:17px;height:15px;margin:3px auto 0}
+.scroll .scroll_1{background:url(/img/arre.png) no-repeat center;background-size:17px auto}
+.scroll p{text-align:center;color:#fff;font-size:12px}
+
+.arrow{display:none}
+.arrow_left,.arrow_right{position:fixed;width:30px;height:50px;background-color:#666;opacity: .6;}
+.arrow_left{background-image:url(/img/leftarrow1.png);background-repeat:no-repeat;background-size:30px auto;top:50%;left:0;background-position:center}
+.arrow_right{background-image:url(/img/rightarrow1.png);background-size:30px auto;top:50%;right:0;background-repeat:no-repeat;background-position:center}
