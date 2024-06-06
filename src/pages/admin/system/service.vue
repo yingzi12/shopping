@@ -43,11 +43,11 @@ getList(1)
 
 <template>
   <div>
-    <router-link to="/users/addService">
+    <router-link to="/admin/users/addService">
       <q-btn color="primary" label="添加服务工单"/>
     </router-link>
   </div>
-  <div class="q-pa-md" style="max-width: 800px">
+  <div class="q-pa-xs" style="max-width: 800px">
     <q-list bordered padding>
       <q-item-label header>服务列表（{{total}}）</q-item-label>
       <div v-for="(service,index) in serviceList"  :key="index">
@@ -78,6 +78,8 @@ getList(1)
       <q-pagination
           v-model="current"
           :max="maxPage"
+          max-pages="6"
+
           direction-links
           @update:modelValue="getList(current)"
       />

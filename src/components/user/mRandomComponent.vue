@@ -22,7 +22,7 @@ getRandom();
     <q-toolbar-title>
       随机推荐
     </q-toolbar-title>
-    <q-btn flat round dense icon="more_horiz" to="/mobile/userAlbum/order"/>
+    <q-btn flat round dense icon="more_horiz" to="/usershop/order"/>
   </q-toolbar>
   <div class="scroll-container">
     <div class="scroll-content">

@@ -16,12 +16,12 @@ function imageUrl() {
 </script>
 
 <template>
-  <q-card flat bordered class="q-ma-sm m-album-card">
-    <q-img :src="imageUrl() || `/album-logo.png`" @error.once="e => { e.target.src = `/album-logo.png` }"
-           class="m-album-card-image"/>
+  <q-card flat bordered class="q-ma-sm m-shop-card">
+    <q-img :src="imageUrl() || `/shop-logo.png`" @error.once="e => { e.target.src = `/shop-logo.png` }"
+           class="m-shop-card-image"/>
     <q-card-section>
       <div class="text-h6">
-        <a :href="'/mobile/users/detail?userId=' + props.value.id">
+        <a :href="'/users/detail?userId=' + props.value.id">
           <p class="text-caption two-line-clamp">{{ props.value.nickname }}</p>
         </a>
       </div>

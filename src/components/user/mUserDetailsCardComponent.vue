@@ -27,7 +27,7 @@ function imageUrl() {
   }
 }
 function routerDetail(){
-  router.push("/mobile/users/detail?userId="+props.value.id);
+  router.push("/users/detail?userId="+props.value.id);
 }
 </script>
 
@@ -36,8 +36,8 @@ function routerDetail(){
     <q-card-section horizontal>
       <q-card-section class="col-5 flex flex-center" style="width: 150px">
         <q-avatar font-size="52px" size="100px" class="q-mb-md">
-          <q-img :src="imageUrl() || `/album-logo.png`" @error.once="e => { e.target.src = `/album-logo.png` }"
-                 class="m-album-card-image"/>
+          <q-img :src="imageUrl() || `/shop-logo.png`" @error.once="e => { e.target.src = `/shop-logo.png` }"
+                 class="m-shop-card-image"/>
         </q-avatar>
       </q-card-section>
       <q-card-section class="q-pt-xs">

@@ -40,7 +40,7 @@ getList(1)
 </script>
 
 <template>
-  <div class="q-pa-md" style="max-width: 350px">
+  <div class="q-pa-xs" style="max-width: 350px">
     <q-list bordered padding>
       <q-item-label header>购买列表（{{total}}）</q-item-label>
       <div v-for="(sell,index) in sellList"  :key="index">
@@ -69,6 +69,7 @@ getList(1)
       <q-pagination
           v-model="current"
           :max="maxPage"
+          max-pages="6"
           direction-links
           @update:modelValue="getList(current)"
 

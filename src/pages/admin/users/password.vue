@@ -55,7 +55,7 @@ async function onSubmit() {
 
 <template>
 
-  <div class="q-pa-md" style="max-width: 400px">
+  <div class="q-pa-xs" style="max-width: 400px">
 
     <q-form
         class="q-gutter-md"

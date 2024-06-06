@@ -1,6 +1,5 @@
 import pica from "pica";
 import { compressAccurately } from 'image-conversion';
-import {useQuasar} from "quasar";
 
 export function tansParams(params: { [x: string]: any; }) {
     let result = ''
@@ -76,8 +75,4 @@ export function compressImage(file) {
   });
 }
 
-export function getImageUrl(imgUrl:string) {
-    const $q = useQuasar();
-    return `${$q.config.sourceWeb}${imgUrl}`; // Replace with your default image URL
-}
 

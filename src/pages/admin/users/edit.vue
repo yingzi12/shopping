@@ -83,7 +83,7 @@ const onSubmit = async () => {
         icon: 'cloud_done',
         message: 'Update Success'
       });
-      router.push('/users'); // Redirect to login page
+      router.push('/admin/users'); // Redirect to login page
 
     } else {
       $q.notify({
@@ -103,7 +103,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <div class="q-pa-xs" style="max-width: 400px">
     <q-form class="q-gutter-md" @submit.prevent="onSubmit">
       <q-input v-model="nickname" :rules="[val => !!val || 'Please enter your nickname']" filled label="Your Name *"/>
       <q-input v-model="email" :rules="[val => !!val || 'Please enter your email']" filled label="E-mail *"

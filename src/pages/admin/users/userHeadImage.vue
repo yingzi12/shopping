@@ -49,7 +49,7 @@ const uploadImage = async () => {
           title: '信息',
           message: '替换头像成功.'
         });
-        router.push('/users'); // Redirect to login page
+        router.push('/admin/users'); // Redirect to login page
 
       } else {
         useQuasar().dialog({

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 
-interface Album {
+interface shop {
   sourceUrl: string;
   sourceWeb: string;
   imgUrl: string;
@@ -9,10 +9,10 @@ interface Album {
   title: string;
 }
 
-const props = defineProps<{ album: Album }>();
+const props = defineProps<{ shop: shop }>();
 
 function imageUrl() {
-  const { sourceUrl, sourceWeb, imgUrl } = props.album;
+  const { sourceUrl, sourceWeb, imgUrl } = props.shop;
   if (sourceUrl != null && sourceUrl.startsWith('/image')) {
     return `https://image.51x.uk/xinshijie${sourceUrl}`;
   }
@@ -21,12 +21,12 @@ function imageUrl() {
 </script>
 
 <template>
-  <q-card flat bordered class="q-ma-sm m-album-card">
-    <img :src="imageUrl()" class="m-album-card-image">
+  <q-card flat bordered class="q-ma-sm m-shop-card">
+    <img :src="imageUrl()" class="m-shop-card-image">
     <q-card-section>
       <div class="text-h6">
-        <a :href="'/mobile/systemAlbum/detail?aid=' + props.album.id">
-          <p class="text-caption two-line-clamp">{{ props.album.title }}</p>
+        <a :href="'/systemshop/detail?aid=' + props.shop.id">
+          <p class="text-caption two-line-clamp">{{ props.shop.title }}</p>
         </a>
       </div>
     </q-card-section>

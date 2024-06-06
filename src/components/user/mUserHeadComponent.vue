@@ -83,7 +83,10 @@ async function closeAttention() {
   }
 }
 function routerVip(){
-  router.push(`/mobile/users/vip?userId=${props.userId}`); // Redirect to login page
+  router.push(`/users/vip?userId=${props.userId}`); // Redirect to login page
+}
+function routershop(){
+  router.push(`/users/detail?userId=${props.userId}`); // Redirect to login page
 }
 </script>
 
@@ -97,14 +100,14 @@ function routerVip(){
       />
     </template>
 
-    <q-breadcrumbs-el label="首页" icon="widgets"  to="/mobile/users/index"/>
-    <q-breadcrumbs-el label="排行榜" icon="navigation" to="/mobile/users/order" />
-    <q-breadcrumbs-el :label="user.nickname" icon="description" :to="{ path: '/mobile/users/detail', query: { userId: props.userId }}" />
+    <q-breadcrumbs-el label="首页" icon="widgets"  to="/users/index"/>
+    <q-breadcrumbs-el label="排行榜" icon="navigation" to="/users/order" />
+    <q-breadcrumbs-el :label="user.nickname" icon="description" :to="{ path: '/users/detail', query: { userId: props.userId }}" />
   </q-breadcrumbs>
   <div class="text-center">
     <q-card flat bordered class="q-ma-sm">
       <q-card-section>
-        <img :src="getImageUrl(user.imgUrl)" class="m-album-card-image">
+        <img :src="getImageUrl(user.imgUrl)" class="m-shop-card-image">
       </q-card-section>
       <q-card-section>
         <div class="text-h6">
@@ -141,6 +144,7 @@ function routerVip(){
       <q-card-section class="row items-center justify-evenly">
         <q-btn round :color="isLike ==1?'red':'blue'" icon="thumb_up"  @click="onLike"  />
         <q-btn round :color="isAttention !=1 ?'blue':'red'" icon="favorite"  @click="isAttention !=1 ? onAttention() :closeAttention()"/>
+        <q-btn round color="orange" icon="shop" @click="routershop()"/>
         <q-btn round color="yellow" icon="beenhere" @click="routerVip()"/>
 
       </q-card-section>

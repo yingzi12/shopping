@@ -63,6 +63,10 @@ api.interceptors.response.use(function (response) {
   // 检查返回的响应数据格式
   if (response.data && response.data.code) {
     if (response.data.code === 401) {
+      // 删除cookie示例
+      Cookies.remove('token');
+      Cookies.remove('id');
+      Cookies.remove('userInfo');
       // 如果code等于401，重定向到登录页面
       window.location.href = '/login';
     }
@@ -71,13 +75,20 @@ api.interceptors.response.use(function (response) {
 }, function (error) {
 // 获取错误响应对象
   const response = error.response;
+  console.log("-----error---------------------");
+
   console.log(error);
   console.log(response);
+  console.log(response.data);
 
   // 检查错误状态码是否为401（未授权）
-  if (response && response.status === 401) {
-    // 重定向到登录页面
-    window.location.href = '/login';
+  if (response.data && response.data.code === 401) {
+    // 删除cookie示例
+    Cookies.remove('token');
+    Cookies.remove('id');
+    Cookies.remove('userInfo');
+    showAlertAndRedirect();
+    return ;
   } else {
     // 其他错误情况，可以根据需要处理或直接抛出错误
     console.error('发生错误，请检查:', error);
@@ -99,4 +110,54 @@ export default boot(({ app }) => {
   //       so you can easily perform requests against your app's API
 });
 
+function showAlertAndRedirect() {
+
+  // 创建对话框的HTML结构
+  var overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+  overlay.style.display = 'flex';
+  overlay.style.justifyContent = 'center';
+  overlay.style.alignItems = 'center';
+  overlay.style.zIndex = 9999;
+
+  var dialogBox = document.createElement('div');
+  dialogBox.style.backgroundColor = '#fff';
+  dialogBox.style.padding = '20px';
+  dialogBox.style.borderRadius = '5px';
+  dialogBox.style.textAlign = 'center';
+
+  var message = document.createElement('p');
+  message.textContent = '请登录后再操作，请点击OK跳转至登录页面,点击Cancel保持当前页面.\n\rPlease login before operation, please click OK to jump to the login page';
+  dialogBox.appendChild(message);
+
+  var buttonContainer = document.createElement('div');
+  buttonContainer.style.display = 'flex';
+  buttonContainer.style.justifyContent = 'space-between';
+
+  var okButton = document.createElement('button');
+  okButton.textContent = 'OK';
+  okButton.style.marginRight = '10px';
+  okButton.onclick = function() {
+    window.location.href = '/login';
+    overlay.remove();
+  };
+  buttonContainer.appendChild(okButton);
+
+  var cancelButton = document.createElement('button');
+  cancelButton.textContent = 'Cancel';
+  cancelButton.style.color = 'red';
+  cancelButton.onclick = function() {
+    overlay.remove();
+  };
+  buttonContainer.appendChild(cancelButton);
+
+  dialogBox.appendChild(buttonContainer);
+  overlay.appendChild(dialogBox);
+  document.body.appendChild(overlay);
+}
 export { api };

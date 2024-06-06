@@ -4,22 +4,28 @@ import {Cookies, useQuasar} from 'quasar'
 import {useRouter} from "vue-router";
 import {api} from "boot/axios";
 import {compressIfNeeded} from "boot/tools";
-import PayaplCard from "pages/system/paypalCard.vue";
 
 const token = Cookies.get('token');
 const id = Cookies.get('id');
 const $q = useQuasar()
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
-const user = ref({  });
+
+
 const imgUrl = ref("/favicon.png");
-const vip = ref(0);
-const previewImage = ref(null);
+// const isEmail = ref(null);
+// const intro = ref(null);
+// const countSee = ref(0);
+// const countLike = ref(0);
+// const countAttention = ref(0);
+// const vip = ref(0);
 const vipExpirationTime = ref(null);
+const previewImage = ref(null);
+
 const fileInput = ref<HTMLInputElement | null>(null);
 const selectedImage = ref<File | null>(null);
 const userHeadImageStr=ref("点击替换头像");
-
+const user=ref({});
 async function getDetail() {
   const response = await api.get(`/admin/systemUser/getInfo`, {
     headers: {
@@ -29,15 +35,7 @@ async function getDetail() {
   });
   const data = response.data;
   if (data.code == 200) {
-    user.value=data.data;
-
-    imgUrl.value = data.data.imgUrl  ;
-    if(imgUrl!=null ) {
-      previewImage.value = $q.config.sourceWeb + data.data.imgUrl;
-    }
-
-    vip.value = data.data.vip;
-    vipExpirationTime.value = data.data.vipExpirationTime;
+    user.value = data.data;
   }
 }
 function triggerFileInput() {
@@ -49,15 +47,11 @@ async function handleImageUpload(event: Event) {
     userHeadImageStr.value="上传中....";
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) {
-      throw new Error("---1-- No file selected");
+      throw new Error("No file selected");
     }
     selectedImage.value = file;
     const compressedFile = await compressIfNeeded(file);
-    if (!compressedFile) {
-      throw new Error("---2-- No file selected");
-    }
     const formData = new FormData();
-    console.log("压缩文件:", compressedFile);
     formData.append('file', compressedFile);
     const response = await api.put( '/admin/systemUser/upload',  formData);
     const data = await response.data; // 确保使用 await 等待 json 解析完成
@@ -76,6 +70,7 @@ async function handleImageUpload(event: Event) {
       }).onOk(async () => {
         console.log("ok");
       });
+      // throw new Error('Image upload failed');
     }
   } catch (error) {
     notify('Error uploading image', 'red-5');
@@ -90,113 +85,291 @@ function notify(message: string, color: string) {
   });
 }
 getDetail();
-
-const  money=ref(0.0);
-const paypalDialog = ref(false);
-
-function openPayPalDialog (){
-  if(money.value<1){
-    $q.dialog({
-      title: '通知',
-      message: '金额不能少于1',
-    })
-    return;
+function getImageUrl(url) {
+  if (url != null) {
+    return `${$q.config.sourceWeb}${url}`;
   }
-  //console.log("------------openPayPalDialog---------------------------")
-  if(token !== null && token !== '' && token !== undefined ) {
-    paypalDialog.value = true;
-  }else {
-    $q.dialog({
-      title: '通知',
-      message: '请先登录，点击ok跳转登录.',
-      ok: {
-        push: true
+  return "/favicon.png";
+}
+const link = ref('detail')
+const logout = async () => {
+  try {
+    const response = await api.get(`/admin/systemUser/logout`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
-      cancel: {
-        push: true
-      },
-    }).onOk(async () => {
-      router.push('/login'); // Redirect to login page
-    }).onCancel(async () => {
-      // router.push('/users/album'); // Redirect to login page
     });
+    Cookies.remove("token");
+    Cookies.remove("id");
+    Cookies.remove("userInfo");
+    router.push('/login'); // 假设登录页面的路由为 '/login'
+  }catch (error){
+    Cookies.remove("token");
+    Cookies.remove("id");
+    Cookies.remove("userInfo");
+    router.push('/login'); // 假设登录页面的路由为 '/login'
   }
 };
 
 </script>
 
 <template>
-  <div>
-    <router-link to="/users/userEdit">
-      <q-btn color="primary" label="编辑个人信息"/>
-    </router-link>
-  </div>
-
-  <div class="q-pa-md row items-start q-gutter-md">
-    <q-card bordered class="my-card" flat>
-      <q-item>
-        <q-item-section @click="triggerFileInput">
-          <q-avatar font-size="52px" size="100px">
-            <img
-                :src="previewImage || `/default.png`" @error.once="e => { e.target.src = `/default.png` }"
-            >
-          </q-avatar>
-          <input type="file" ref="fileInput" @change="handleImageUpload" hidden>
-          <p class="text-caption">{{ userHeadImageStr }}</p>
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ user.nickname != null ? user.nickname : '待登录' }}
-            ({{ name != null ? name : '待登录' }})
-          </q-item-label>
-          <q-item-label v-if="user.id" caption>
-            ID:{{ user.id }}
-          </q-item-label>
-          <q-item-label v-if="user.email" caption>
-            {{ user.email }}
-            <q-icon v-if="user.isEmail ==2 " name="warning" style="color: red"/>
-          </q-item-label>
-          <q-item-label v-if="user.isEmail ==2 " caption>
-            （点击发送邮箱验证码）
-          </q-item-label>
-        </q-item-section>
-
-      </q-item>
+  <div class="text-center">
+    <q-card flat bordered class="q-ma-sm">
       <q-card-section>
-        <q-item-label caption>
-          余额：{{user.balance}}
-        </q-item-label>
-        <q-item-label caption>
-
-          <q-input
-            v-model.number="money"
-            type="number"
-            filled
-            style="max-width: 200px"
-          /><q-btn icon="payments" @click="openPayPalDialog()">充值</q-btn>
-        </q-item-label>
+        <img :src="getImageUrl(user.imgUrl)" class="m-shop-card-image">
       </q-card-section>
-      <q-separator/>
-
-      <q-card-section  horizontal>
-        <div class="text-body2" style="padding: 10px">
-          {{ user.intro }}
+      <q-card-section>
+        <div class="text-h6">
+          <q-item-label class="text-caption two-line-clamp">{{ user.nickname }}</q-item-label>
         </div>
+
       </q-card-section>
+      <q-card-section>
+        <q-item-label>{{ user.directions ==null? "还没有简介哦！" :user.directions}}</q-item-label>
+      </q-card-section>
+      <q-card-section>
+        <div class="q-gutter-sm q-mb-xs">
+          <span class="text-h6">
+            {{ user.countSee ==null? 0: user.countSee}}次
+            <q-badge outline align="middle" color="teal" >
+              查看
+            </q-badge>
+          </span>
+          <span class="text-h6">
+            {{ user.countLike==null?  0: user.countLike}}次
+            <q-badge outline align="middle" color="teal ">
+              点赞
+            </q-badge>
+          </span>
+          <span class="text-h6">
+            {{ user.countAttention ==null?  0: user.countAttention }}人
+            <q-badge outline align="middle" color="teal" >
+              关注
+            </q-badge>
+          </span>
+        </div>
 
-      <q-separator/>
-
-      <q-card-actions>
-        <q-btn color="red-8" flat icon="favorite" round>{{user.countAttention }}</q-btn>
-        <q-btn color="red-8" flat icon="thumb_up" round>{{user.countLike }}</q-btn>
-        <q-btn color="red-8" flat icon="visibility" round>{{user.countSee }}</q-btn>
-      </q-card-actions>
+      </q-card-section>
     </q-card>
-
-
   </div>
-  <q-dialog v-model="paypalDialog">
-    <payapl-card :amount="money" :productId="user.id" :kind="5" intro="充值余额" productName="充值余额" url='/admin/index'/>
-  </q-dialog>
+  <div>
+    <div class="q-pa-xs" >
+      <q-list padding>
+        <q-item v-ripple
+                :active="link === 'detail'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/"
+                @click="link = 'detail'"
+        >
+          <q-item-section avatar>
+            <q-icon name="account_circle"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.personalInfo`) }}
+          </q-item-section>
+        </q-item>
+
+        <q-item v-ripple
+                :active="link === 'attention'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/attention"
+                @click="link = 'attention'"
+        >
+          <q-item-section avatar>
+            <q-icon name="favorite_border"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.myAttention`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'collection'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/collection"
+                @click="link = 'collection'"
+        >
+          <q-item-section avatar>
+            <q-icon name="star_rate"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.myCollection`) }}
+          </q-item-section>
+        </q-item>
+        <q-separator/>
+        <q-item v-ripple
+                :active="link === 'buy'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/buy"
+                @click="link = 'buy'"
+        >
+          <q-item-section avatar>
+            <q-icon name="shopping_bag"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.myPurchase`) }}
+          </q-item-section>
+        </q-item>
+        <q-separator/>
+        <q-item v-ripple
+                :active="link === 'shop'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/shop"
+                @click="link = 'shop'"
+        >
+          <q-item-section avatar>
+            <q-icon name="perm_media"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.myshop`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'vip'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/vip"
+                @click="link = 'vip'"
+        >
+          <q-item-section avatar>
+            <q-icon name="settings_brightness"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.vipSettings`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'sell'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/sell"
+                @click="link = 'sell'"
+        >
+          <q-item-section avatar>
+            <q-icon name="view_headline"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.userPurchase`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'withdraw'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/withdraw"
+                @click="link = 'withdraw'"
+        >
+          <q-item-section avatar>
+            <q-icon name="paid"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.myWithdrawal`) }}
+          </q-item-section>
+        </q-item>
+        <q-separator/>
+        <q-item v-ripple
+                :active="link === 'invite'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/invite"
+                @click="link = 'invite'"
+        >
+          <q-item-section avatar>
+            <q-icon name="send"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.myInvitation`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'exchange'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/exchange"
+                @click="link = 'exchange'"
+        >
+          <q-item-section avatar>
+            <q-icon name="currency_exchange"/>
+          </q-item-section>
+          <q-item-section>
+            {{ $t(`user.myExchange`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'password'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/password"
+                @click="link = 'password'"
+        >
+          <q-item-section avatar>
+            <q-icon name="password"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.resetPassword`) }}
+          </q-item-section>
+        </q-item>
+        <q-item v-ripple
+                :active="link === 'buyLog'"
+                active-class="my-menu-link"
+                clickable
+                to="/admin/users/buyLog"
+                @click="link = 'buyLog'"
+        >
+          <q-item-section avatar>
+            <q-icon name="vertical_split"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.consumptionRecord`) }}
+          </q-item-section>
+        </q-item>
+        <q-item
+          v-ripple
+          :active="link === 'service'"
+          active-class="my-menu-link"
+          clickable
+          to="/admin/users/service"
+          @click="link = 'service'"
+        >
+          <q-item-section avatar>
+            <q-icon name="mail_outline"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.customerService`) }}
+          </q-item-section>
+        </q-item>
+        <q-item
+          v-ripple
+          :active="link === 'drafts'"
+          active-class="my-menu-link"
+          clickable
+          @click="logout"
+        >
+          <q-item-section avatar>
+            <q-icon name="exit_to_app"/>
+          </q-item-section>
+
+          <q-item-section>
+            {{ $t(`user.logOut`) }}
+          </q-item-section>
+        </q-item>
+      </q-list>
+
+    </div>
+  </div>
 </template>
 
 <style lang="sass" scoped>

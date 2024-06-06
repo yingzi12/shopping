@@ -40,11 +40,16 @@ async function getList(page: number) {
 }
 getList(1)
 
-
+function getImageUrl(imgUrl:string) {
+  if (imgUrl != null && imgUrl != undefined && imgUrl != '') {
+    return `${$q.config.sourceWeb}${imgUrl}`; // Replace with your default image URL
+  }
+  return `/favicon.png`;
+}
 </script>
 
 <template>
-  <div class="q-pa-md" style="max-width: 350px">
+  <div class="q-pa-xs" style="max-width: 350px">
     <q-list bordered padding>
       <q-item-label header>关注列表（{{ total }}）</q-item-label>
 
@@ -58,7 +63,7 @@ getList(1)
 
         <q-item-section>
           <q-item-label>
-            <a :href='"/userDetail?userId="+attention.id'>
+            <a :href='"/users/detail?userId="+attention.id'>
             {{ attention.nickname }}
             </a>
           </q-item-label>
@@ -76,6 +81,8 @@ getList(1)
       <q-pagination
           v-model="current"
           :max="maxPage"
+          max-pages="6"
+
           direction-links
           @update:modelValue="getList(current)"
       />

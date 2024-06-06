@@ -1,14 +1,20 @@
 <script lang="ts" setup>
-import {Cookies} from 'quasar'
+import {Cookies, useQuasar} from 'quasar'
 import {reactive, ref, toRefs} from "vue";
 import { api } from "boot/axios";
-import {getImageUrl, tansParams} from "boot/tools";
+import {tansParams} from "boot/tools";
+import mshopCard from "components/systemshop/mSystemshopDetailsCardComponent.vue"
+import mUsershopCard from "components/shop/mUsershopDetailsCardComponent.vue"
+
+const $q = useQuasar();
 
 const token = Cookies.get('token');
 const total = ref(0);
 const maxPage = ref(0);
+
 const current=ref(1)
-const collectList = ref([]);
+const collectionSystemList = ref([]);
+const collectionUserList = ref([]);
 
 const queryData = reactive({
   queryParams: {
@@ -18,11 +24,11 @@ const queryData = reactive({
 });
 const {queryParams} = toRefs(queryData);
 
-async function getList(page: number) {
+async function getListSystem(page: number) {
   queryParams.value.pageNum = page;
   try {
     //server/admin/userCollection/list.get.ts
-    const response = await api.get('/admin/productCollect/list?' + tansParams(queryParams.value), {
+    const response = await api.get('/admin/userCollection/listSystem?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -30,47 +36,77 @@ async function getList(page: number) {
     if (response.data.code == 200) {
       total.value = response.data.total;
       maxPage.value=  total.value/queryParams.value.pageSize+1;
-      collectList.value = response.data.data;
+      collectionSystemList.value = response.data.data;
     }
   } catch (error) {
     console.error('Error fetching images:', error);
   }
 }
-getList(1);
+async function getListUser(page: number) {
+  queryParams.value.pageNum = page;
+  try {
+    //server/admin/userCollection/list.get.ts
+    const response = await api.get('/admin/userCollection/listUser?' + tansParams(queryParams.value), {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (response.data.code == 200) {
+      total.value = response.data.total;
+      maxPage.value=  total.value/queryParams.value.pageSize+1;
+      collectionUserList.value = response.data.data;
+    }
+  } catch (error) {
+    console.error('Error fetching images:', error);
+  }
+}
+getListSystem(1);
+getListUser(1);
 
+const tab = ref('mails')
+
+function getImageUrl(imgUrl:string) {
+  if (imgUrl != null && imgUrl != undefined && imgUrl != '') {
+    return `${$q.config.sourceWeb}${imgUrl}`; // Replace with your default image URL
+  }
+  return `/empty.png`;
+}
+function getSystemImageUrl(shop) {
+  if (shop.sourceUrl != null && shop.sourceUrl.startsWith('/image')) {
+    return `${$q.config.sourceWeb}${shop.sourceUrl}`;
+  }
+  return shop.sourceWeb + shop.imgUrl;
+}
 
 </script>
 
 <template>
-    <div class="q-pa-md" style="width: 100%">
-      <q-list bordered padding>
-        <div v-for="(collectionSystem,index) in collectList "  :key="index">
-          <q-item>
-            <q-item-section class="q-ml-none" thumbnail top>
-              <img :src="getImageUrl(collectionSystem)">
-            </q-item-section>
+    <q-tabs
+      v-model="tab"
+      dense
+      class="text-grey"
+      active-color="primary"
+      indicator-color="primary"
+      align="justify"
+      narrow-indicator
+    >
+          <q-tab label="系统" name="system"/>
+          <q-tab label="用户" name="users"/>
+        </q-tabs>
 
-            <q-item-section>
-              <q-item-label>
-                <a :href='"/detail?aid="+collectionSystem.id'>
-                  {{ collectionSystem.title }}
-                </a>
-              </q-item-label>
-              <q-item-label caption>{{ collectionSystem.intro }}
-              </q-item-label>
-            </q-item-section>
+        <q-tab-panels v-model="tab"  >
+          <q-tab-panel  name="system">
+            <div v-for="(collectionSystem,index) in collectionSystemList "  :key="index">
+                  <m-shop-card :shop="collectionSystem"></m-shop-card>
+            </div>
+          </q-tab-panel>
 
-            <q-item-section side top>
-              <q-item-label caption>{{ collectionSystem.createTime }}</q-item-label>
-              <q-icon color="yellow" name="star"/>
-              <q-icon color="white" name="star_border"/>
-
-            </q-item-section>
-          </q-item>
-          <q-separator spaced/>
-        </div>
-      </q-list>
-    </div>
+          <q-tab-panel  name="users">
+            <div v-for="(collectionUser,index) in collectionUserList "  :key="index">
+                     <m-user-shop-card :shop="collectionUser"></m-user-shop-card>
+            </div>
+          </q-tab-panel>
+        </q-tab-panels>
 </template>
 
 <style scoped>

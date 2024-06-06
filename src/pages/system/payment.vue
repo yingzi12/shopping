@@ -134,8 +134,11 @@ async  function onPay(){
         color: 'negative'
       },
     }).onOk(async () => {
-
+      //刷新页面
+      location.reload();
     }).onCancel(() => {
+      //刷新页面
+      location.reload();
       // //console.log('Cancel')
     });
   }else{
