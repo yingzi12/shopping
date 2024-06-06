@@ -20,6 +20,7 @@ export default {
   home:'Home',
   shopHome:"shop",
   userHome:"User",
+  shoppingCart:"Shopping Cart",
   webVip:'VIP',
   trending:'Trending',
   findImage:'Find Images',

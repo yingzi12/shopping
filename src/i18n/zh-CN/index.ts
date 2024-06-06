@@ -19,6 +19,7 @@ export default {
   search:"搜索",
   shopHome:"图集",
   userHome:"用户",
+  shoppingCart:"购物车",
   home:'首页',
   webVip:'会员',
   trending:'最热',
