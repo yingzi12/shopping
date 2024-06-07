@@ -1,6 +1,41 @@
 <template>
-  <div>
+
     <div>
+      <div class="q-pa-md  div-center-child">
+        <q-carousel
+            v-model="slide"
+            transition-prev="scale"
+            transition-next="scale"
+            swipeable
+            animated
+            control-color="white"
+            navigation
+            padding
+            arrows
+            autoplay="true"
+            height="300px"
+            class="bg-primary text-white shadow-1 rounded-borders"
+        >
+          <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
+          <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
+          <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
+          <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+        </q-carousel>
+      </div>
+      <q-card>
+        <q-card-section class="row items-center justify-evenly">
+          <q-btn  flat color="red" icon="wb_sunny"   label="新品"   stack/>
+          <q-btn  flat color="red" icon="local_fire_department"  label="热门"   stack/>
+          <q-btn  flat color="red" icon="bookmark" label="活动"   stack/>
+          <q-btn  flat color="red" icon="payments" label="充值" stack/>
+          <q-btn  flat class="red" icon="apps" label="分类" stack  />
+        </q-card-section>
+      </q-card>
+      <q-toolbar >
+        <q-toolbar-title>
+          商品推荐
+        </q-toolbar-title>
+      </q-toolbar>
       <div class="scroll-container">
         <div class="scroll-content">
           <!-- 这里放置你需要滚动的内容 -->
@@ -9,18 +44,22 @@
           </div>
         </div>
       </div>
-      <div class="scroll-container">
-        <div class="scroll-content">
-          <!-- 这里放置你需要滚动的内容 -->
-          <div v-for="(value ,index)  in shopProductList" :key="index" class="scroll-item">
+      <div>
+        <div class="row items-start q-gutter-sm justify-center"> <!-- 修改为items-start以防止内容顶部对齐 -->
+          <q-intersection
+              v-for="(value ,index) in randomList"
+              :key="index"
+              class="col-auto m-shop-item-list"
+              once
+              transition="scale"
+          >
             <product-card-component :value="value" />
-          </div>
+          </q-intersection>
         </div>
+
       </div>
 
     </div>
-  </div>
-
 
 </template>
 
@@ -62,6 +101,7 @@ getProductRandom();
 const shopProductList = ref([]);
 async function getProductList() {
   queryParams.value.pageNum = 1;
+  queryParams.value.pageSize =10;
   const response = await api.get('/product/list?' + tansParams(queryParams.value))
   const data = response.data;
   if (data.code == 200) {
@@ -69,29 +109,9 @@ async function getProductList() {
   }
 }
 getProductList();
+const slide = ref(1)
 
 </script>
 <style lang="scss" scoped>
-.m-shop-card{
-  height: 220px;
-  width: 150px;
-}
-.m-shop-card-image{
-  height: 180px;
-  width: 130px;
-}
 
-.scroll-container {
-  overflow-x: auto; /* 水平滚动 */
-  white-space: nowrap; /* 确保内容不换行 */
-}
-
-.scroll-content {
-  display: inline-block; /* 使子元素水平排列 */
-}
-
-.scroll-item {
-  display: inline-block; /* 让子元素水平排列 */
-  margin-right: 10px; /* 添加间隔 */
-}
 </style>

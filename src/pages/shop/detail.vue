@@ -73,12 +73,12 @@ function debounce(func, wait, immediate) {
   };
 };
 const shop = ref({});
-const title = ref("图集网")
+const title = ref("Black White")
 
-const description = ref('图集网 美女 写真 摄影 秀人网 Photo Gallery, Beauty, Photo, Photography, Showman.com.')
-const ortTile = ref("图集网")
-const orgDec = ref("图集网")
-const orgImgae = ref("图集网")
+const description = ref('Black White 美女 写真 摄影 秀人网 Photo Gallery, Beauty, Photo, Photography, Showman.com.')
+const ortTile = ref("Black White")
+const orgDec = ref("Black White")
+const orgImgae = ref("Black White")
 
 const tagList=ref([]);
 
@@ -97,7 +97,7 @@ async function getInfo() {
     if(shop.value.tags != null){
       tagList.value=shop.value.tags.split(";");
     }
-    title.value = "图集网-" + shop.value.title
+    title.value = "Black White-" + shop.value.title
     ortTile.value = shop.value.title
     orgDec.value = shop.value.description
     orgImgae.value = shop.value.imgUrl

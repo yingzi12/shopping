@@ -14,6 +14,8 @@ const routes: RouteRecordRaw[] = [
       { path: 'login', component: () => import('pages/system/login.vue') },
       { path: 'register', component: () => import('pages/system/register.vue') },
       { path: 'product', component: () => import('pages/product/index.vue') },
+      { path: 'shoppingCart', component: () => import('pages/shoppingCart.vue') },
+      { path: 'category', component: () => import('pages/category.vue') },
     ],
   },
   {
@@ -23,6 +25,15 @@ const routes: RouteRecordRaw[] = [
       { path: 'index', component: () => import('pages/users/index.vue') },
       { path: 'detail', component: () => import('pages/users/detail.vue') },
       { path: 'order', component: () => import('pages/users/order.vue') }
+    ],
+  },
+  {
+    path: '/product', component: () => import('layouts/MobileLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/product/index.vue') },
+      { path: 'index', component: () => import('pages/product/index.vue') },
+      { path: 'detail', component: () => import('pages/product/detail.vue') },
+      { path: 'order', component: () => import('pages/product/order.vue') }
     ],
   },
   {

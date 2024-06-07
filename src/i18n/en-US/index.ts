@@ -19,6 +19,7 @@ export default {
   search:'Search',
   home:'Home',
   shopHome:"shop",
+  kind:"kinds",
   userHome:"User",
   shoppingCart:"Shopping Cart",
   webVip:'VIP',

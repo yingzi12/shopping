@@ -20,6 +20,8 @@ export default {
   shopHome:"图集",
   userHome:"用户",
   shoppingCart:"购物车",
+  kind:"分类",
+
   home:'首页',
   webVip:'会员',
   trending:'最热',
@@ -59,8 +61,8 @@ export default {
     // 更多页脚文本...
   },
   meta: {
-    description: "图集网 - 美女、照片、摄影、秀人网。",
-    title: "图集网",
+    description: "Black White - 美女、照片、摄影、秀人网。",
+    title: "Black White",
   },
   vip: {
     monthly: '包月套餐',

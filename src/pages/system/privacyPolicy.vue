@@ -414,7 +414,7 @@ Facebook Connect </span><span>或开放</span><span lang="EN-US"> ID </span><spa
         href="mailto:support@aiavr.uk.com"><span>support@aiavr.uk.com</span></a> </span><span>请其删除这些数据并终止您孩子的帐户。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span>收集个人信息之实体</span></b><b><span lang="EN-US"></span></b></p>
-    <p align="left" class="MsoNormal">图集网，shop Gallery App</p>
+    <p align="left" class="MsoNormal">Black White，shop Gallery App</p>
     <p align="left" class="MsoNormal"><i><span>电子邮件：</span></i><i><span lang="EN-US"><a
         href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span></i><i><span lang="EN-US"></span></i></p>
     <p align="left" class="MsoNormal"><span>我们已为</span><span lang="EN-US">
