@@ -49,7 +49,7 @@ import { computed, reactive, ref, toRefs } from 'vue';
 import { api } from 'boot/axios';
 import { Cookies } from 'quasar';
 import { tansParams } from 'boot/tools';
-import mshopCard from "components/shop/mUsershopCardComponent.vue"
+import mShopCard from "components/shop/mUsershopCardComponent.vue"
 import {useRouter} from "vue-router";
 const title = ref('');
 const token = Cookies.get("token");

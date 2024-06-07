@@ -4,7 +4,7 @@ import {Cookies, useQuasar} from "quasar";
 import {onBeforeUnmount, onMounted, ref, watch} from "vue";
 import {api} from "boot/axios";
 import PayaplCard from "pages/system/payment.vue";
-import mshopCard from "components/shop/mUsershopCardComponent.vue"
+import mShopCard from "components/shop/mUsershopCardComponent.vue"
 
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 const amount=ref(0.0);

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import mshopCard from "components/shop/mUsershopCardComponent.vue"
+import mShopCard from "components/shop/mUsershopCardComponent.vue"
 import mUserCard from "components/user/mUserCardComponent.vue"
 import mUserHeadCard from "components/user/mUserHeadComponent.vue"
 import mRadomUserCard from "components/user/mRandomComponent.vue"

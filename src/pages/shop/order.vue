@@ -4,7 +4,7 @@ import {Cookies, useQuasar} from "quasar";
 import {reactive, ref, toRefs} from "vue";
 import {tansParams} from "boot/tools";
 import {api} from "boot/axios";
-import mshopCard from "components/shop/mUsershopDetailsCardComponent.vue"
+import mShopCard from "components/shop/mUsershopDetailsCardComponent.vue"
 const token = Cookies.get("token");
 const route = useRoute();
 const $q = useQuasar();
