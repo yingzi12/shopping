@@ -93,7 +93,7 @@ const {queryParams, form, rules} = toRefs(queryData);
 async function getList() {
   queryParams.value.title = title.value;
   queryParams.value.pageNum = 1;
-  const response = await api.get('/usershop/list?' + tansParams(queryParams.value))
+  const response = await api.get('/shop/list?' + tansParams(queryParams.value))
   const data = response.data;
   if (data.code == 200) {
     total.value = data.total
@@ -104,7 +104,7 @@ getList();
 const router = useRouter();
 
 function search(){
-  router.push(`/usershop/order?title=${title.value}`)
+  router.push(`/shop/order?title=${title.value}`)
 }
 </script>
 <style lang="scss" scoped>
