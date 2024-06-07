@@ -1,92 +1,99 @@
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
+
+const tab=ref("index");
+
+function routerDetail(url){
+  router.push(url);
+}
+function  goBack() {
+  // 使用JavaScript的history对象来实现返回上一页
+  window.history.back();
+}
+</script>
 <template>
-  <q-layout view="hhh LpR fff" style="height: 100vh;">
-
-    <q-header class="bg-primary text-black" height-hint="98" >
-      <q-toolbar class="bg-purple text-white shadow-2 rounded-borders">
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="/shop-logo.png">
-          </q-avatar>
-
-          {{ $t('title') }}
-        </q-toolbar-title>
-
-        <q-space />
-
-        <q-select
-          filled
-          v-model="locale"
-          :options="options"
-          label="Standard"
-          emit-value
-          map-options
-        />
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated>
+      <q-toolbar class="bg-grey-2 text-black">
+        <q-btn flat round dense icon="arrow_back" class="q-mr-sm"       @click="goBack"/>
+        <q-toolbar-title>商品详细</q-toolbar-title>
       </q-toolbar>
     </q-header>
+    <q-page-container>
+        <q-page>
+          <div class="q-pa-xs">
+            <div >
+              <q-card flat bordered >
+                <!--          <q-card-section>-->
+                <img :src="getImageUrl(product.imgUrl)" class="m-shop-card-image">
+                <!--          </q-card-section>-->
+                <q-card-section>
+                  <div class="row">
+                    <div class="col-6 text-h6">{{ product.prodName }}</div>
+                    <div class="col-6 text-right">
+                      <q-btn   round :color="isCollection !=1 ?'blue':'red'" icon="favorite"  @click="isCollection !=1 ? onCollection() :closeCollection()"/>
+                    </div>
+                  </div>
+                </q-card-section>
+              </q-card>
+            </div>
+            <div class="q-ma-sm bg-grey-2">
+              <div v-html="product.content"></div>
 
-    <q-page-container style="height: 100%;">
-      <router-view />
+            </div>
+            <div class="bg-grey-2 q-ma-sm">
+              <q-toolbar >
+                <q-toolbar-title>
+                  评论 <q-chip color="orange" size="xs">好评{{prodCommData.positiveRating}}%</q-chip>
+                </q-toolbar-title>
+                <q-btn flat round dense icon="more_horiz"  :to="{ path: '/common/order', query: { pid: pid }}"/>
+              </q-toolbar>
+              <div>
+                <q-chip color="yellow" size="xs">全部({{ prodCommData.number }})</q-chip>
+                <q-chip size="xs">好评({{ prodCommData.praiseNumber }})</q-chip>
+                <q-chip size="xs">中评({{ prodCommData.secondaryNumber }})</q-chip>
+                <q-chip size="xs">差评({{ prodCommData.negativeNumber }})</q-chip>
+                <q-chip size="xs">有图({{ prodCommData.picNumber }})</q-chip>
+              </div>
+              <div>
+                <div class="q-pa-md q-gutter-md">
+                  <q-list bordered padding class="rounded-borders">
+                    <div v-for="(value,index) in commontList" :key="index">
+                      <commot-component :value="value"></commot-component>
+                    </div>
+                  </q-list>
+                </div>
+
+              </div>
+            </div>
+            <div class="q-ma-sm">
+              <div class="scroll-container">
+                <div class="scroll-content">
+                  <!-- 这里放置你需要滚动的内容 -->
+                  <div v-for="(value ,index)  in randomList" :key="index" class="scroll-item">
+                    <product-card-component  :value="value" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </q-page>
     </q-page-container>
+
+    <q-footer elevated class="bg-grey-2">
+      <div class="row">
+        <div class="col-4"><q-btn flat  color="primary" icon="home" to="/" />
+          <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" /></div>
+        <div  class="col-8"><q-btn-group spread>
+          <q-btn color="brown" label="加入购物车"  />
+          <q-btn color="red" label="立即购买" />
+        </q-btn-group></div>
+      </div>
+
+    </q-footer>
+
   </q-layout>
 </template>
 
-<script setup>
-import {onMounted, ref} from 'vue'
-import {useMeta} from "quasar";
-import {useI18n} from "vue-i18n";
-const metaData = {
-  // sets document title
-  title: 'Black White',
-  // optional; sets final title as "Index Page - My Website", useful for multiple level meta
-  titleTemplate: (title) => `${title} - 最热门 Photo Gallery, Beauty, Photo, Photography, Showman.com`,
-
-  // meta tags
-  meta: {
-    verification:{name:"baidu-site-verification", content:"codeva-y79QY7Z0Nm"},
-     description: { name: 'description', content: 'Black White  最热门 美女 写真 摄影 秀人网 Photo Gallery, Beauty, Photo, Photography, Showman.com' },
-    keywords: { name: 'keywords', content: 'Black White 最热门 美女 写真 摄影 秀人网 Photo Gallery, Beauty, Photo, Photography, Showman.com' },
-    equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
-    // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
-    ogTitle:  {
-      property: 'og:title',
-      // optional; similar to titleTemplate, but allows templating with other meta properties
-      template (ogTitle) {
-        return `${ogTitle} - 最热门 Black White 美女 写真 摄影 秀人网  Photo Gallery, Beauty, Photo, Photography, Showman.com`
-      }
-    }
-  },
-}
-useMeta(metaData);
-const tab= ref('images');
-
-const { locale } = useI18n()
-const options= [
-  {
-    label: 'English',
-    value: 'en'
-  },
-  {
-    label: '中文',
-    value: 'zh-CN'
-  }
-]
-// 创建一个响应式引用作为默认语言
-const defaultLanguage = ref('en');
-// 设置默认语言的方法
-const setDefaultLanguage = () => {
-  const userLang = navigator.language || navigator.userLanguage;
-  const availableLanguages = ['en', 'zh-CN']; // 示例语言列表
-
-  if (availableLanguages.includes(userLang)) {
-    locale.value = userLang;
-  } else {
-    locale.value = defaultLanguage.value;
-  }
-};
-
-// 在组件挂载后调用设置默认语言的方法
-onMounted(() => {
-  setDefaultLanguage();
-});
-
-</script>

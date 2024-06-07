@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from "vue-router";
 import {Cookies, useQuasar} from "quasar";
-import {onBeforeUnmount, onMounted, ref, watch} from "vue";
+import {reactive, ref, toRefs} from "vue";
 import {api} from "boot/axios";
 import PayaplCard from "pages/system/payment.vue";
-import mShopCard from "components/shop/mUserShopCardComponent.vue"
+import productCardComponent from "components/product/productCardComponent.vue"
+import {tansParams} from "boot/tools";
 
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 const amount=ref(0.0);
@@ -14,65 +15,18 @@ const token = Cookies.get("token");
 
 // 接收url里的参数
 const route = useRoute();
-const aid = ref(route.query.aid);
+const pid = ref(route.query.pid);
 const userId = ref(route.query.userId);
 
 const $q = useQuasar();
 
-const imgTotal = ref(0);
-const videoTotal = ref(0);
 const isSee = ref(false);
-const imageList = ref([]);
-const videoList = ref([]);
 
 const isCollection = ref(2)
-const isRefreshing = ref(false)
-const isFullScreen = ref(false);
-const isDialog = ref(false);
-const offsetPage = ref(1);
 const pageNum = ref(0);
 
-const currentIndex = ref(0);
-const onLoad = async (index: number, done: () => void) => {
-  if (!isSee.value || disableInfiniteScroll.value) {
-    done();
-    return;
-  }
 
-  try {
-    pageNum.value=index;
-    isRefreshing.value = true
-    await getList(index + offsetPage.value);
-
-  } catch (error) {
-    console.error(error);
-    disableInfiniteScroll.value = true;
-  } finally {
-    isRefreshing.value = false;
-    done();
-  }
-}
-
-// 使用防抖包装 onLoad 保持不变
-const debouncedOnLoad = debounce(onLoad, 300);
-//下拉设置
-const disableInfiniteScroll = ref(true); // 初始设置为 true
 // 防抖函数定义
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this, args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-};
-const shop = ref({});
 const title = ref("Black White")
 
 const description = ref('Black White 美女 写真 摄影 秀人网 Photo Gallery, Beauty, Photo, Photography, Showman.com.')
@@ -81,69 +35,34 @@ const orgDec = ref("Black White")
 const orgImgae = ref("Black White")
 
 const tagList=ref([]);
+const product=ref({});
 
 async function getInfo() {
   // 滚动到顶部
-  const response = await api.get("/usershop/getInfo/" + aid.value, {
+  const response = await api.get("prod/prodInfo?prodId=" + pid.value, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   })
   const data = response.data;
   if (data.code === 200) {
-    shop.value = data.data;
-    isCollection.value=shop.value.isCollection
-    amount.value=shop.value.amount
-    if(shop.value.tags != null){
-      tagList.value=shop.value.tags.split(";");
+    product.value = data.data;
+    isCollection.value=product.value.isCollection
+    amount.value=product.value.amount
+    if(product.value.tags != null){
+      tagList.value=product.value.tags.split(";");
     }
-    title.value = "Black White-" + shop.value.title
-    ortTile.value = shop.value.title
-    orgDec.value = shop.value.description
-    orgImgae.value = shop.value.imgUrl
+    title.value = "Black White-" + product.value.prodName
+    ortTile.value = product.value.prodName
+    orgDec.value = product.value.description
+    orgImgae.value = product.value.imgUrl
 
-    imgTotal.value = shop.value.numberPhotos
-    videoTotal.value = shop.value.numberVideo
-    const imgList = shop.value.imageList
-    const vieList = shop.value.videoList
-    imageList.value.push(...imgList);
-    videoList.value.push(...vieList);
     if(data.data.isSee){
-      disableInfiniteScroll.value = false;
       isSee.value = data.data.isSee;
     }
-
-    getDetail(shop.value.userId);
   }
 }
-
-async function getList(page: number) {
-  // queryParams.value.aid = aid.value;
-  // queryParams.value.pageNum = page;
-  try {
-    const response = await api.get(`/userImage/list?aid=${aid.value}&pageNum=` + page, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    const data = response.data;
-    if (data.code === 200) {
-      const imgList = data.data;
-      imageList.value.push(...imgList);
-
-      // 判断是否还有更多数据需要加载
-      if (imgList.length === 0 || imageList.value.length >= imgTotal.value) {
-        disableInfiniteScroll.value = true;
-      }
-    } else {
-      disableInfiniteScroll.value = true;
-    }
-  } catch (error) {
-    console.error('Error fetching images:', error);
-  }
-}
-
+//user/collection/isCollection?prodId=74
 async function onCollection() {
   if ( isCollection.value==1) {
     return; // 如果已经在处理收藏请求，则不执行任何操作
@@ -151,7 +70,7 @@ async function onCollection() {
     isCollection.value=1;
   }
   // 滚动到顶部
-  const response = await api.get(`/admin/userCollection/on?aid=${aid.value}&ctype=2`)
+  const response = await api.get(`/admin/userCollection/on?aid=${pid.value}&ctype=2`)
   const data = response.data;
   if (data.code == 200) {
     isCollection.value=1;
@@ -168,7 +87,7 @@ async function onLike() {
     isLike.value=1;
   }
   // 滚动到顶部
-  const response = await api.get(`/usershop/like?aid=${aid.value}`)
+  const response = await api.get(`/product/like?aid=${pid.value}`)
   const data = response.data;
   if (data.code == 200) {
     isLike.value = 1;
@@ -181,17 +100,67 @@ async function closeCollection() {
     return; // 如果已经在处理收藏请求，则不执行任何操作
   }
   // 滚动到顶部
-  const response = await api.get(`/admin/userCollection/close?aid=${aid.value}&ctype=2`)
+  const response = await api.get(`/admin/userCollection/close?aid=${pid.value}&ctype=2`)
   const data = response.data;
   if (data.code == 200) {
     isCollection.value=2;
   }
 }
 
-const randomList = ref([]);
+const queryData = reactive({
+  queryParams: {
+    pageNum: 1,
+    pageSize: 3,
+    prodId: pid.value,
+    evaluate: -1,
+  },
+  //{"basketId":0,"count":1,"prodId":74,"shopId":1,"skuId":401}
 
+  addCart: {
+    basketId: 1,
+    count: 3,
+    prodId: pid.value,
+    shopId: -1,
+    skuId: -1,
+
+  },
+});
+const {queryParams,addCart} = toRefs(queryData);
+
+const commontList = ref([]);
+const total=ref(0);
+async function getCommonLit() {
+  const response = await api.get('/prodComm/prodCommPageByProd?' + tansParams(queryParams.value),{
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  const data = response.data;
+  if (data.code === 200) {
+    commontList.value = data.data.records;
+    total.value=data.data.total;
+
+  }
+}
+getCommonLit();
+
+const prodCommData = ref({});
+async function getProdCommData() {
+
+  const response = await api.get(`/prodComm/prodCommData?prodId=${pid.value}`,{
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  const data = response.data;
+  if (data.code === 200) {
+    prodCommData.value = data.data;
+  }
+}
+getProdCommData();
+const randomList = ref([]);
 async function getRandom() {
-  const response = await api.get('/usershop/random', {
+  const response = await api.get('/product/random', {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -201,344 +170,119 @@ async function getRandom() {
     randomList.value = data.data
   }
 }
-
 getRandom();
 getInfo();
-
-const paypalDialog = ref(false);
-
-function openPayPalDialog (){
-  //console.log("------------openPayPalDialog---------------------------")
-  if(token !== null && token !== '' && token !== undefined ) {
-    paypalDialog.value = true;
-  }else {
-    $q.dialog({
-      title: '通知',
-      message: '请先登录，点击ok跳转登录.',
-      ok: {
-        push: true
-      },
-      cancel: {
-        push: true
-      },
-    }).onOk(async () => {
-      router.push('/login'); // Redirect to login page
-    }).onCancel(async () => {
-      // router.push('/users/shop'); // Redirect to login page
-    });
-  }
-};
-
-const userNickname=ref("");
-const userIsAttention=ref(0);
-const userIntro=ref("");
-const userImgUrl=ref("");
-async function getDetail(uId) {
-  const response = await api.get(`/systemUser/info?userId=${uId}`, {
+async function addChangeItem() {
+  addCart.value.basketId=0;
+  addCart.value.count=1;
+  addCart.value.prodId=pid.value;
+  addCart.value.shopId=product.value.shopId;
+  addCart.value.skuId=product.value.skuList[0].skuId;
+  // addCart.value.skuId=401;
+  const response = await api.post('/shopCart/changeItem', JSON.stringify(addCart.value),{
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
-    },
-  });
+    }
+  })
   const data = response.data;
-  if (data.code == 200) {
-    userNickname.value=data.data.nickname;
-    userIsAttention.value=data.data.isAttention
-    userIntro.value = data.data.intro;
-    userImgUrl.value = data.data.imgUrl ;
-    userId.value=data.data.id;
+  if (data.code === 200) {
+    randomList.value = data.data
   }
 }
-
-// //console.log(token)
-// 监听isSee的值
-watch(isSee, (newValue, oldValue) => {
-  if (newValue === true) {
-    //console.log(` onLoad  isSee:${isSee.value}  disableInfiniteScroll:${disableInfiniteScroll.value}  1`)
-    onLoad(0, () => {
-    });
-    // getVideoList();
-  }
-}, {immediate: true}); // immediate: true 确保在挂载时立即触发一次
-const refreshImages = async () => {
-  // Logic to refresh images
-  // For example, reset your image list and call the API to fetch the first set of images
-  imageList.value = [];
-  await debouncedOnLoad(0, () => {});
-};
-
+function  goBack() {
+  // 使用JavaScript的history对象来实现返回上一页
+  window.history.back();
+}
 function getImageUrl(imgUrl) {
   if (imgUrl != null && imgUrl !== undefined && imgUrl !== '') {
     return `${$q.config.sourceWeb}${imgUrl}`;
   }
   return `/empty.png`; // Default image URL when imgUrl is null, undefined, or empty
-}
-// function navigateToUserPage() {
-//   // 假设this.userId是你要跳转到的用户的ID
-//   router.push(`userDetail?userId=${userId.value}`);
-// }
-function openFullScreen(index) {
-  // console.log(`------------openFullScreen------------${imageList.value.length}--`)
-  // console.log(index)
-  currentIndex.value = index;
-  isFullScreen.value = true;
-  isDialog.value=true;
-}
-
-function handleKeyPress(event: KeyboardEvent) {
-  switch (event.key) {
-    case 'ArrowLeft':
-      previousSlide();
-      break;
-    case 'ArrowRight':
-      nextSlide();
-      break;
-  }
-}
-function previousSlide() {
-  // console.log(`=========previousSlide======${currentIndex.value}======${imageList.value.length }========`)
-  if (currentIndex.value > 0) {
-    currentIndex.value--;
-  } else {
-    // 如果已经是第一张幻灯片，则循环到最后一张
-    currentIndex.value = imageList.value.length - 1;
-  }
-}
-
-function nextSlide() {
-  // console.log(`=========nextSlide======${currentIndex.value}======${imageList.value.length }========`)
-  if (currentIndex.value < imageList.value.length - 1) {
-    currentIndex.value++;
-  } else {
-    offsetPage.value=offsetPage.value+1;
-    getList(pageNum.value+offsetPage.value);
-    if(disableInfiniteScroll.value) {
-      // 如果已经是最后一张幻灯片，则循环到第一张
-      currentIndex.value = 0;
-    }else {
-      currentIndex.value++;
-    }
-  }
-}
-// 监听isSee的值
-watch(isSee, (newValue, oldValue) => {
-  if (newValue === true) {
-    //console.log(` onLoad  isSee:${isSee.value}  disableInfiniteScroll:${disableInfiniteScroll.value}  1`)
-    onLoad(0, () => {
-    });
-    // getVideoList();
-  }
-}, {immediate: true}); // immediate: true 确保在挂载时立即触发一次
-onMounted(() => {
-  window.addEventListener('keydown', handleKeyPress);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeyPress);
-})
+} // immediate: true 确保在挂载时立即触发一次
 </script>
 <template>
-  <q-page>
-    <q-breadcrumbs class="text-brown q-ma-md">
-      <template v-slot:separator>
-        <q-icon
-            size="1.5em"
-            name="chevron_right"
-            color="primary"
-        />
-      </template>
-
-      <q-breadcrumbs-el label="用户" icon="widgets"  to="/usershop/index"/>
-      <q-breadcrumbs-el label="排行榜" icon="navigation" to="/usershop/order" />
-      <q-breadcrumbs-el :label="shop.title" icon="description"  />
-    </q-breadcrumbs>
-    <div class="q-pa-xs">
-      <div class="text-center">
-        <q-card flat bordered class="q-ma-sm">
-          <q-card-section>
-            <img :src="getImageUrl(shop.imgUrl)" class="m-shop-card-image">
-          </q-card-section>
-          <q-card-section>
-            <div class="text-h6">
-              <q-item-label class="text-caption two-line-clamp">{{ shop.title }}</q-item-label>
-              <q-item-label class="text-caption two-line-clamp">
-                <a :href="'/users/detail?userId=' + shop.userId">
-                  <p class="text-caption two-line-clamp">{{ shop.userName }}</p>
-                </a>
-              </q-item-label>
-              <q-item-label class="text-caption two-line-clamp">
-                <p class="text-caption two-line-clamp">{{ shop.girl }}</p>
-              </q-item-label>
-            </div>
-            <div> <span v-if="shop.charge == 1" class="text-primary" >免费</span>
-              <span v-if="shop.charge == 2" class="text-primary" >VIP免费</span>
-              <span v-if="shop.charge == 3" class="text-primary" >VIP折扣</span>
-              <span v-if="shop.charge == 4" class="text-primary" >VIP独享</span>
-              <span  v-if="shop.charge == 5" class="text-primary" >统一</span>
-              ·
-              <span v-if="shop.charge == 2 || shop.charge == 3 ||shop.charge == 5 ">价格:{{shop.price }}</span>
-              <span v-if="shop.charge == 3">VIP价格: 0 </span>
-              <span v-if="shop.charge == 4 || shop.charge == 5">VIP价格: {{shop.vipPrice }} </span>
-            </div>
-
-          </q-card-section>
-          <q-card-section>
-            <div class="q-gutter-sm q-mb-xs">
-          <span class="text-h6">
-            {{ shop.countSee ==null? 0: shop.countSee}}次
-            <q-badge outline align="middle" color="teal" >
-              查看
-            </q-badge>
-          </span>
-              <span class="text-h6">
-            {{ shop.countLike==null?  0: shop.countLike}}次
-            <q-badge outline align="middle" color="teal ">
-              点赞
-            </q-badge>
-          </span>
-              <span class="text-h6">
-            {{ shop.countFllow ==null?  0: shop.countFllow }}人
-            <q-badge outline align="middle" color="teal" >
-              关注
-            </q-badge>
-          </span>
-            </div>
-
-          </q-card-section>
-          <q-card-section class="row items-center justify-evenly">
-            <q-btn round :color="isLike ==1?'red':'blue'" icon="thumb_up"  @click="onLike"  />
-            <q-btn round :color="isCollection !=1 ?'blue':'red'" icon="favorite"  @click="isCollection !=1 ? onCollection() :closeCollection()"/>
-            <q-btn round  v-if="!shop.isSee" color="blue" glossy text-color="black" icon="shopping_cart" @click="openPayPalDialog()"/>
-            <q-btn round color="red" icon="error" />
-          </q-card-section>
-          <q-card-section class="">
-            <div>
-              {{shop.intro}}
-            </div>
-            <div>
-              {{shop.payIntro}}
-            </div>
-          </q-card-section>
-        </q-card>
-      </div>
-      <div>
-        <q-th>视频列表（{{ videoTotal }}）</q-th>
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated>
+      <q-toolbar class="bg-grey-2 text-black">
+        <q-btn flat round dense icon="arrow_back" class="q-mr-sm"       @click="goBack"/>
+        <q-toolbar-title>商品详细</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+    <q-page-container>
+      <q-page>
         <div class="q-pa-xs">
-          <div class="row justify-center q-gutter-sm">
-            <q-intersection
-                v-for="(video,index) in videoList"
-                :key="index"
-                class="example-item"
-                transition="scale"
-            >
-              <q-card bordered class="q-ma-sm" flat>
-                <img  class="vedioimage"  :src="getImageUrl(video.imgUrl)">
-                <q-card-section>
-                  <q-btn v-if="video.isFree == 2" color="primary" icon="visibility" square>预览
-                    <span v-if="video.status == -1" style="color: red" >锁定</span>
-                  </q-btn>
-                  <q-btn v-if="video.isFree == 1" color="primary" icon="sunny" square>正式
-                    <span v-if="video.status == -1" style="color: red">锁定</span>
-                  </q-btn>
-                  <q-btn v-if="video.status != -1" color="blue" >
-                    <a :href="'/usershop/playvideo?aid=' + shop.id+'&vid='+video.id">播放</a>
-                  </q-btn>
-
-                </q-card-section>
-              </q-card>
-            </q-intersection>
-
-          </div>
-        </div>
-      </div>
-      <div>
-        <q-th>图片列表（{{ imgTotal }}）</q-th>
-        <q-pull-to-refresh @refresh="refreshImages">
-          <q-infinite-scroll :disable="disableInfiniteScroll" :offset="250" @load="debouncedOnLoad">
-            <div v-for="(image, index) in imageList" :key="index" class="caption" @click="openFullScreen(index)">
-
-              <div style="width: 100%; ">
-                <q-img v-if="image.status != -1" :src="getImageUrl(image.imgUrl)" class="responsive-image m-image"/>
-                <q-img  v-if="image.status == -1" src="/lock_image.jpg" class="responsive-image m-image"/>
-              </div>
-            </div>
-
-            <template v-slot:loading>
-              <div class="row justify-center q-my-md">
-                <q-spinner-dots color="primary" size="40px"/>
-              </div>
-            </template>
-          </q-infinite-scroll>
-        </q-pull-to-refresh>
-        <div v-if="isFullScreen" >
-          <div class="fullscreen-image-container">
-            <q-carousel
-                class="fullscreen-image"
-                swipeable
-                animated
-                v-model="currentIndex"
-                ref="carousel"
-                infinite
-                fullscreen
-            >
-              <q-carousel-slide v-for="(img, idx) in imageList"
-                                :name="idx"
-                                :key="`carousel-${idx}`"
-              >
-                <div class="image-container">
-                  <img :src="getImageUrl(img.imgUrl)" style="object-fit: contain;height: 100%;" class="m-image"/>
+          <div >
+            <q-card flat bordered >
+              <!--          <q-card-section>-->
+              <img :src="getImageUrl(product.imgUrl)" class="m-shop-card-image">
+              <!--          </q-card-section>-->
+              <q-card-section>
+                <div class="row">
+                  <div class="col-6 text-h6">{{ product.prodName }}</div>
+                  <div class="col-6 text-right">
+                    <q-btn   round :color="isCollection !=1 ?'blue':'red'" icon="favorite"  @click="isCollection !=1 ? onCollection() :closeCollection()"/>
+                  </div>
                 </div>
-              </q-carousel-slide>
-
-              <template v-slot:control>
-                <q-carousel-control
-                    position="bottom-right"
-                    :offset="[18, 18]"
-                    class="q-gutter-xs"
-                >
-                  <q-btn
-                      push round dense color="orange" text-color="black" icon="arrow_left"
-                      @click="previousSlide"
-                  />
-                  <q-btn
-                      push round dense color="orange" text-color="black" icon="arrow_right"
-                      @click="nextSlide"
-                  />
-                  <q-btn
-                      push round dense color="white" text-color="primary"
-                      :icon="isFullScreen ? 'fullscreen_exit' : 'fullscreen'"
-                      @click="isFullScreen = !isFullScreen"
-                  />
-                </q-carousel-control>
-              </template>
-
-            </q-carousel>
+              </q-card-section>
+            </q-card>
           </div>
-        </div>
+          <div class="q-ma-sm bg-grey-2">
+            <div v-html="product.content"></div>
 
-      </div>
-      <div style=" text-align: center;font-size: large">
-        <a v-if="shop.pre != null " :href='"/usershop/detail?aid="+shop.pre.id'
-           style="margin: 20px;font-size: large">{{ shop.pre.title }}</a>
-        <a v-if="shop.next != null " :href='"/usershop/detail?aid="+shop.next.id'
-           style="margin: 20px;font-size: large">{{ shop.next.title }}</a>
-      </div>
-      <div>
-        <div class="scroll-container">
-          <div class="scroll-content">
-            <!-- 这里放置你需要滚动的内容 -->
-            <div v-for="(value ,index)  in randomList" :key="index" class="scroll-item">
-              <m-shop-card  :shop="value" />
+          </div>
+          <div class="bg-grey-2 q-ma-sm">
+            <q-toolbar >
+              <q-toolbar-title>
+                评论 <q-chip color="orange" size="xs">好评{{prodCommData.positiveRating}}%</q-chip>
+              </q-toolbar-title>
+              <q-btn flat round dense icon="more_horiz"  :to="{ path: '/common/order', query: { pid: pid }}"/>
+            </q-toolbar>
+            <div>
+              <q-chip color="yellow" size="xs">全部({{ prodCommData.number }})</q-chip>
+              <q-chip size="xs">好评({{ prodCommData.praiseNumber }})</q-chip>
+              <q-chip size="xs">中评({{ prodCommData.secondaryNumber }})</q-chip>
+              <q-chip size="xs">差评({{ prodCommData.negativeNumber }})</q-chip>
+              <q-chip size="xs">有图({{ prodCommData.picNumber }})</q-chip>
+            </div>
+            <div>
+              <div class="q-pa-md q-gutter-md">
+                <q-list bordered padding class="rounded-borders">
+                  <div v-for="(value,index) in commontList" :key="index">
+                    <commot-component :value="value"></commot-component>
+                  </div>
+                </q-list>
+              </div>
+
+            </div>
+          </div>
+          <div class="q-ma-sm">
+            <div class="scroll-container">
+              <div class="scroll-content">
+                <!-- 这里放置你需要滚动的内容 -->
+                <div v-for="(value ,index)  in randomList" :key="index" class="scroll-item">
+                  <product-card-component  :value="value" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </q-page>
+      </q-page>
+    </q-page-container>
 
-  <q-dialog v-model="paypalDialog">
-    <PayaplCard :amount="shop.amount" :productId="shop.id" :kind="4" :intro="shop.intro" :productName="shop.title" :url='"/usershop/detail?aid="+aid'/>
-  </q-dialog>
+    <q-footer elevated class="bg-grey-2">
+      <div class="row">
+        <div class="col-4"><q-btn flat  color="primary" icon="home" to="/" />
+          <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" /></div>
+        <div  class="col-8"><q-btn-group spread>
+          <q-btn color="brown" label="加入购物车"  @click="addChangeItem"/>
+          <q-btn color="red" label="立即购买" />
+        </q-btn-group></div>
+      </div>
+
+    </q-footer>
+
+  </q-layout>
+
 </template>
 
 

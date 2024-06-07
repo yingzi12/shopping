@@ -55,7 +55,7 @@ function routerDetail(url){
           @update:model-value="updateTable()"
         >
           <q-tab name="index"  icon="home" :label=" $t(`home`)"  />
-          <q-tab name="category" icon="keyboard_alt" :label=" $t(`kind`)"/>
+          <q-tab name="category" icon="format_align_justify" :label=" $t(`kind`)"/>
           <q-tab name="shoppingCart" icon="shopping_cart" :label=" $t(`shoppingCart`)"/>
           <q-tab name="admin" icon="manage_accounts" :label=" $t(`users`)" />
         </q-tabs>

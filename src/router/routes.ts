@@ -14,26 +14,36 @@ const routes: RouteRecordRaw[] = [
       { path: 'login', component: () => import('pages/system/login.vue') },
       { path: 'register', component: () => import('pages/system/register.vue') },
       { path: 'product', component: () => import('pages/product/index.vue') },
-      { path: 'shoppingCart', component: () => import('pages/shoppingCart.vue') },
+      // { path: 'shoppingCart', component: () => import('pages/shoppingCart.vue') },
       { path: 'category', component: () => import('pages/category.vue') },
     ],
   },
   {
-    path: '/users', component: () => import('layouts/MobileLayout.vue'),
+    path: '/shoppingCart', component: () => import('layouts/layout.vue'),
     children: [
-      { path: '', component: () => import('pages/users/index.vue') },
-      { path: 'index', component: () => import('pages/users/index.vue') },
-      { path: 'detail', component: () => import('pages/users/detail.vue') },
-      { path: 'order', component: () => import('pages/users/order.vue') }
+      { path: '', component: () => import('pages/shoppingCart.vue') },
+      { path: 'index', component: () => import('pages/shoppingCart.vue') },
+      // { path: 'detail', component: () => import('pages/product/detail.vue') },
+      // { path: 'order', component: () => import('pages/product/order.vue') }
     ],
   },
+
   {
-    path: '/product', component: () => import('layouts/MobileLayout.vue'),
+    path: '/product', component: () => import('layouts/layout.vue'),
     children: [
       { path: '', component: () => import('pages/product/index.vue') },
       { path: 'index', component: () => import('pages/product/index.vue') },
       { path: 'detail', component: () => import('pages/product/detail.vue') },
       { path: 'order', component: () => import('pages/product/order.vue') }
+    ],
+  },
+  {
+    path: '/common', component: () => import('layouts/CommonLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/common/index.vue') },
+      { path: 'index', component: () => import('pages/common/index.vue') },
+      { path: 'detail', component: () => import('pages/common/detail.vue') },
+      { path: 'order', component: () => import('pages/common/order.vue') }
     ],
   },
   {
@@ -53,6 +63,12 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/discuss/index.vue') },
       { path: 'detail', component: () => import('pages/discuss/detail.vue') },
       { path: 'order', component: () => import('pages/discuss/order.vue') },
+    ],
+  },
+  {
+    path: '/order', component: () => import('layouts/layout.vue'),
+    children: [
+      { path: 'create', component: () => import('pages/admin/order/create.vue') },
     ],
   },
   {
