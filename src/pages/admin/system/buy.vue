@@ -3,7 +3,7 @@ import {Cookies, useQuasar} from 'quasar'
 import {reactive, ref, toRefs} from "vue";
 import { api } from "boot/axios";
 import {tansParams} from "boot/tools";
-import mUsershopCard from "components/shop/mUsershopDetailsCardComponent.vue"
+import mUserShopCard from "components/shop/mUserShopDetailsCardComponent.vue"
 
 const $q = useQuasar();
 

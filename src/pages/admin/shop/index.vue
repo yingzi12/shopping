@@ -5,7 +5,7 @@ import {onMounted, reactive, ref, toRefs} from "vue";
 import {useRouter} from "vue-router";
 import {api} from "boot/axios";
 import {tansParams} from "boot/tools";
-import mAdminUsershopCardComponent from "components/shop/mAdminUsershopCardComponent.vue";
+import mAdminUserShopCardComponent from "components/shop/mAdminUserShopCardComponent.vue";
 
 const $q = useQuasar();
 const token = Cookies.get('token');
