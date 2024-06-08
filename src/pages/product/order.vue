@@ -67,7 +67,7 @@ async function getList(page: number) {
   // }else{
   //   queryParams.value.charge = null;
   // }
-  const response = await api.get('/prod/pageProd??' + tansParams(queryParams.value))
+  const response = await api.get('/prod/pageProd?' + tansParams(queryParams.value))
   const data = response.data;
   if (data.code === 200) {
     const valueList = data.data.records;
