@@ -2,10 +2,10 @@
 import { defineProps } from 'vue';
 
 interface Product {
-  id: string;
-  imgUrl: string;
-  title: string;
-  amonut: string;
+  prodId: string;
+  pic: string;
+  prodName: string;
+  price: string;
   effectiveTimeLong: string;
   kind: number;
   introduction: string;
@@ -16,7 +16,7 @@ interface Product {
 const props = defineProps<{ value: Product }>();
 
 function imageUrl() {
-    return `https://image.51x.uk/blackwhite${props.value.imgUrl}`;
+    return `https://image.51x.uk/blackwhite${props.value.pic}`;
 }
 </script>
 
@@ -28,14 +28,14 @@ function imageUrl() {
     <q-card-section>
       <q-item-label>
         <div class="text-h6">
-          <a :href="'/product/detail?aid=' + props.value.id">
-            <p class="text-caption two-line-clamp">{{ props.value.title }}</p>
+          <a :href="'/product/detail?pid=' + props.value.prodId">
+            <p class="text-caption two-line-clamp">{{ props.value.prodName }}</p>
           </a>
         </div>
 
       </q-item-label>
       <q-item-label>
-        {{props.value.amonut}}
+        {{props.value.price}}
       </q-item-label>
     </q-card-section>
   </q-card>

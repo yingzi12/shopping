@@ -16,7 +16,7 @@ const token = Cookies.get("token");
 // 接收url里的参数
 const route = useRoute();
 const pid = ref(route.query.pid);
-const userId = ref(route.query.userId);
+// const userId = ref(route.query.userId);
 
 const $q = useQuasar();
 
@@ -40,7 +40,7 @@ const  skuId=ref(0);
 
 async function getInfo() {
   // 滚动到顶部
-  const response = await api.get("prod/prodInfo?prodId=" + pid.value, {
+  const response = await api.get("/prod/prodInfo?prodId=" + pid.value, {
     headers: {
       'Authorization': `Bearer ${token}`
     }

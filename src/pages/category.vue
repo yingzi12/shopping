@@ -6,13 +6,6 @@ import {tansParams} from "boot/tools";
 const  tab =ref('97');
 const  splitterModel = ref(20);
 
-// async function prodCount() {
-//   const response = await api.get('/shopCart/prodCount')
-//   const data = response.data;
-//   if (data.code == 200) {
-//     // shopProductList.value = data.data
-//   }
-// }
 const categoryList=ref([]);
 async function getCategoryInfo() {
   const response = await api.get('/category/categoryInfo?parentId=')
@@ -34,11 +27,7 @@ async function getChildCategoryInfo(parentId:number) {
 }
 
 function changeTab(){
-  console.log("------value--------");
-  console.log(tab.value)
   getChildCategoryInfo(tab.value);
-
-
 }
 function getImageUrl(imgUrl:string) {
   return `https://image.51x.uk/blackwhite${imgUrl}`;
@@ -95,9 +84,9 @@ function getImageUrl(imgUrl:string) {
                       <q-card-section class="text-center">
                         <q-item-label  >
                           <div class="text-h6">
-                            <a :href="'/product/detail?aid=' + value.categoryId">
-                            </a>
+                            <a :href="'/product/order?categoryId=' + value.categoryId">
                             <p class="text-caption two-line-clamp tight-spacing">{{value.categoryName }}</p>
+                            </a>
                           </div>
                         </q-item-label>
                       </q-card-section>
