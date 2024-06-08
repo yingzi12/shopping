@@ -16,10 +16,9 @@
             height="300px"
             class="bg-primary text-white shadow-1 rounded-borders"
         >
-          <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-          <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-          <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-          <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+          <q-carousel-slide :name="1" img-src="https://image.aiavr.uk/blackwhite/WX20240608-102543@2x.png" />
+          <q-carousel-slide :name="2" img-src="https://image.aiavr.uk/blackwhite/WX20240608-102612@2x.png" />
+          <q-carousel-slide :name="3" img-src="https://image.aiavr.uk/blackwhite/WX20240608-102913@2x.png" />
         </q-carousel>
       </div>
       <q-card>

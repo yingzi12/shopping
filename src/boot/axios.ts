@@ -16,8 +16,8 @@ declare module '@vue/runtime-core' {
 // "export default () => {}" function below (which runs individually
 // for each client)
 const api = axios.create({
-   // baseURL: 'https://admin.aiavr.uk'
- baseURL: "http://127.0.0.1:8098"
+   baseURL: 'https://admin.aiavr.uk'
+ // baseURL: "http://127.0.0.1:8098"
 });
 
 // 添加请求拦截器
@@ -76,13 +76,13 @@ api.interceptors.response.use(function (response) {
 // 获取错误响应对象
   const response = error.response;
   console.log("-----error---------------------");
-
+  //
   console.log(error);
-  console.log(response);
-  console.log(response.data);
+  // console.log(response);
+  // console.log(response.data);
 
   // 检查错误状态码是否为401（未授权）
-  if (response.data && response.data.code === 401) {
+  if (response && response.data && response.data.code === 401) {
     // 删除cookie示例
     Cookies.remove('token');
     Cookies.remove('id');

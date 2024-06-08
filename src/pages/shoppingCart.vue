@@ -85,7 +85,7 @@ const queryData = reactive({
 });
 const {confirm} = toRefs(queryData);
 
-async function  onConfirm(){
+async function  onSubmit(){
   confirm.value.basketIds = checks.value;
   const response = await  api.post("/basket/submit",JSON.stringify(confirm.value));
   if (response.data.code === 200) {
@@ -181,7 +181,7 @@ function  goBack() {
 <!--          <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" />-->
         </div>
         <div  class="col-6 text-right">
-          <q-btn color="red" label="结算" @click="onConfirm"/>
+          <q-btn color="red" label="结算" @click="onSubmit"/>
         </div>
       </div>
 

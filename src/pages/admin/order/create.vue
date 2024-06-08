@@ -6,15 +6,14 @@ import {useRoute, useRouter} from "vue-router";
 const $q = useQuasar();
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 const route = useRoute();
-const confirm = ref({});
-
 
 const orderProductList=ref([]);
 async function  getOrderProduct(){
   const response = await  api.post("/basket/getBasketProduct");
-  if (response.data.code === 200) {
-    console.log(response.data)
-    orderProductList.value=response.data.data;
+  const dataJson=response.data;
+  if (dataJson.code === 200) {
+    console.log(dataJson)
+    orderProductList.value=dataJson.data;
   }
 }
 getOrderProduct();
