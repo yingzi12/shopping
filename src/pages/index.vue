@@ -1,6 +1,12 @@
 <template>
 
     <div>
+      <q-input filled bottom-slots v-model="title" :label="$t(`search`)" counter  @keyup.enter="search" >
+        <template v-slot:append>
+          <q-icon v-if="title !== ''" name="close" @click="title = ''" class="cursor-pointer" />
+          <q-icon name="search"         @click="search" />
+        </template>
+      </q-input>
       <div class="q-pa-md  div-center-child">
         <q-carousel
             v-model="slide"
@@ -68,6 +74,8 @@ import { api } from 'boot/axios';
 import { Cookies } from 'quasar';
 import { tansParams } from 'boot/tools';
 import productCardComponent from "components/product/productCardComponent.vue"
+import {useRoute, useRouter} from "vue-router";
+const router = useRouter();
 
 const title = ref('');
 const token = Cookies.get("token");
@@ -109,7 +117,9 @@ async function getProductList() {
 }
 getProductList();
 const slide = ref(1)
-
+function search(){
+  router.push(`/product/order?title=${title.value}`)
+}
 </script>
 <style lang="scss" scoped>
 

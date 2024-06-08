@@ -9,10 +9,10 @@ const token = Cookies.get("token");
 const route = useRoute();
 const $q = useQuasar();
 const categoryId = ref(route.query.categoryId);
+const title = ref(route.query.title);
 
 const disableInfiniteScroll = ref(false)
 const isRefreshing = ref(false)
-const title=ref("");
 const offsetPage = ref(1);
 const pageNum = ref(0);
 
@@ -50,6 +50,7 @@ const {queryParams, form, rules} = toRefs(queryData);
 const orderBy = ref(0)
 
 async function getList(page: number) {
+  queryParams.value.categoryId= categoryId.value;
   queryParams.value.prodName = title.value;
   queryParams.value.pageNum = page;
   // if(orderBy.value==1) {
