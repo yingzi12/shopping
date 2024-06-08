@@ -72,6 +72,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'paypal', component: () => import('pages/admin/order/paypal.vue') },
       { path: 'list', component: () => import('pages/admin/order/list.vue') },
       { path: 'detail', component: () => import('pages/admin/order/detail.vue') },
+      { path: 'now', component: () => import('pages/admin/order/now.vue') },
 
     ],
   },

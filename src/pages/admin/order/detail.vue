@@ -102,7 +102,7 @@ function onConfirmReceive(ordernum:string) {
               label: '确定',
               color: 'primary'
             }
-          })
+          });
         }
       });
 }

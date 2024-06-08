@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from "vue-router";
-import {Cookies, useQuasar} from "quasar";
+import {Cookies, Dialog, useQuasar} from "quasar";
 import {reactive, ref, toRefs} from "vue";
 import {api} from "boot/axios";
 import PayaplCard from "pages/system/payment.vue";
@@ -36,6 +36,7 @@ const orgImgae = ref("Black White")
 
 const tagList=ref([]);
 const product=ref({});
+const  skuId=ref(0);
 
 async function getInfo() {
   // 滚动到顶部
@@ -47,7 +48,9 @@ async function getInfo() {
   const data = response.data;
   if (data.code === 200) {
     product.value = data.data;
+    skuId.value=product.value.skuList[0].skuId;
     isCollection.value=product.value.isCollection
+
     amount.value=product.value.amount
     if(product.value.tags != null){
       tagList.value=product.value.tags.split(";");
@@ -126,7 +129,6 @@ const queryData = reactive({
   },
 });
 const {queryParams,addCart} = toRefs(queryData);
-
 const commontList = ref([]);
 const total=ref(0);
 async function getCommonLit() {
@@ -177,7 +179,7 @@ async function addChangeItem() {
   addCart.value.count=1;
   addCart.value.prodId=pid.value;
   addCart.value.shopId=product.value.shopId;
-  addCart.value.skuId=product.value.skuList[0].skuId;
+  addCart.value.skuId=skuId.value;
   // addCart.value.skuId=401;
   const response = await api.post('/shopCart/changeItem', JSON.stringify(addCart.value),{
     headers: {
@@ -187,6 +189,25 @@ async function addChangeItem() {
   const data = response.data;
   if (data.code === 200) {
     randomList.value = data.data
+    Dialog.create({
+      title: '信息',
+      message: '操作成功',
+      cancel: true,
+      ok: {
+        label: '确定',
+        color: 'primary'
+      }
+    });
+  }else{
+    Dialog.create({
+      title: '信息',
+      message: `添加失败。${data.msg}`,
+      cancel: true,
+      ok: {
+        label: '确定',
+        color: 'primary'
+      }
+    });
   }
 }
 function  goBack() {
@@ -199,6 +220,15 @@ function getImageUrl(imgUrl) {
   }
   return `/empty.png`; // Default image URL when imgUrl is null, undefined, or empty
 } // immediate: true 确保在挂载时立即触发一次
+const dialogAdd=ref(false);
+
+const productCount=ref(1);
+function routerOrder(){
+  router.push(`/order/now?prodCount=${productCount.value}&skuId=${skuId.value}&shopId=${product.value.shopId}&prodId=${pid.value}`)
+}
+function onSkuId(sid:number){
+  skuId.value=sid;
+}
 </script>
 <template>
   <q-layout view="hHh lpR fFf">
@@ -214,7 +244,7 @@ function getImageUrl(imgUrl) {
           <div >
             <q-card flat bordered >
               <!--          <q-card-section>-->
-              <img :src="getImageUrl(product.imgUrl)" class="m-shop-card-image">
+              <img :src="getImageUrl(product.imgUrl) " class="m-shop-card-image">
               <!--          </q-card-section>-->
               <q-card-section>
                 <div class="row">
@@ -226,9 +256,31 @@ function getImageUrl(imgUrl) {
               </q-card-section>
             </q-card>
           </div>
+          <div class="bg-grey-2 q-ma-sm">
+            <div>
+            <q-toolbar >
+              <q-toolbar-title>
+                选择
+              </q-toolbar-title>
+<!--              <q-btn flat round dense icon="more_horiz"  :to="{ path: '/common/order', query: { pid: pid }}"/>-->
+            </q-toolbar>
+            </div>
+            <div class="q-pa-md q-gutter-md q-gutter-xs">
+              <q-chip   v-for="(sku,index) in product.skuList"
+                        :key="index"
+                        :selected="skuId === sku.skuId"
+                        color="primary"
+                        text-color="white"
+                        size="ms"
+                        icon="bookmark"
+                        @click="onSkuId(sku.skuId)"
+              >
+                {{ sku.skuName }}
+              </q-chip>
+            </div>
+          </div>
           <div class="q-ma-sm bg-grey-2">
             <div v-html="product.content"></div>
-
           </div>
           <div class="bg-grey-2 q-ma-sm">
             <q-toolbar >
@@ -275,7 +327,7 @@ function getImageUrl(imgUrl) {
           <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" /></div>
         <div  class="col-8"><q-btn-group spread>
           <q-btn color="brown" label="加入购物车"  @click="addChangeItem"/>
-          <q-btn color="red" label="立即购买" />
+          <q-btn color="red" label="立即购买"  @click="dialogAdd =true"/>
         </q-btn-group></div>
       </div>
 
@@ -283,6 +335,28 @@ function getImageUrl(imgUrl) {
 
   </q-layout>
 
+  <q-dialog v-model="dialogAdd" position="bottom">
+    <q-card >
+      <q-card-section>
+        <q-item>
+          <q-item-section >数量</q-item-section>
+
+          <q-item-section side>
+            <q-input class="text-right"
+                          v-model.number="productCount"
+                          type="number"
+                          filled
+                          style="max-width: 50px"
+                    />
+          </q-item-section>
+
+        </q-item>
+      </q-card-section>
+      <q-card-section>
+        <q-item-label class="text-center"><q-btn color="blue" @click="routerOrder">确认</q-btn></q-item-label>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 
 
