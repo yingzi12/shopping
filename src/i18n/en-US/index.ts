@@ -63,44 +63,13 @@ export default {
     description: "shop Network - Beauty, Photos, Photography, Showman.com.",
     title: "shop Network",
   },
-  vip: {
-    monthly: 'Monthly Package',
-    halfYear: 'Half Year Package',
-    yearly: 'Yearly Package',
-    lifetime: 'Lifetime Package',
-    cancellation: 'No Cancellation',
-    price: 'Price',
-    date: {
-      month: 'Month',
-      halfYear: 'Half Year',
-      year: 'Year',
-      lifetime: 'Lifetime'
-    },
-    features: {
-      monthFeature1: '1 month duration',
-      download: 'Download',
-      exclusiveLogo: 'Exclusive logo',
-      // ...其他月套餐特征...
-      halfYearFeature1: '6 months duration',
-      // ...半年套餐的其他特征...
-      yearFeature1: '12 months duration',
-      // ...年套餐的其他特征...
-      lifetimeFeature1: 'Lifetime updates',
-      videos: 'Upload Videos',
-      fullshop: 'Full Image Gallery',
-      discount90: '10% Discount on App Purchases',
-      discount95: '5% Discount on App Purchases',
-      discount98: '2% Discount on App Purchases',
-      exclusiveServices: 'Exclusive Services',
-      // ...永久套餐的其他特征...
-    }
-  },
   user:{
     personalInfo: 'Personal Info',
     myAttention: 'My Attention',
     myCollection: 'My Collection',
     myPurchase: 'My Purchases',
     myshop: 'My shops',
+    myOrder:"My order",
     vipSettings: 'VIP Settings',
     userPurchase: 'User Purchases',
     myWithdrawal: 'My Withdrawal',

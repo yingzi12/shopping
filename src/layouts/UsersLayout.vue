@@ -85,7 +85,9 @@ function getImageUrl(url) {
   }
   return "/favicon.png";
 }
-
+function routerIndex(){
+  router.push("/")
+}
 
 </script>
 
@@ -93,25 +95,17 @@ function getImageUrl(url) {
   <div class="q-pa-md" style="height: 100vh;">
     <q-layout class="shadow-2 rounded-borders" container view="lHh Lpr lff">
       <q-header elevated>
-        <q-toolbar>
-          <q-toolbar>
-            <q-btn dense flat icon="menu" round @click="drawer = !drawer"/>
-          </q-toolbar>
-<!--          <q-btn flat round dense icon="menu" class="q-mr-sm" />-->
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+        <q-toolbar class="bg-grey-2 text-black">
+          <q-btn dense flat icon="menu" round @click="drawer = !drawer"/>
+          <q-avatar  @click="routerIndex">
+            <img src="/logo.jpg">
           </q-avatar>
 
-          <q-toolbar-title>Quasar Framework</q-toolbar-title>
+          <q-toolbar-title @click="routerIndex">Black White</q-toolbar-title>
 
           <q-btn flat round dense icon="whatshot" />
         </q-toolbar>
       </q-header>
-<!--      <q-header class="bg-cyan-8" elevated>-->
-<!--        <q-toolbar>-->
-<!--          <q-btn dense flat icon="menu" round @click="drawer = !drawer"/>-->
-<!--        </q-toolbar>-->
-<!--      </q-header>-->
 
       <q-drawer
           v-model="drawer"
@@ -125,7 +119,7 @@ function getImageUrl(url) {
                     :active="link === 'detail'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/"
+                    to="/admin/users/index"
                     @click="link = 'detail'"
             >
               <q-item-section avatar>
@@ -134,22 +128,6 @@ function getImageUrl(url) {
 
               <q-item-section>
                 {{ $t(`user.personalInfo`) }}
-              </q-item-section>
-            </q-item>
-
-            <q-item v-ripple
-                    :active="link === 'attention'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/users/attention"
-                    @click="link = 'attention'"
-            >
-              <q-item-section avatar>
-                <q-icon name="favorite_border"/>
-              </q-item-section>
-
-              <q-item-section>
-                {{ $t(`user.myAttention`) }}
               </q-item-section>
             </q-item>
             <q-item v-ripple
@@ -172,59 +150,17 @@ function getImageUrl(url) {
                     :active="link === 'buy'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/buy"
+                    to="/order/list"
                     @click="link = 'buy'"
             >
               <q-item-section avatar>
                 <q-icon name="shopping_bag"/>
               </q-item-section>
               <q-item-section>
-                {{ $t(`user.myPurchase`) }}
+                {{ $t(`user.myOrder`) }}
               </q-item-section>
             </q-item>
             <q-separator/>
-            <q-item v-ripple
-                    :active="link === 'shop'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/users/shop"
-                    @click="link = 'shop'"
-            >
-              <q-item-section avatar>
-                <q-icon name="perm_media"/>
-              </q-item-section>
-              <q-item-section>
-                {{ $t(`user.myshop`) }}
-              </q-item-section>
-            </q-item>
-            <q-item v-ripple
-                    :active="link === 'vip'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/users/vip"
-                    @click="link = 'vip'"
-            >
-              <q-item-section avatar>
-                <q-icon name="settings_brightness"/>
-              </q-item-section>
-              <q-item-section>
-                {{ $t(`user.vipSettings`) }}
-              </q-item-section>
-            </q-item>
-            <q-item v-ripple
-                    :active="link === 'sell'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/users/sell"
-                    @click="link = 'sell'"
-            >
-              <q-item-section avatar>
-                <q-icon name="view_headline"/>
-              </q-item-section>
-              <q-item-section>
-                {{ $t(`user.userPurchase`) }}
-              </q-item-section>
-            </q-item>
             <q-item v-ripple
                     :active="link === 'withdraw'"
                     active-class="my-menu-link"
@@ -281,21 +217,6 @@ function getImageUrl(url) {
 
               <q-item-section>
                 {{ $t(`user.resetPassword`) }}
-              </q-item-section>
-            </q-item>
-            <q-item v-ripple
-                    :active="link === 'buyLog'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/users/buyLog"
-                    @click="link = 'buyLog'"
-            >
-              <q-item-section avatar>
-                <q-icon name="vertical_split"/>
-              </q-item-section>
-
-              <q-item-section>
-                {{ $t(`user.consumptionRecord`) }}
               </q-item-section>
             </q-item>
             <q-item

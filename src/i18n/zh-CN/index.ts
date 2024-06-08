@@ -103,6 +103,7 @@ export default {
     myCollection: '我的收藏',
     myPurchase: '我的购买',
     myshop: '我的图集',
+    myOrder:"我的订单",
     vipSettings: 'VIP设置',
     userPurchase: '用户购买',
     myWithdrawal: '我的提现',

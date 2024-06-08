@@ -21,6 +21,7 @@ async function  getOrderProduct(){
 getOrderProduct();
 const orderDetail=ref({});
 const address=ref({});
+const addressOk=ref(false);
 
 async function  getOrderDetail(){
   const response = await  api.get(`/myOrder/orderDetail?orderNumber=${ordernum.value}`);
@@ -28,7 +29,10 @@ async function  getOrderDetail(){
   if (dataJson.code === 200) {
     console.log(dataJson)
     orderDetail.value=dataJson.data;
-    address.value=orderDetail.value.userAddrDto;
+    if(orderDetail.value.userAddrDto!=null){
+      addressOk.value=true;
+      address.value=orderDetail.value.userAddrDto;
+    }
   }
 }
 getOrderDetail();
@@ -141,12 +145,13 @@ function onConfirmReceive(ordernum:string) {
           <div class="q-pa-md">
             <q-card>
               <q-card-section >
-                <q-item-label>{{address}}</q-item-label>
-<!--                <q-item-label  >收件人：{{address.receiver}}</q-item-label>-->
-<!--                <q-item-label  caption>国家：{{address.country}}</q-item-label>-->
-<!--                <q-item-label  caption>联系方式：{{address.mobile}}</q-item-label>-->
-<!--                <q-item-label  caption>区域：{{address.province}}-{{address.city}}-{{address.area}}</q-item-label>-->
-<!--                <q-item-label  caption>详细地址：{{address.addr}}</q-item-label>-->
+                <q-item-label  v-if="addressOk">收件人：{{address.receiver}}</q-item-label>
+                <q-item-label v-if="addressOk" caption>国家：{{address.country}}</q-item-label>
+                <q-item-label v-if="addressOk" caption>联系方式：{{address.mobile}}</q-item-label>
+                <q-item-label v-if="addressOk" caption>区域：{{address.province}}-{{address.city}}-{{address.area}}</q-item-label>
+                <q-item-label v-if="addressOk" caption>详细地址：{{address.addr}}</q-item-label>
+                <q-item-label  v-if="!addressOk">无地址</q-item-label>
+
               </q-card-section>
             </q-card>
             <!--            <q-btn v-if="!address.receiver">选择地址</q-btn>-->

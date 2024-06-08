@@ -4,22 +4,12 @@ import {Cookies, useQuasar} from 'quasar'
 import {useRouter} from "vue-router";
 import {api} from "boot/axios";
 import {compressIfNeeded} from "boot/tools";
-
 const token = Cookies.get('token');
 const id = Cookies.get('id');
 const $q = useQuasar()
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
-
-
 const imgUrl = ref("/favicon.png");
-// const isEmail = ref(null);
-// const intro = ref(null);
-// const countSee = ref(0);
-// const countLike = ref(0);
-// const countAttention = ref(0);
-// const vip = ref(0);
-const vipExpirationTime = ref(null);
 const previewImage = ref(null);
 
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -162,7 +152,7 @@ const logout = async () => {
                 :active="link === 'detail'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/"
+                to="/admin/users/index"
                 @click="link = 'detail'"
         >
           <q-item-section avatar>
@@ -171,22 +161,6 @@ const logout = async () => {
 
           <q-item-section>
             {{ $t(`user.personalInfo`) }}
-          </q-item-section>
-        </q-item>
-
-        <q-item v-ripple
-                :active="link === 'attention'"
-                active-class="my-menu-link"
-                clickable
-                to="/admin/users/attention"
-                @click="link = 'attention'"
-        >
-          <q-item-section avatar>
-            <q-icon name="favorite_border"/>
-          </q-item-section>
-
-          <q-item-section>
-            {{ $t(`user.myAttention`) }}
           </q-item-section>
         </q-item>
         <q-item v-ripple
@@ -209,59 +183,17 @@ const logout = async () => {
                 :active="link === 'buy'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/buy"
+                to="/order/list"
                 @click="link = 'buy'"
         >
           <q-item-section avatar>
             <q-icon name="shopping_bag"/>
           </q-item-section>
           <q-item-section>
-            {{ $t(`user.myPurchase`) }}
+            {{ $t(`user.myOrder`) }}
           </q-item-section>
         </q-item>
         <q-separator/>
-        <q-item v-ripple
-                :active="link === 'shop'"
-                active-class="my-menu-link"
-                clickable
-                to="/admin/users/shop"
-                @click="link = 'shop'"
-        >
-          <q-item-section avatar>
-            <q-icon name="perm_media"/>
-          </q-item-section>
-          <q-item-section>
-            {{ $t(`user.myshop`) }}
-          </q-item-section>
-        </q-item>
-        <q-item v-ripple
-                :active="link === 'vip'"
-                active-class="my-menu-link"
-                clickable
-                to="/admin/users/vip"
-                @click="link = 'vip'"
-        >
-          <q-item-section avatar>
-            <q-icon name="settings_brightness"/>
-          </q-item-section>
-          <q-item-section>
-            {{ $t(`user.vipSettings`) }}
-          </q-item-section>
-        </q-item>
-        <q-item v-ripple
-                :active="link === 'sell'"
-                active-class="my-menu-link"
-                clickable
-                to="/admin/users/sell"
-                @click="link = 'sell'"
-        >
-          <q-item-section avatar>
-            <q-icon name="view_headline"/>
-          </q-item-section>
-          <q-item-section>
-            {{ $t(`user.userPurchase`) }}
-          </q-item-section>
-        </q-item>
         <q-item v-ripple
                 :active="link === 'withdraw'"
                 active-class="my-menu-link"
@@ -320,28 +252,13 @@ const logout = async () => {
             {{ $t(`user.resetPassword`) }}
           </q-item-section>
         </q-item>
-        <q-item v-ripple
-                :active="link === 'buyLog'"
-                active-class="my-menu-link"
-                clickable
-                to="/admin/users/buyLog"
-                @click="link = 'buyLog'"
-        >
-          <q-item-section avatar>
-            <q-icon name="vertical_split"/>
-          </q-item-section>
-
-          <q-item-section>
-            {{ $t(`user.consumptionRecord`) }}
-          </q-item-section>
-        </q-item>
         <q-item
-          v-ripple
-          :active="link === 'service'"
-          active-class="my-menu-link"
-          clickable
-          to="/admin/users/service"
-          @click="link = 'service'"
+            v-ripple
+            :active="link === 'service'"
+            active-class="my-menu-link"
+            clickable
+            to="/admin/users/service"
+            @click="link = 'service'"
         >
           <q-item-section avatar>
             <q-icon name="mail_outline"/>
@@ -352,11 +269,11 @@ const logout = async () => {
           </q-item-section>
         </q-item>
         <q-item
-          v-ripple
-          :active="link === 'drafts'"
-          active-class="my-menu-link"
-          clickable
-          @click="logout"
+            v-ripple
+            :active="link === 'drafts'"
+            active-class="my-menu-link"
+            clickable
+            @click="logout"
         >
           <q-item-section avatar>
             <q-icon name="exit_to_app"/>

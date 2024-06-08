@@ -34,7 +34,11 @@ async function getListSystem(page: number) {
     });
     if (response.data.code == 200) {
       total.value = response.data.total;
-      maxPage.value=  total.value/queryParams.value.pageSize+1;
+      if(total.value%queryParams.value.pageSize == 0){
+        maxPage.value = total.value / queryParams.value.pageSize ;
+      }else {
+        maxPage.value = total.value / queryParams.value.pageSize + 1;
+      }
       collectionSystemList.value = response.data.data;
     }
   } catch (error) {
