@@ -55,7 +55,7 @@ async function onSubmit() {
       $q.cookies.set('token',data.token,{path:"/"});
       $q.cookies.set('id',data.id,{path:"/"});
       $q.cookies.set('userInfo',data.user,{path:"/"});
-      router.push('/users/'); // 或者其他页面
+      router.push('/'); // 或者其他页面
     } else {
       $q.dialog({
         color: 'red-5',

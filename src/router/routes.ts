@@ -69,6 +69,10 @@ const routes: RouteRecordRaw[] = [
     path: '/order', component: () => import('layouts/layout.vue'),
     children: [
       { path: 'create', component: () => import('pages/admin/order/create.vue') },
+      { path: 'paypal', component: () => import('pages/admin/order/paypal.vue') },
+      { path: 'list', component: () => import('pages/admin/order/list.vue') },
+      { path: 'detail', component: () => import('pages/admin/order/detail.vue') },
+
     ],
   },
   {
