@@ -14,7 +14,7 @@ interface Product {
 const props = defineProps<{ value: Product }>();
 
 function imageUrl() {
-    return `https://image.51x.uk/xinshijie${props.value.pic}`;
+    return `https://image.51x.uk/blackwhite${props.value.pic}`;
 }
 function routerDetail() {
   router.push(`/product/detail?pid=${props.value.prodId}`);

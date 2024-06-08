@@ -21,7 +21,7 @@ function imageUrl() {
   if (props.value && props.value.imgUrl) {
 
     const imgUrl = props.value.imgUrl; // 如果imgUrl为空，则使用默认图片路径
-    return `https://image.51x.uk/xinshijie${imgUrl}`;
+    return `https://image.51x.uk/blackwhite${imgUrl}`;
   }else{
     return "";
   }

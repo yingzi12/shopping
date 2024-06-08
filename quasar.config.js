@@ -96,7 +96,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {
-        sourceWeb: 'https://image.51x.uk/xinshijie',
+        sourceWeb: 'https://image.51x.uk/blackwhite',
         //baseUrl:"http://192.168.68.100:8098",
         baseUrl:"https://admin.aiavr.uk",
         notify: { /* look at QuasarConfOptions from the API card */ }

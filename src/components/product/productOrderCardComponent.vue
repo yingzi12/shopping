@@ -11,7 +11,7 @@ interface ProductOrder {
 const props = defineProps<{ value: ProductOrder }>();
 
 function imageUrl() {
-    return `https://image.51x.uk/xinshijie${props.value.imgUrl}`;
+    return `https://image.51x.uk/blackwhite${props.value.imgUrl}`;
 }
 </script>
 

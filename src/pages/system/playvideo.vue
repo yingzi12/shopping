@@ -17,7 +17,7 @@ const videoList = ref([]);
 
 const videoOptions = ref({
   type:"application/x-mpegURL",
-  src: "https://www.aiavr.com/xinshijie/shop.m3u8", // 设置m3u8格式视频的URL
+  src: "https://image.51k.com/blackwhite/shop.m3u8", // 设置m3u8格式视频的URL
   controls: true,
   poster: "/albun.jpg",
   preload: 'auto',

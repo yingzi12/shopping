@@ -16,7 +16,7 @@ interface Product {
 const props = defineProps<{ value: Product }>();
 
 function imageUrl() {
-    return `https://image.51x.uk/xinshijie${props.value.imgUrl}`;
+    return `https://image.51x.uk/blackwhite${props.value.imgUrl}`;
 }
 </script>
 

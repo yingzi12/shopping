@@ -22,7 +22,7 @@ interface Common {
 const props = defineProps<{ value: Common }>();
 
 function imageUrl() {
-  return `https://image.51x.uk/xinshijie${props.value.pic}`;
+  return `https://image.51x.uk/blackwhite${props.value.pic}`;
 }
 function routerDetail() {
   router.push(`/common/detail?prodCommId=${props.value.prodCommId}`);

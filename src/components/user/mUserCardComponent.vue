@@ -11,7 +11,7 @@ const props = defineProps<{ value: User }>();
 
 function imageUrl() {
   const imgUrl = props.value.imgUrl; // 如果imgUrl为空，则使用默认图片路径
-  return `https://image.51x.uk/xinshijie${imgUrl}`;
+  return `https://image.51x.uk/blackwhite${imgUrl}`;
 }
 </script>
 

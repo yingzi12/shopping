@@ -29,7 +29,7 @@ const props = defineProps<{ shop: shop }>();
 //   tagList.value=props.shop.tags.split(";");
 // }
 function imageUrl() {
-  return `https://image.51x.uk/xinshijie${props.shop.imgUrl}`;
+  return `https://image.51x.uk/blackwhite${props.shop.imgUrl}`;
 }
 function routerDetail(){
   router.push("/usershop/detail?aid="+props.shop.id);

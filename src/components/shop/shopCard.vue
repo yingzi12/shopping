@@ -14,7 +14,7 @@ const props = defineProps<{ shop: shop }>();
 function imageUrl() {
   const { sourceUrl, sourceWeb, imgUrl } = props.shop;
   if (sourceUrl != null && sourceUrl.startsWith('/image')) {
-    return `https://image.51x.uk/xinshijie${sourceUrl}`;
+    return `https://image.51x.uk/blackwhite${sourceUrl}`;
   }
   return sourceWeb + imgUrl;
 }

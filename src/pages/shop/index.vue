@@ -58,7 +58,7 @@ const randomList = ref([]);
 
 function imageUrl(shop) {
   if (shop.sourceUrl!=null &&  shop.sourceUrl.startsWith('/image')) {
-    return `https://image.51x.uk/xinshijie${shop.sourceUrl}`;
+    return `https://image.51x.uk/blackwhite${shop.sourceUrl}`;
   }
   return shop.sourceWeb + shop.imgUrl;
 }

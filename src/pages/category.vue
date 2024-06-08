@@ -41,7 +41,7 @@ function changeTab(){
 
 }
 function getImageUrl(imgUrl:string) {
-  return `https://image.51x.uk/xinshijie${imgUrl}`;
+  return `https://image.51x.uk/blackwhite${imgUrl}`;
 }
 // prodCount();
 // getChildCategoryInfo();
