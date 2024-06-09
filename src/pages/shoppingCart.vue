@@ -106,16 +106,19 @@ function  goBack() {
     <q-header elevated>
       <q-toolbar class="bg-grey-2 text-black">
         <q-btn flat round dense icon="arrow_back" class="q-mr-sm"       @click="goBack"/>
-        <q-toolbar-title>商品详细</q-toolbar-title>
+        <q-toolbar-title>购物车</q-toolbar-title>
       </q-toolbar>
     </q-header>
     <q-page-container>
       <q-page>
-        <q-toolbar >
-          <q-toolbar-title>
-            商品推荐
-          </q-toolbar-title>
-        </q-toolbar>
+        <div class="text-center">
+           <div class="text-red">无数据</div>
+        </div>
+<!--        <q-toolbar >-->
+<!--          <q-toolbar-title>-->
+<!--            商品推荐-->
+<!--          </q-toolbar-title>-->
+<!--        </q-toolbar>-->
         <div v-for="(value, shopIndex) in shopCartList" :key="shopIndex">
           <q-item-label header>{{ value.shopName }}</q-item-label>
           <div v-for="(item, discountIndex) in value.shopCartItemDiscounts" :key="discountIndex">

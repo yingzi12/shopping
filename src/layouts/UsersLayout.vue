@@ -89,6 +89,23 @@ function routerIndex(){
   router.push("/")
 }
 
+if(token == null || token == '' || token == undefined ) {
+
+  $q.dialog({
+    title: '通知',
+    message: '请先登录，点击ok跳转登录.',
+    ok: {
+      push: true
+    },
+    cancel: {
+      push: true
+    },
+  }).onOk(async () => {
+     router.push('/login'); // Redirect to login page
+  }).onCancel(async () => {
+     router.push('/'); // Redirect to login page
+  });
+}
 </script>
 
 <template>

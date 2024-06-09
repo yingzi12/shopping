@@ -76,15 +76,30 @@ const routes: RouteRecordRaw[] = [
 
     ],
   },
+  // {
+  //   path: '/shop', component: () => import('layouts/ShopLayout.vue'),
+  //   children: [
+  //     { path: '', component: () => import('pages/admin/shop/index.vue') },
+  //     { path: 'index', component: () => import('pages/admin/shop/index.vue') },
+  //     { path: 'add', component: () => import('pages/admin/shop/add.vue') },
+  //     { path: 'edit', component: () => import('pages/admin/shop/edit.vue') },
+  //
+  //   ],
+  // },
   {
     path: '/admin',
-    component: () => import('layouts/UsersLayout.vue'),
+    component: () => import('layouts/layout.vue'),
     children: [
-      { path: '', component: () => import('pages/admin/index.vue') },
-      { path: 'index', component: () => import('pages/admin/index.vue') },
+      { path: '',
+        component: () => import('layouts/MobileLayout.vue'),
+        children: [
+          { path: '', component: () => import('pages/admin/index.vue') },
+          { path: 'index', component: () => import('pages/admin/index.vue') },
+        ]
+      },
       {
         path: 'users',
-        component: () => import('layouts/layout.vue'),
+        component: () => import('layouts/UsersLayout.vue'),
         children: [
           // { path: '', component: () => import('pages/users/index.vue') },
           {
@@ -175,69 +190,17 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/admin/shop/index.vue'),
           },
           {
-            path: 'addshop',
+            path: 'add',
             component: () => import('pages/admin/shop/add.vue'),
           },
           {
-            path: 'addWithdraw',
-            component: () => import('pages/admin/system/addWithdraw.vue'),
+            path: 'addImage',
+            component: () => import('pages/admin/shop/addImage.vue'),
           },
           {
-            path: 'shop',
-            component: () => import('pages/admin/shop/index.vue'),
-          },
-          {
-            path: 'attention',
-            component: () => import('pages/admin/users/attention.vue'),
-          },
-          {
-            path: 'buy',
-            component: () => import('pages/admin/system/buy.vue'),
-          },
-          {
-            path: 'buyLog',
-            component: () => import('pages/admin/system/buyLog.vue'),
-          },
-          {
-            path: 'collection',
-            component: () => import('pages/admin/users/collection.vue'),
-          },
-          {
-            path: 'delete',
-            component: () => import('pages/admin/system/delete.vue'),
-          },
-          {
-            path: 'editshop',
+            path: 'edit',
             component: () => import('pages/admin/shop/edit.vue'),
           },
-          {
-            path: 'invite',
-            component: () => import('pages/admin/system/invite.vue'),
-          },
-          {
-            path: 'sell',
-            component: () => import('pages/admin/system/sell.vue'),
-          },
-          {
-            path: 'userEdit',
-            component: () => import('pages/admin/users/edit.vue'),
-          },
-          {
-            path: 'userHeadImage',
-            component: () => import('pages/admin/users/userHeadImage.vue'),
-          },
-          {
-            path: 'service',
-            component: () => import('pages/admin/system/service.vue'),
-          },
-          {
-            path: 'addService',
-            component: () => import('pages/admin/system/addService.vue'),
-          },
-          {
-            path: 'withdraw',
-            component: () => import('pages/admin/system/withdraw.vue'),
-          }
         ]
       },
 

@@ -36,7 +36,6 @@ async function onSubmit() {
   if (!accept.value) {
     return;
   }
-
   try {
     const response = await api.post("/systemUser/login", JSON.stringify({
       username: username.value,
@@ -51,12 +50,12 @@ async function onSubmit() {
     });
     const data = response.data;
     if (data.code == 200) {
-        console.log(data);
       $q.cookies.set('token',data.token,{path:"/"});
       $q.cookies.set('id',data.id,{path:"/"});
       $q.cookies.set('userInfo',data.user,{path:"/"});
       router.push('/'); // 或者其他页面
     } else {
+      await refreshCaptcha();
       $q.dialog({
         color: 'red-5',
         message: data.msg
