@@ -143,7 +143,7 @@ function updateCharge(charge: number) {
               </q-item-section>
 
               <q-item-section>
-                {{ $t(`user.personalInfo`) }}
+                店铺信息
               </q-item-section>
             </q-item>
             <q-separator/>
@@ -158,7 +158,7 @@ function updateCharge(charge: number) {
                 <q-icon name="shopping_bag"/>
               </q-item-section>
               <q-item-section>
-                {{ $t(`user.myPurchase`) }}
+                产品管理
               </q-item-section>
             </q-item>
             <q-separator/>
@@ -173,7 +173,7 @@ function updateCharge(charge: number) {
                 <q-icon name="perm_media"/>
               </q-item-section>
               <q-item-section>
-                {{ $t(`user.myshop`) }}
+                订单管理
               </q-item-section>
             </q-item>
             <q-item v-ripple
@@ -187,7 +187,21 @@ function updateCharge(charge: number) {
                 <q-icon name="view_headline"/>
               </q-item-section>
               <q-item-section>
-                {{ $t(`user.userPurchase`) }}
+                图片管理
+              </q-item-section>
+            </q-item>
+            <q-item v-ripple
+                    :active="link === 'sell'"
+                    active-class="my-menu-link"
+                    clickable
+                    to="/admin/shop/sell"
+                    @click="link = 'sell'"
+            >
+              <q-item-section avatar>
+                <q-icon name="view_headline"/>
+              </q-item-section>
+              <q-item-section>
+                 分类管理
               </q-item-section>
             </q-item>
             <q-item v-ripple
@@ -201,7 +215,7 @@ function updateCharge(charge: number) {
                 <q-icon name="paid"/>
               </q-item-section>
               <q-item-section>
-                {{ $t(`user.myWithdrawal`) }}
+                评论管理
               </q-item-section>
             </q-item>
             <q-separator/>
@@ -216,40 +230,10 @@ function updateCharge(charge: number) {
                 <q-icon name="send"/>
               </q-item-section>
               <q-item-section>
-                {{ $t(`user.myInvitation`) }}
+                规格管理
               </q-item-section>
             </q-item>
-            <q-item v-ripple
-                    :active="link === 'buyLog'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/shop/buyLog"
-                    @click="link = 'buyLog'"
-            >
-              <q-item-section avatar>
-                <q-icon name="vertical_split"/>
-              </q-item-section>
 
-              <q-item-section>
-                {{ $t(`user.consumptionRecord`) }}
-              </q-item-section>
-            </q-item>
-            <q-item
-                v-ripple
-                :active="link === 'service'"
-                active-class="my-menu-link"
-                clickable
-                to="/admin/shop/service"
-                @click="link = 'service'"
-            >
-              <q-item-section avatar>
-                <q-icon name="mail_outline"/>
-              </q-item-section>
-
-              <q-item-section>
-                {{ $t(`user.customerService`) }}
-              </q-item-section>
-            </q-item>
             <q-item
                 v-ripple
                 :active="link === 'drafts'"
