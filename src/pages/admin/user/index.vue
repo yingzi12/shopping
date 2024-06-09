@@ -152,7 +152,7 @@ const logout = async () => {
                 :active="link === 'detail'"
                 active-class="my-menu-link"
                 clickable
-                to="/user/users/index"
+                to="/admin/users/index"
                 @click="link = 'detail'"
         >
           <q-item-section avatar>
@@ -167,7 +167,7 @@ const logout = async () => {
                 :active="link === 'collection'"
                 active-class="my-menu-link"
                 clickable
-                to="/user/users/collection"
+                to="/admin/users/collection"
                 @click="link = 'collection'"
         >
           <q-item-section avatar>
@@ -198,7 +198,7 @@ const logout = async () => {
                 :active="link === 'withdraw'"
                 active-class="my-menu-link"
                 clickable
-                to="/user/users/withdraw"
+                to="/admin/users/withdraw"
                 @click="link = 'withdraw'"
         >
           <q-item-section avatar>
@@ -213,7 +213,7 @@ const logout = async () => {
                 :active="link === 'invite'"
                 active-class="my-menu-link"
                 clickable
-                to="/user/users/invite"
+                to="/admin/users/invite"
                 @click="link = 'invite'"
         >
           <q-item-section avatar>
@@ -227,7 +227,7 @@ const logout = async () => {
                 :active="link === 'exchange'"
                 active-class="my-menu-link"
                 clickable
-                to="/user/users/exchange"
+                to="/admin/users/exchange"
                 @click="link = 'exchange'"
         >
           <q-item-section avatar>
@@ -241,7 +241,7 @@ const logout = async () => {
                 :active="link === 'password'"
                 active-class="my-menu-link"
                 clickable
-                to="/user/users/password"
+                to="/admin/users/password"
                 @click="link = 'password'"
         >
           <q-item-section avatar>
@@ -257,7 +257,7 @@ const logout = async () => {
             :active="link === 'service'"
             active-class="my-menu-link"
             clickable
-            to="/user/users/service"
+            to="/admin/users/service"
             @click="link = 'service'"
         >
           <q-item-section avatar>

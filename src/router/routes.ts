@@ -65,27 +65,18 @@ const routes: RouteRecordRaw[] = [
       { path: 'order', component: () => import('pages/discuss/order.vue') },
     ],
   },
+
   {
     path: '/order', component: () => import('layouts/layout.vue'),
     children: [
-      { path: 'create', component: () => import('pages/admin/order/create.vue') },
-      { path: 'paypal', component: () => import('pages/admin/order/paypal.vue') },
-      { path: 'list', component: () => import('pages/admin/order/list.vue') },
-      { path: 'detail', component: () => import('pages/admin/order/detail.vue') },
-      { path: 'now', component: () => import('pages/admin/order/now.vue') },
+      { path: 'create', component: () => import('pages/admin/user/order/create.vue') },
+      { path: 'paypal', component: () => import('pages/admin/user/order/paypal.vue') },
+      { path: 'list', component: () => import('pages/admin/user/order/list.vue') },
+      { path: 'detail', component: () => import('pages/admin/user/order/detail.vue') },
+      { path: 'now', component: () => import('pages/admin/user/order/now.vue') },
 
     ],
   },
-  // {
-  //   path: '/shop', component: () => import('layouts/ShopLayout.vue'),
-  //   children: [
-  //     { path: '', component: () => import('pages/admin/shop/index.vue') },
-  //     { path: 'index', component: () => import('pages/admin/shop/index.vue') },
-  //     { path: 'add', component: () => import('pages/admin/shop/add.vue') },
-  //     { path: 'edit', component: () => import('pages/admin/shop/edit.vue') },
-  //
-  //   ],
-  // },
   {
     path: '/admin',
     component: () => import('layouts/layout.vue'),
@@ -93,8 +84,8 @@ const routes: RouteRecordRaw[] = [
       { path: '',
         component: () => import('layouts/MobileLayout.vue'),
         children: [
-          { path: '', component: () => import('pages/admin/index.vue') },
-          { path: 'index', component: () => import('pages/admin/index.vue') },
+          { path: '', component: () => import('pages/admin/user/index.vue') },
+          { path: 'index', component: () => import('pages/admin/user/index.vue') },
         ]
       },
       {
@@ -104,80 +95,67 @@ const routes: RouteRecordRaw[] = [
           // { path: '', component: () => import('pages/users/index.vue') },
           {
             path: 'index',
-            component: () => import('pages/admin/users/index.vue'),
+            component: () => import('pages/admin/user/users/index.vue'),
           },
           {
-            path: 'addshop',
-            component: () => import('pages/admin/shop/add.vue'),
-          }
-          ,
-          {
             path: 'exchange',
-            component: () => import('pages/admin/system/exchange.vue'),
+            component: () => import('pages/admin/user/system/exchange.vue'),
           },
           {
             path: 'addWithdraw',
-            component: () => import('pages/admin/system/addWithdraw.vue'),
-          },
-          {
-            path: 'shop',
-            component: () => import('pages/admin/shop/index.vue'),
+            component: () => import('pages/admin/user/system/addWithdraw.vue'),
           },
           {
             path: 'attention',
-            component: () => import('pages/admin/users/attention.vue'),
+            component: () => import('pages/admin/user/users/attention.vue'),
           },
           {
             path: 'buy',
-            component: () => import('pages/admin/system/buy.vue'),
+            component: () => import('pages/admin/user/system/buy.vue'),
           },
           {
             path: 'buyLog',
-            component: () => import('pages/admin/system/buyLog.vue'),
+            component: () => import('pages/admin/user/system/buyLog.vue'),
           },
           {
             path: 'collection',
-            component: () => import('pages/admin/users/collection.vue'),
+            component: () => import('pages/admin/user/users/collection.vue'),
           },
           {
             path: 'delete',
-            component: () => import('pages/admin/system/delete.vue'),
-          },
-          {
-            path: 'editshop',
-            component: () => import('pages/admin/shop/edit.vue'),
+            component: () => import('pages/admin/user/system/delete.vue'),
           },
           {
             path: 'invite',
-            component: () => import('pages/admin/system/invite.vue'),
+            component: () => import('pages/admin/user/system/invite.vue'),
           },
           {
             path: 'password',
-            component: () => import('pages/admin/users/password.vue'),
+            component: () => import('pages/admin/user/users/password.vue'),
           },
           {
             path: 'sell',
-            component: () => import('pages/admin/system/sell.vue'),
+            component: () => import('pages/admin/user/system/sell.vue'),
           },
           {
             path: 'userEdit',
-            component: () => import('pages/admin/users/edit.vue'),
+            component: () => import('pages/admin/user/users/edit.vue'),
           },
           {
             path: 'userHeadImage',
-            component: () => import('pages/admin/users/userHeadImage.vue'),
+            component: () => import('pages/admin/user/users/userHeadImage.vue'),
           },
           {
             path: 'service',
-            component: () => import('pages/admin/system/service.vue'),
+            component: () => import('pages/admin/user/system/service.vue'),
           },
           {
             path: 'addService',
-            component: () => import('pages/admin/system/addService.vue'),
+            component: () => import('pages/admin/user/system/addService.vue'),
           },
           {
             path: 'withdraw',
-            component: () => import('pages/admin/system/withdraw.vue'),
+            component: () => import('pages/admin/user/system/withdraw.vue'),
           }
         ]
       },
@@ -195,7 +173,7 @@ const routes: RouteRecordRaw[] = [
           },
           {
             path: 'addImage',
-            component: () => import('pages/admin/shop/addImage.vue'),
+            component: () => import('pages/admin/shop/image/add.vue'),
           },
           {
             path: 'edit',

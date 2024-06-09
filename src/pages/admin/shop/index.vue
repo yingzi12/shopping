@@ -1,183 +1,206 @@
 <script lang="ts" setup>
-import { Cookies } from 'quasar'
-import {useQuasar} from "quasar";
-import {onMounted, reactive, ref, toRefs} from "vue";
+import {ref} from "vue";
+import {Cookies, useQuasar} from 'quasar'
 import {useRouter} from "vue-router";
 import {api} from "boot/axios";
-import {tansParams} from "boot/tools";
-import mAdminUserShopCardComponent from "components/shop/mAdminUserShopCardComponent.vue";
+import {compressIfNeeded} from "boot/tools";
+import PayaplCard from "pages/system/paypalCard.vue";
 
-const $q = useQuasar();
 const token = Cookies.get('token');
-const router = useRouter();
-const shopList = ref([]);
-const total = ref(0);
-const maxPage = ref(0);
+const id = Cookies.get('id');
+const $q = useQuasar()
+const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
-const current=ref(1)
 
-const queryData = reactive({
-  form: {},
-  queryParams: {
-    pageNum: 1,
-    pageSize: 20,
-    device: 2,
-    title: '',
-  },
-  rules: {}
-});
-const {queryParams, form, rules} = toRefs(queryData);
+const shop = ref({  });
 
-async function getList(page: number) {
-  try {
-    // 使用 get 方法发送 GET 请求
-    const response = await api.get(`/admin/usershop/page?`+tansParams(queryParams.value));
-    const data = response.data;
-    // 更新数据
-    if (data.code === 200) {
-      total.value = data.total;
-      shopList.value = data.data;
-      if (total.value > 0) {
-        total.value = data.total;
-        maxPage.value = total.value / queryParams.value.pageSize + 1;
-      }
-    }
-  } catch (error) {
-    console.error('获取数据失败：', error);
+const imgUrl = ref("/favicon.png");
+
+const previewImage = ref(null);
+const vipExpirationTime = ref(null);
+const fileInput = ref<HTMLInputElement | null>(null);
+const selectedImage = ref<File | null>(null);
+const userHeadImageStr=ref("点击替换头像");
+
+async function getDetail() {
+  const response = await api.get(`/admin/shopDetail/getInfo`);
+  const data = response.data;
+  if (data.code == 200) {
+    shop.value=data.data;
+
+    imgUrl.value = data.data.imgUrl  ;
+    previewImage.value =data.data.imgUrl;
+
+
+    vipExpirationTime.value = data.data.vipExpirationTime;
   }
-  //console.log("token:" + token);
-  queryParams.value.pageNum = page;
+}
+function triggerFileInput() {
+  fileInput.value?.click();
 }
 
-
-
-function delshop(id: number,title:string) {
-  $q.dialog({
-    title: '通知',
-    message: '是否确认删除' + title + '',
-    ok: {
-      push: true
-    },
-    cancel: {
-      push: true,
-      color: 'negative'
-    },
-  }).onOk(async () => {
-    const response = await api.get(`/admin/usershop/remove/${id}`, {
-      method: 'get',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    if (response.data.code == 200) {
-      await getList(1);
+async function handleImageUpload(event: Event) {
+  try {
+    userHeadImageStr.value="上传中....";
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) {
+      throw new Error("No file selected");
     }
-  });
-}
-
-
-function updateStatus(shop: any, statusChoise: number) {
-  const message = ref("");
-  if (statusChoise == 1) {
-    const count = shop.numberPhotos + shop.numberVideo;
-    if (count == 0 || !count) {
-      shop.status = 2;
-      statusChoise = 2;
+    selectedImage.value = file;
+    const compressedFile = await compressIfNeeded(file);
+    const formData = new FormData();
+    formData.append('file', compressedFile);
+    const response = await api.put( '/user/systemUser/upload',  formData);
+    const data = await response.data; // 确保使用 await 等待 json 解析完成
+    if (data.code === 200) {
+      previewImage.value = $q.config.sourceWeb + data.data;
+      imgUrl.value = data.data;
+      userHeadImageStr.value="点击替换头像";
+    } else {
+      userHeadImageStr.value="替换头像失败";
       $q.dialog({
-        title: '通知',
-        message: '照片与视频为0不能发布.',
+        title: '错误',
+        message: data.msg,
         ok: {
           push: true
         },
       }).onOk(async () => {
-        return;
+        console.log("ok");
       });
-      return;
+      // throw new Error('Image upload failed');
     }
-    message.value = "发布";
-  } else {
-    message.value = "下架";
+  } catch (error) {
+    notify('Error uploading image', 'red-5');
   }
-  $q.dialog({
-    title: '通知',
-    message: '是否确认' + message.value + '.',
-    ok: {
-      push: true
-    },
-    cancel: {
-      push: true,
-      color: 'negative'
-    },
-  }).onOk(async () => {
-    // server/admin/userSettingVip/updateStatus.get.ts
-    const response = await api.get(`/admin/usershop/updateStatus?id=${shop.id}&status=${statusChoise}`, {
-      method: 'get',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    if (response.data.code == 200) {
-      await getList(1);
-    }
-  }).onCancel(() => {
-    if (statusChoise == 1) {
-      shop.status = 2
-    } else {
-      shop.status = 1
-    }
-    // //console.log('Cancel')
+}
+function notify(message: string, color: string) {
+  $q.notify({
+    color: color,
+    textColor: 'white',
+    icon: color === 'red-5' ? 'warning' : 'cloud_done',
+    message: message
   });
 }
-
-function getImageUrl(imgUrl:string) {
-  if (imgUrl != null && imgUrl != undefined && imgUrl != '') {
-    return `${$q.config.sourceWeb}${imgUrl}`; // Replace with your default image URL
+getDetail();
+function getImageUrl(url) {
+  if (url != null) {
+    return `${$q.config.sourceWeb}${url}`;
   }
-  return `/empty.png`;
+  return "/favicon.png";
 }
-onMounted(() => {
-  getList(1); // 在组件挂载时获取列表
-});
+const  money=ref(0.0);
+const paypalDialog = ref(false);
 
-function editshop(id: number) {
-  router.push("/admin/users/editshop?id=" + id.toString());
-}
+function openPayPalDialog (){
+  if(money.value<1){
+    $q.dialog({
+      title: '通知',
+      message: '金额不能少于1',
+    })
+    return;
+  }
+  //console.log("------------openPayPalDialog---------------------------")
+  if(token !== null && token !== '' && token !== undefined ) {
+    paypalDialog.value = true;
+  }else {
+    $q.dialog({
+      title: '通知',
+      message: '请先登录，点击ok跳转登录.',
+      ok: {
+        push: true
+      },
+      cancel: {
+        push: true
+      },
+    }).onOk(async () => {
+      router.push('/login'); // Redirect to login page
+    }).onCancel(async () => {
+      // router.push('/users/shop'); // Redirect to login page
+    });
+  }
+};
 
-function addshop() {
-  router.push("/admin/users/addshop");
-}
 </script>
 
-
 <template>
-  <div class="q-pa-xs q-gutter-xs">
-    <q-toolbar >
-      <q-btn flat round dense icon="light_mode" />
-      <q-toolbar-title>
-        店铺({{total}})
-      </q-toolbar-title>
-      <q-btn color="primary" label="添加" @click="addshop"/>
-    </q-toolbar>
-
-      <div v-for="(shop ,index) in shopList"
-           :key="index">
-          <m-admin-user-shop-card-component :shop="shop"></m-admin-user-shop-card-component>
-      </div>
-    <div class="q-pa-lg flex flex-center">
-      <q-pagination
-          v-model="current"
-          :max="maxPage"
-          max-pages="6"
-          direction-links
-          @update:modelValue="getList(current)"
-
-      />
-    </div>
-
+  <div>
+    <router-link to="/admin/shop/edit">
+      <q-btn color="primary" label="编辑店铺信息"/>
+    </router-link>
   </div>
 
+  <div class="q-pa-md row items-start q-gutter-md">
+    <q-card bordered class="my-card" flat>
+      <q-item>
+        <!--        <q-item-section>-->
+        <!--          <q-avatar font-size="52px" size="100px">-->
+        <!--            <img :src="previewImage">-->
+        <!--          </q-avatar>-->
+        <!--        </q-item-section>-->
+        <q-item-section @click="triggerFileInput">
+          <q-avatar font-size="52px" size="100px">
+            <img :src="getImageUrl(previewImage)">
+          </q-avatar>
+          <input type="file" ref="fileInput" @change="handleImageUpload" hidden>
+          <p class="text-caption">{{ userHeadImageStr }}</p>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ shop.nickname != null ? shop.nickname : '待登录' }}
+            ({{ shop.name != null ? shop.name : '待登录' }})
+          </q-item-label>
+          <q-item-label v-if="shop.id" caption>
+            ID:{{ shop.id }}
+          </q-item-label>
+          <q-item-label v-if="shop.email" caption>
+            {{ shop.email }}
+            <q-icon v-if="shop.isEmail ==2 " name="warning" style="color: red"/>
+          </q-item-label>
+          <q-item-label v-if="shop.isEmail ==2 " caption>
+            （点击发送邮箱验证码）
+          </q-item-label>
+        </q-item-section>
+
+      </q-item>
+      <q-card-section>
+        <q-item-label caption>
+          余额：{{shop.balance}}
+        </q-item-label>
+        <q-item-label caption>
+
+          <q-input
+              v-model.number="money"
+              type="number"
+              filled
+              style="max-width: 200px"
+          /><q-btn icon="payments" @click="openPayPalDialog()">充值</q-btn>
+        </q-item-label>
+      </q-card-section>
+      <q-separator/>
+
+      <q-card-section  horizontal>
+        <div class="text-body2" style="padding: 10px">
+          {{ shop.intro }}
+        </div>
+      </q-card-section>
+
+      <q-separator/>
+
+      <q-card-actions>
+        <q-btn color="red-8" flat icon="favorite" round>{{shop.countAttention }}</q-btn>
+        <q-btn color="red-8" flat icon="thumb_up" round>{{shop.countLike }}</q-btn>
+        <q-btn color="red-8" flat icon="visibility" round>{{shop.countSee }}</q-btn>
+      </q-card-actions>
+    </q-card>
+
+
+  </div>
+  <q-dialog v-model="paypalDialog">
+    <PayaplCard :amount="money" :productId="shop.id" :kind="5" intro="充值余额" productName="充值余额" url='/users'/>
+  </q-dialog>
 </template>
 
-<style scoped>
-
+<style lang="sass" scoped>
+.my-card
+  width: 100%
+  max-width: 350px
 </style>

@@ -14,7 +14,7 @@ class FileUploader {
 
     async checkChunkExists(identifier: string, chunkNumber: number,token:string,day:string): Promise<boolean> {
         try {
-            const url = `/admin/userVideo/check?identifier=${identifier}&chunkNumber=${chunkNumber}&day=${day}`;
+            const url = `/user/userVideo/check?identifier=${identifier}&chunkNumber=${chunkNumber}&day=${day}`;
             const response = await api.get(url,{
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -51,7 +51,7 @@ class FileUploader {
         formData.append('chunkNumber', chunkNumber.toString());
         formData.append('totalChunks', totalChunks.toString());
         formData.append('identifier', identifier);
-        const url = `/admin/userVideo/uploadSection`;
+        const url = `/user/userVideo/uploadSection`;
         const response =await api.put(url, formData,{
             headers: {
                 'Authorization': `Bearer ${token}`

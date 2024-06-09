@@ -12,52 +12,44 @@ if (!token) {
 }
 const drawer = ref(false);
 const link = ref('detail')
-const users = ref(null)
-const previewImage = ref("/favicon.png")
 
-const id = Cookies.get("id");
-const userInfo = Cookies.get("userInfo");
-
-const name = ref(null);
-const nickname = ref(null);
-const email = ref(null);
-const imgUrl = ref(null);
-const isEmail = ref(null);
-const intro = ref(null);
-const countSee = ref(0);
-const countLike = ref(0);
-const countAttention = ref(0);
-const vip = ref(0);
-const vipExpirationTime = ref(null);
-
-// 添加注销方法
-
-async function getDetail() {
-  const response = await api.get(`/user/systemUser/getInfo`, {
-    method: 'get',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
+const chargeList = ref([]);
+const charge = ref(-1);
+// 抽取添加默认项的逻辑到单独的函数
+function addDefaultCreateShopOption() {
+  chargeList.value.push({
+    label: `创建店铺`,
+    value: -1,
   });
-  const data = response.data;
-  if (data.code == 200) {
-    name.value = data.data.name;
-    nickname.value = data.data.nickname;
-    email.value = data.data.email;
-    imgUrl.value = data.data.imgUrl;
-    intro.value = data.data.intro;
-    isEmail.value = data.data.isEmail;
-    countSee.value = data.data.countSee;
-    countLike.value = data.data.countLike;
-    countAttention.value = data.data.countAttention;
-    vip.value = data.data.vip;
-    vipExpirationTime.value = data.data.vipExpirationTime;
-  }
 }
 
-getDetail();
+async function getList() {
+  const response = await api.get(`/admin/shopDetail/getUserShop`);
+  const dataJson = response.data;
 
+  if (dataJson.data && dataJson.code === 200) {
+    const shops = dataJson.data;
+    chargeList.value = shops.map((shop, index) => ({
+      label: `${shop.shopName}`,
+      value: shop.shopId,
+    }));
+
+    // 确保至少有一个选项，即使API返回为空
+    if (chargeList.value.length === 0) {
+      addDefaultCreateShopOption();
+    }
+
+    // 设置默认选中第一个店铺的ID，注意处理空数组的情况
+    charge.value = chargeList.value.length > 0 ? chargeList.value[0].value : 0;
+  } else {
+    console.error("API 返回错误码:", dataJson.code);
+    // 如果API调用失败，仍然保证有默认选项
+    if (chargeList.value.length === 0) {
+      addDefaultCreateShopOption();
+    }
+  }
+}
+getList();
 const logout = async () => {
   try {
     const response = await api.get(`/user/systemUser/logout`, {
@@ -85,33 +77,19 @@ function getImageUrl(url) {
   }
   return "/favicon.png";
 }
-const charge = ref(1);
-const chargeList = [
-  {
-    label: '免费',
-    value: 1
-  },
-  {
-    label: 'VIP免费',
-    value: 2
-  },
-
-  {
-    label: 'VIP折扣',
-    value: 3
-  },
-  {
-    label: 'VIP独享',
-    value: 4
-  },
-  {
-    label: '统一价格',
-    value: 5
+function updateCharge() {
+   console.log(charge.value)
+  if(charge.value==-1){
+    router.push("/admin/shop/add")
   }
-]
-function updateCharge(charge: number) {
-
 }
+function handleSelectClick() {
+  if(chargeList.value.length==0||chargeList.value.length ==1){
+     router.push("/admin/shop/add")
+  }
+  // console.log('Select component was clicked');
+  // 在这里添加你希望点击时执行的逻辑
+};
 </script>
 
 <template>
@@ -254,15 +232,15 @@ function updateCharge(charge: number) {
 
         <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
           <div class="absolute-bottom bg-transparent">
-            <q-avatar  class="q-mb-sm" size="56px">
-              <img :src="getImageUrl(imgUrl)">
-            </q-avatar>
-            <div class="text-weight-bold">{{ nickname != null ? nickname : '待登录' }}</div>
+<!--            <q-avatar  class="q-mb-sm" size="56px">-->
+<!--              <img :src="getImageUrl(imgUrl)">-->
+<!--            </q-avatar>-->
+<!--            <div class="text-weight-bold">{{ nickname != null ? nickname : '待登录' }}</div>-->
             <div>
               <q-select v-model="charge" :options="chargeList" emit-value
                         map-options
                         outlined
-                        @update:modelValue="updateCharge"/>
+                        @update:modelValue="updateCharge" @click="handleSelectClick"/>
             </div>
           </div>
         </q-img>
