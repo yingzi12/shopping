@@ -23,7 +23,7 @@ async function onSubmit() {
     });
     return;
   }
-  const response = await api.post("/admin/systemUser/updatePassworld", JSON.stringify({
+  const response = await api.post("/user/systemUser/updatePassworld", JSON.stringify({
     oldPassword: oldPassword.value,
     newPassword: newPassword.value,
   }),{

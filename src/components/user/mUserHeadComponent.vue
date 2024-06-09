@@ -61,7 +61,7 @@ async function onAttention() {
     isAttention.value=1;
   }
   // 滚动到顶部
-  const response = await api.get(`/admin/userAttention/on?attUserId=${props.userId}&attUserName=${user.nickname}`)
+  const response = await api.get(`/user/userAttention/on?attUserId=${props.userId}&attUserName=${user.nickname}`)
   const data = response.data;
   if (data.code == 200) {
     isAttention.value=1;
@@ -74,7 +74,7 @@ async function closeAttention() {
     return; // 如果已经在处理收藏请求，则不执行任何操作
   }
   // 滚动到顶部
-  const response = await api.get(`/admin/userAttention/close?attUserId=${props.userId}&attUserName=${user.nickname}`)
+  const response = await api.get(`/user/userAttention/close?attUserId=${props.userId}&attUserName=${user.nickname}`)
   const data = response.data;
   if (data.code == 200) {
     isAttention.value=2;

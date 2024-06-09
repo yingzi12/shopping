@@ -151,7 +151,7 @@ async function onCollection() {
     isCollection.value=1;
   }
   // 滚动到顶部
-  const response = await api.get(`/admin/userCollection/on?aid=${aid.value}&ctype=2`)
+  const response = await api.get(`/user/userCollection/on?aid=${aid.value}&ctype=2`)
   const data = response.data;
   if (data.code == 200) {
     isCollection.value=1;
@@ -181,7 +181,7 @@ async function closeCollection() {
     return; // 如果已经在处理收藏请求，则不执行任何操作
   }
   // 滚动到顶部
-  const response = await api.get(`/admin/userCollection/close?aid=${aid.value}&ctype=2`)
+  const response = await api.get(`/user/userCollection/close?aid=${aid.value}&ctype=2`)
   const data = response.data;
   if (data.code == 200) {
     isCollection.value=2;

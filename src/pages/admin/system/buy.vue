@@ -25,7 +25,7 @@ const {queryParams} = toRefs(queryData);
 async function getList(page: number) {
   queryParams.value.pageNum = page;
   try {
-    const response = await api.get('/admin/paymentOrder/listBuy?' + tansParams(queryParams.value), {
+    const response = await api.get('/user/paymentOrder/listBuy?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }

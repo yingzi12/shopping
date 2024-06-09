@@ -31,7 +31,7 @@ const selectedImage = ref<File | null>(null);
 const userHeadImageStr=ref("点击替换头像");
 
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -77,7 +77,7 @@ async function handleImageUpload(event: Event) {
     const compressedFile = await compressIfNeeded(file);
     const formData = new FormData();
     formData.append('file', compressedFile);
-    const response = await api.put( '/admin/systemUser/upload',  formData);
+    const response = await api.put( '/user/systemUser/upload',  formData);
     const data = await response.data; // 确保使用 await 等待 json 解析完成
     if (data.code === 200) {
       previewImage.value = $q.config.sourceWeb + data.data;
@@ -151,7 +151,7 @@ function openPayPalDialog (){
 
 <template>
   <div>
-    <router-link to="/admin/users/userEdit">
+    <router-link to="/user/users/userEdit">
       <q-btn color="primary" label="编辑个人信息"/>
     </router-link>
   </div>

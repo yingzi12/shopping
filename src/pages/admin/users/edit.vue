@@ -29,7 +29,7 @@ const accept = ref(false);
 const selectedFile = ref(null);
 
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -60,7 +60,7 @@ const onSubmit = async () => {
   formData.append('intro', intro.value);
 
   try {
-    const response = await api.post("/admin/systemUser/edit",
+    const response = await api.post("/user/systemUser/edit",
         JSON.stringify({
           nickname: nickname.value,
           email: email.value,
@@ -83,7 +83,7 @@ const onSubmit = async () => {
         icon: 'cloud_done',
         message: 'Update Success'
       });
-      router.push('/admin/users'); // Redirect to login page
+      router.push('/user/users'); // Redirect to login page
 
     } else {
       $q.notify({

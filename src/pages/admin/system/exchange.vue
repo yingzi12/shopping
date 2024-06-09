@@ -24,7 +24,7 @@ const {queryParams} = toRefs(queryData);
 async function getList(page: number) {
   queryParams.value.pageNum = page;
   try {
-    const response = await api.get('/admin/productOrder/list?' + tansParams(queryParams.value), {
+    const response = await api.get('/user/productOrder/list?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -45,7 +45,7 @@ const card=ref("");
 const password=ref("");
 
 async function onSubmit() {
-  const response = await api.post("/admin/productOrder/exchange", JSON.stringify({
+  const response = await api.post("/user/productOrder/exchange", JSON.stringify({
     card: card.value,
     password: password.value,
   }), {

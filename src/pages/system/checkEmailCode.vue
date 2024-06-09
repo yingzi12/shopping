@@ -10,7 +10,7 @@ const code = ref('');
 
 async function onSubmit() {
   try {
-    const response = await api.get(`/admin/systemUser/?email=${email.value}&code=${code.value}`, {
+    const response = await api.get(`/user/systemUser/?email=${email.value}&code=${code.value}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -34,7 +34,7 @@ async function onSubmit() {
 }
 async  function sendEmailCode(){
   try {
-    const response = await api.get("/admin/systemUser/sendCheckEmailCode?email="+email.value, {
+    const response = await api.get("/user/systemUser/sendCheckEmailCode?email="+email.value, {
       headers: {
         'Content-Type': 'application/json',
       },

@@ -39,7 +39,7 @@ function multiplyAndFix(num1, num2, precision = 2) {
 
 
 async function onSubmit() {
-  const response = await api.post("/admin/userWithdraw/add", JSON.stringify({
+  const response = await api.post("/user/userWithdraw/add", JSON.stringify({
     email: email.value,
     withdrawName: withdrawName.value,
     withdrawType: withdrawType.value,
@@ -58,7 +58,7 @@ async function onSubmit() {
       icon: 'cloud_done',
       message: 'Create Success'
     });
-    router.push('/admin/users/withdraw'); // Redirect to login page
+    router.push('/user/users/withdraw'); // Redirect to login page
 
   } else {
     $q.dialog({

@@ -17,7 +17,7 @@ const selectedImage = ref<File | null>(null);
 const userHeadImageStr=ref("点击替换头像");
 const user=ref({});
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -43,7 +43,7 @@ async function handleImageUpload(event: Event) {
     const compressedFile = await compressIfNeeded(file);
     const formData = new FormData();
     formData.append('file', compressedFile);
-    const response = await api.put( '/admin/systemUser/upload',  formData);
+    const response = await api.put( '/user/systemUser/upload',  formData);
     const data = await response.data; // 确保使用 await 等待 json 解析完成
     if (data.code === 200) {
       previewImage.value = $q.config.sourceWeb + data.data;
@@ -84,7 +84,7 @@ function getImageUrl(url) {
 const link = ref('detail')
 const logout = async () => {
   try {
-    const response = await api.get(`/admin/systemUser/logout`, {
+    const response = await api.get(`/user/systemUser/logout`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ const logout = async () => {
                 :active="link === 'detail'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/index"
+                to="/user/users/index"
                 @click="link = 'detail'"
         >
           <q-item-section avatar>
@@ -167,7 +167,7 @@ const logout = async () => {
                 :active="link === 'collection'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/collection"
+                to="/user/users/collection"
                 @click="link = 'collection'"
         >
           <q-item-section avatar>
@@ -198,7 +198,7 @@ const logout = async () => {
                 :active="link === 'withdraw'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/withdraw"
+                to="/user/users/withdraw"
                 @click="link = 'withdraw'"
         >
           <q-item-section avatar>
@@ -213,7 +213,7 @@ const logout = async () => {
                 :active="link === 'invite'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/invite"
+                to="/user/users/invite"
                 @click="link = 'invite'"
         >
           <q-item-section avatar>
@@ -227,7 +227,7 @@ const logout = async () => {
                 :active="link === 'exchange'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/exchange"
+                to="/user/users/exchange"
                 @click="link = 'exchange'"
         >
           <q-item-section avatar>
@@ -241,7 +241,7 @@ const logout = async () => {
                 :active="link === 'password'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/password"
+                to="/user/users/password"
                 @click="link = 'password'"
         >
           <q-item-section avatar>
@@ -257,7 +257,7 @@ const logout = async () => {
             :active="link === 'service'"
             active-class="my-menu-link"
             clickable
-            to="/admin/users/service"
+            to="/user/users/service"
             @click="link = 'service'"
         >
           <q-item-section avatar>

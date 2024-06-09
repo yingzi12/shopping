@@ -28,7 +28,7 @@ function notify(message: string, color: string) {
 
 
 async function onSubmit() {
-  const response = await api.post("/admin/workOrder/add", JSON.stringify({
+  const response = await api.post("/user/workOrder/add", JSON.stringify({
     title: title.value,
     wordType: wordType.value,
     explanation: explanation.value,
@@ -49,9 +49,9 @@ async function onSubmit() {
         push: true
       },
     }).onOk(async () => {
-      router.push('/admin/users/service'); // Redirect to login page
+      router.push('/user/users/service'); // Redirect to login page
     }).onCancel(async () => {
-      router.push('/admin/users/service'); // Redirect to login page
+      router.push('/user/users/service'); // Redirect to login page
     });
   } else {
     $q.notify({
@@ -73,7 +73,7 @@ async function handleImageUpload(event: Event) {
       const compressedFile = await compressIfNeeded(file);
       const formData = new FormData();
       formData.append('file', compressedFile);
-      const response = await api.put( '/admin/usershop/upload',  formData);
+      const response = await api.put( '/user/usershop/upload',  formData);
       const data = await response.data; // 确保使用 await 等待 json 解析完成
       if (data.code === 200) {
         previewImage.value = $q.config.sourceWeb + data.data;

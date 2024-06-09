@@ -22,7 +22,7 @@ const {queryParams} = toRefs(queryData);
 async function getList(page: number) {
   queryParams.value.pageNum = page;
   try {
-    const response = await api.get('/admin/workOrder/list?' + tansParams(queryParams.value), {
+    const response = await api.get('/user/workOrder/list?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -43,7 +43,7 @@ getList(1)
 
 <template>
   <div>
-    <router-link to="/admin/users/addService">
+    <router-link to="/user/users/addService">
       <q-btn color="primary" label="添加服务工单"/>
     </router-link>
   </div>

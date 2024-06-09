@@ -41,7 +41,7 @@ const uploadImage = async () => {
     // 使用fetch或axios等方式将formData上传到后端
     // 例如：fetch('/upload', { method: 'POST', body: formData })
     try {
-      const response = await api.put('/admin/systemUser/upload', formData);
+      const response = await api.put('/user/systemUser/upload', formData);
 
       const data = await  response.data;
       if (data.code == 200) {
@@ -49,7 +49,7 @@ const uploadImage = async () => {
           title: '信息',
           message: '替换头像成功.'
         });
-        router.push('/admin/users'); // Redirect to login page
+        router.push('/user/users'); // Redirect to login page
 
       } else {
         useQuasar().dialog({

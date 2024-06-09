@@ -74,7 +74,7 @@ const props = defineProps({
 });
 const user=ref({});
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -89,7 +89,7 @@ getDetail();
 const discountAmount=ref(0);
 async function getAmount() {
   // 滚动到顶部
-  const response = await api.post("/admin/payments/getAmount",JSON.stringify({
+  const response = await api.post("/user/payments/getAmount",JSON.stringify({
     productId: props.productId,
     amount: props.amount,
     description: props.description,
@@ -109,7 +109,7 @@ async function getAmount() {
 }
 getAmount();
 async  function onPay(){
-  const response = await api.post(`/admin/payments/pay`,  JSON.stringify({
+  const response = await api.post(`/user/payments/pay`,  JSON.stringify({
     productId: props.productId,
     amount: props.amount,
     description: props.description,

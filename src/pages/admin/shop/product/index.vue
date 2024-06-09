@@ -5,12 +5,12 @@ import {onMounted, reactive, ref, toRefs} from "vue";
 import {useRouter} from "vue-router";
 import {api} from "boot/axios";
 import {tansParams} from "boot/tools";
-import mAdminUserShopCardComponent from "components/shop/mAdminUserShopCardComponent.vue";
+import mAdminUserAlbumCardComponent from "components/userAlbum/mAdminUserAlbumCardComponent.vue";
 
 const $q = useQuasar();
 const token = Cookies.get('token');
 const router = useRouter();
-const shopList = ref([]);
+const albumList = ref([]);
 const total = ref(0);
 const maxPage = ref(0);
 
@@ -31,12 +31,12 @@ const {queryParams, form, rules} = toRefs(queryData);
 async function getList(page: number) {
   try {
     // 使用 get 方法发送 GET 请求
-    const response = await api.get(`/admin/usershop/page?`+tansParams(queryParams.value));
+    const response = await api.get(`/admin/product/page?`+tansParams(queryParams.value));
     const data = response.data;
     // 更新数据
     if (data.code === 200) {
       total.value = data.total;
-      shopList.value = data.data;
+      albumList.value = data.data;
       if (total.value > 0) {
         total.value = data.total;
         maxPage.value = total.value / queryParams.value.pageSize + 1;
@@ -51,7 +51,7 @@ async function getList(page: number) {
 
 
 
-function delshop(id: number,title:string) {
+function delAlbum(id: number,title:string) {
   $q.dialog({
     title: '通知',
     message: '是否确认删除' + title + '',
@@ -63,7 +63,7 @@ function delshop(id: number,title:string) {
       color: 'negative'
     },
   }).onOk(async () => {
-    const response = await api.get(`/admin/usershop/remove/${id}`, {
+    const response = await api.get(`/admin/userAlbum/remove/${id}`, {
       method: 'get',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -76,12 +76,12 @@ function delshop(id: number,title:string) {
 }
 
 
-function updateStatus(shop: any, statusChoise: number) {
+function updateStatus(album: any, statusChoise: number) {
   const message = ref("");
   if (statusChoise == 1) {
-    const count = shop.numberPhotos + shop.numberVideo;
+    const count = album.numberPhotos + album.numberVideo;
     if (count == 0 || !count) {
-      shop.status = 2;
+      album.status = 2;
       statusChoise = 2;
       $q.dialog({
         title: '通知',
@@ -110,7 +110,7 @@ function updateStatus(shop: any, statusChoise: number) {
     },
   }).onOk(async () => {
     // server/admin/userSettingVip/updateStatus.get.ts
-    const response = await api.get(`/admin/usershop/updateStatus?id=${shop.id}&status=${statusChoise}`, {
+    const response = await api.get(`/admin/userAlbum/updateStatus?id=${album.id}&status=${statusChoise}`, {
       method: 'get',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -121,9 +121,9 @@ function updateStatus(shop: any, statusChoise: number) {
     }
   }).onCancel(() => {
     if (statusChoise == 1) {
-      shop.status = 2
+      album.status = 2
     } else {
-      shop.status = 1
+      album.status = 1
     }
     // //console.log('Cancel')
   });
@@ -139,12 +139,12 @@ onMounted(() => {
   getList(1); // 在组件挂载时获取列表
 });
 
-function editshop(id: number) {
-  router.push("/admin/users/editshop?id=" + id.toString());
+function editAlbum(id: number) {
+  router.push("/admin/users/editAlbum?id=" + id.toString());
 }
 
-function addshop() {
-  router.push("/admin/users/addshop");
+function addAlbum() {
+  router.push("/admin/users/addAlbum");
 }
 </script>
 
@@ -154,15 +154,15 @@ function addshop() {
     <q-toolbar >
       <q-btn flat round dense icon="light_mode" />
       <q-toolbar-title>
-        店铺({{total}})
+        图集({{total}})
       </q-toolbar-title>
-      <q-btn color="primary" label="添加" @click="addshop"/>
+      <q-btn color="primary" label="添加" @click="addAlbum"/>
     </q-toolbar>
 
-      <div v-for="(shop ,index) in shopList"
-           :key="index">
-          <m-admin-user-shop-card-component :shop="shop"></m-admin-user-shop-card-component>
-      </div>
+    <div v-for="(album ,index) in albumList"
+         :key="index">
+      <m-admin-user-album-card-component :album="album"></m-admin-user-album-card-component>
+    </div>
     <div class="q-pa-lg flex flex-center">
       <q-pagination
           v-model="current"

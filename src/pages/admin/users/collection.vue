@@ -26,8 +26,8 @@ const {queryParams} = toRefs(queryData);
 async function getListSystem(page: number) {
   queryParams.value.pageNum = page;
   try {
-    //server/admin/userCollection/list.get.ts
-    const response = await api.get('/admin/userCollection/listSystem?' + tansParams(queryParams.value), {
+    //server/user/userCollection/list.get.ts
+    const response = await api.get('/user/userCollection/listSystem?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }

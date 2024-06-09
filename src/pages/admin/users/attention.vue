@@ -24,7 +24,7 @@ const {queryParams} = toRefs(queryData);
 async function getList(page: number) {
   queryParams.value.pageNum = page;
   try {
-    const response = await api.get('/admin/userAttention/list?' + tansParams(queryParams.value), {
+    const response = await api.get('/user/userAttention/list?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }

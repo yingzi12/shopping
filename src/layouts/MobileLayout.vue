@@ -17,7 +17,7 @@ function updateTable(){
     router.push("/shoppingCart");
   }
   if(tab.value == 'admin'){
-    router.push("/admin/index");
+    router.push("/user/index");
   }
 
 }

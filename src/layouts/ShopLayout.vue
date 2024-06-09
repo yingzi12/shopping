@@ -33,7 +33,7 @@ const vipExpirationTime = ref(null);
 // 添加注销方法
 
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ getDetail();
 
 const logout = async () => {
   try {
-    const response = await api.get(`/admin/systemUser/logout`, {
+    const response = await api.get(`/user/systemUser/logout`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function updateCharge(charge: number) {
                     :active="link === 'detail'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/"
+                    to="/user/shop/"
                     @click="link = 'detail'"
             >
               <q-item-section avatar>
@@ -151,7 +151,7 @@ function updateCharge(charge: number) {
                     :active="link === 'buy'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/buy"
+                    to="/user/shop/buy"
                     @click="link = 'buy'"
             >
               <q-item-section avatar>
@@ -166,7 +166,7 @@ function updateCharge(charge: number) {
                     :active="link === 'shop'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/shop"
+                    to="/user/shop/shop"
                     @click="link = 'shop'"
             >
               <q-item-section avatar>
@@ -180,7 +180,7 @@ function updateCharge(charge: number) {
                     :active="link === 'sell'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/sell"
+                    to="/user/shop/sell"
                     @click="link = 'sell'"
             >
               <q-item-section avatar>
@@ -194,7 +194,7 @@ function updateCharge(charge: number) {
                     :active="link === 'sell'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/sell"
+                    to="/user/shop/sell"
                     @click="link = 'sell'"
             >
               <q-item-section avatar>
@@ -208,7 +208,7 @@ function updateCharge(charge: number) {
                     :active="link === 'withdraw'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/withdraw"
+                    to="/user/shop/withdraw"
                     @click="link = 'withdraw'"
             >
               <q-item-section avatar>
@@ -223,7 +223,7 @@ function updateCharge(charge: number) {
                     :active="link === 'invite'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/shop/invite"
+                    to="/user/shop/invite"
                     @click="link = 'invite'"
             >
               <q-item-section avatar>

@@ -67,8 +67,8 @@ function updateStatus(shop: any, statusChoise: number) {
       color: 'negative'
     },
   }).onOk(async () => {
-    // server/admin/userSettingVip/updateStatus.get.ts
-    const response = await api.get(`/admin/usershop/updateStatus?id=${shop.id}&status=${statusChoise}`);
+    // server/user/userSettingVip/updateStatus.get.ts
+    const response = await api.get(`/user/usershop/updateStatus?id=${shop.id}&status=${statusChoise}`);
     // if (response.data.code == 200) {
     //   await getList(1);
     // }
@@ -82,7 +82,7 @@ function updateStatus(shop: any, statusChoise: number) {
   });
 }
 function editshop(id: string) {
-  router.push("/admin/users/editshop?id=" +id);
+  router.push("/user/users/editshop?id=" +id);
 }
 function delshop(id: string,title:string) {
   $q.dialog({
@@ -96,7 +96,7 @@ function delshop(id: string,title:string) {
       color: 'negative'
     },
   }).onOk(async () => {
-    const response = await api.get(`/admin/usershop/remove/${id}`);
+    const response = await api.get(`/user/usershop/remove/${id}`);
     if (response.data.code == 200) {
       $q.dialog({
         title: '通知',
@@ -156,10 +156,10 @@ function delshop(id: string,title:string) {
           <q-btn color="red"  v-if="props.shop.status ==2"  flat icon="delete" round size="12px" @click="delshop( props.shop.id, props.shop.title)"/>
         </q-item-label>
         <q-item-label>
-            <router-link :to="'/admin/users/addVideo?aid='+shop.id+'&title='+shop.title+'&status='+shop.status">
+            <router-link :to="'/user/users/addVideo?aid='+shop.id+'&title='+shop.title+'&status='+shop.status">
               视频： {{ shop.numberVideo }}
             </router-link>
-            <router-link :to="'/admin/users/addImage?aid='+shop.id+'&status='+shop.status+'&title='+shop.title">
+            <router-link :to="'/user/users/addImage?aid='+shop.id+'&status='+shop.status+'&title='+shop.title">
               照片： {{shop.numberPhotos}}
             </router-link>
         </q-item-label>

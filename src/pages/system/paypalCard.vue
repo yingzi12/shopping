@@ -136,7 +136,7 @@ function loadStyleSheet() {
 //Close 3Ds Dialog
 async function createOrderCallback() {
   try {
-    const response = await api.post("/admin/payments/create", JSON.stringify({
+    const response = await api.post("/user/payments/create", JSON.stringify({
       amount: discountAmount.value,
       kind: props.kind,
       productId: props.productId,
@@ -185,7 +185,7 @@ async function createOrderCallback() {
 async function onApproveCallback(data, actions) {
   try {
     // const token=Cookies.get("token");
-    const response = await api.get(`/admin/payments/ordersCapture?orderId=${data}`, {
+    const response = await api.get(`/user/payments/ordersCapture?orderId=${data}`, {
       headers: {
         "Content-Type": "application/json",
         "change":props.change,
@@ -273,7 +273,7 @@ function resultMessage(message) {
 const discountAmount=ref(0);
 async function getAmount() {
   // 滚动到顶部
-  const response = await api.post("/admin/payments/getAmount",JSON.stringify({
+  const response = await api.post("/user/payments/getAmount",JSON.stringify({
     productId: props.productId,
     amount: props.amount,
     description: props.description,

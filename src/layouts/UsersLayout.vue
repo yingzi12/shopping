@@ -33,7 +33,7 @@ const vipExpirationTime = ref(null);
 // 添加注销方法
 
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ getDetail();
 
 const logout = async () => {
   try {
-    const response = await api.get(`/admin/systemUser/logout`, {
+    const response = await api.get(`/user/systemUser/logout`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ if(token == null || token == '' || token == undefined ) {
                     :active="link === 'detail'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/index"
+                    to="/user/users/index"
                     @click="link = 'detail'"
             >
               <q-item-section avatar>
@@ -151,7 +151,7 @@ if(token == null || token == '' || token == undefined ) {
                     :active="link === 'collection'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/collection"
+                    to="/user/users/collection"
                     @click="link = 'collection'"
             >
               <q-item-section avatar>
@@ -182,7 +182,7 @@ if(token == null || token == '' || token == undefined ) {
                     :active="link === 'withdraw'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/withdraw"
+                    to="/user/users/withdraw"
                     @click="link = 'withdraw'"
             >
               <q-item-section avatar>
@@ -197,7 +197,7 @@ if(token == null || token == '' || token == undefined ) {
                     :active="link === 'invite'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/invite"
+                    to="/user/users/invite"
                     @click="link = 'invite'"
             >
               <q-item-section avatar>
@@ -211,7 +211,7 @@ if(token == null || token == '' || token == undefined ) {
                     :active="link === 'exchange'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/exchange"
+                    to="/user/users/exchange"
                     @click="link = 'exchange'"
             >
               <q-item-section avatar>
@@ -225,7 +225,7 @@ if(token == null || token == '' || token == undefined ) {
                     :active="link === 'password'"
                     active-class="my-menu-link"
                     clickable
-                    to="/admin/users/password"
+                    to="/user/users/password"
                     @click="link = 'password'"
             >
               <q-item-section avatar>
@@ -241,7 +241,7 @@ if(token == null || token == '' || token == undefined ) {
                 :active="link === 'service'"
                 active-class="my-menu-link"
                 clickable
-                to="/admin/users/service"
+                to="/user/users/service"
                 @click="link = 'service'"
             >
               <q-item-section avatar>
@@ -285,7 +285,7 @@ if(token == null || token == '' || token == undefined ) {
             </div>
 
             <div>
-              <q-btn to="/admin/shop/index">管理中心</q-btn>
+              <q-btn to="/user/shop/index">管理中心</q-btn>
             </div>
           </div>
         </q-img>

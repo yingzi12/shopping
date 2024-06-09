@@ -8,7 +8,7 @@ const $q = useQuasar();
 const email = ref('');
 async function onSubmit() {
   try {
-    const response = await api.get("/admin/systemUser/sendCheckEmailCode?email="+email.value, {
+    const response = await api.get("/user/systemUser/sendCheckEmailCode?email="+email.value, {
       headers: {
         'Content-Type': 'application/json',
       },

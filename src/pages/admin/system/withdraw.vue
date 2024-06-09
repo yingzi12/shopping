@@ -25,7 +25,7 @@ const {queryParams} = toRefs(queryData);
 async function getList(page: number) {
   queryParams.value.pageNum = page;
   try {
-    const response = await api.get('/admin/userWithdraw/list?' + tansParams(queryParams.value), {
+    const response = await api.get('/user/userWithdraw/list?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -40,7 +40,7 @@ async function getList(page: number) {
   }
 }
 async function getDetail() {
-  const response = await api.get(`/admin/systemUser/getInfo`, {
+  const response = await api.get(`/user/systemUser/getInfo`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -69,7 +69,7 @@ getList(1)
   </div>
 
   <div class="q-pa-xs q-gutter-xs">
-    <router-link to="/admin/users/addWithdraw">
+    <router-link to="/user/users/addWithdraw">
       <q-btn color="primary" label="添加"/>
     </router-link>
 

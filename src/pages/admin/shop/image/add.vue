@@ -33,7 +33,7 @@ async function getList(page: number) {
   queryParams.value.aid = aid.value;
   queryParams.value.pageNum = page;
   try {
-    const response = await api.get('/admin/userImage/list?' + tansParams(queryParams.value), {
+    const response = await api.get('/admin/userImage/page?' + tansParams(queryParams.value), {
       headers: {
         'Authorization': `Bearer ${token}`
       }
