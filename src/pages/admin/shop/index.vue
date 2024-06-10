@@ -4,7 +4,6 @@ import {Cookies, useQuasar} from 'quasar'
 import {useRouter} from "vue-router";
 import {api} from "boot/axios";
 import {compressIfNeeded} from "boot/tools";
-import PayaplCard from "pages/system/paypalCard.vue";
 
 const token = Cookies.get('token');
 const id = Cookies.get('id');
@@ -13,26 +12,25 @@ const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
 
 const shop = ref({  });
+const shopOk = ref(false);
 
 const imgUrl = ref("/favicon.png");
 
 const previewImage = ref(null);
-const vipExpirationTime = ref(null);
 const fileInput = ref<HTMLInputElement | null>(null);
 const selectedImage = ref<File | null>(null);
-const userHeadImageStr=ref("点击替换头像");
+const userHeadImageStr=ref("点击替换Logo");
 
 async function getDetail() {
-  const response = await api.get(`/admin/shopDetail/getInfo`);
+  const response = await api.get(`/admin/shopDetail/info`);
   const data = response.data;
   if (data.code == 200) {
     shop.value=data.data;
-
-    imgUrl.value = data.data.imgUrl  ;
-    previewImage.value =data.data.imgUrl;
-
-
-    vipExpirationTime.value = data.data.vipExpirationTime;
+    shopOk.value=true;
+    console.log("-----------shop-----------------")
+    console.log(shop)
+    imgUrl.value = data.data.shopLogo  ;
+    previewImage.value =data.data.shopLogo;
   }
 }
 function triggerFileInput() {
@@ -91,45 +89,23 @@ function getImageUrl(url) {
 const  money=ref(0.0);
 const paypalDialog = ref(false);
 
-function openPayPalDialog (){
-  if(money.value<1){
-    $q.dialog({
-      title: '通知',
-      message: '金额不能少于1',
-    })
-    return;
-  }
-  //console.log("------------openPayPalDialog---------------------------")
-  if(token !== null && token !== '' && token !== undefined ) {
-    paypalDialog.value = true;
-  }else {
-    $q.dialog({
-      title: '通知',
-      message: '请先登录，点击ok跳转登录.',
-      ok: {
-        push: true
-      },
-      cancel: {
-        push: true
-      },
-    }).onOk(async () => {
-      router.push('/login'); // Redirect to login page
-    }).onCancel(async () => {
-      // router.push('/users/shop'); // Redirect to login page
-    });
-  }
-};
-
 </script>
 
 <template>
-  <div>
-    <router-link to="/admin/shop/edit">
+  <div v-if="!shopOk ">
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">待选择店铺</div>
+      </q-card-section>
+    </q-card>
+  </div>
+  <div  v-if="shopOk" >
+    <router-link   to="/admin/shop/edit">
       <q-btn color="primary" label="编辑店铺信息"/>
     </router-link>
   </div>
 
-  <div class="q-pa-md row items-start q-gutter-md">
+  <div  v-if="shopOk"  class="q-pa-md row items-start q-gutter-md">
     <q-card bordered class="my-card" flat>
       <q-item>
         <!--        <q-item-section>-->
@@ -145,51 +121,45 @@ function openPayPalDialog (){
           <p class="text-caption">{{ userHeadImageStr }}</p>
         </q-item-section>
         <q-item-section>
-          <q-item-label>{{ shop.nickname != null ? shop.nickname : '待登录' }}
-            ({{ shop.name != null ? shop.name : '待登录' }})
+          <q-item-label>{{ shop.shopName != null ? shop.shopName : '无数据' }}
           </q-item-label>
-          <q-item-label v-if="shop.id" caption>
-            ID:{{ shop.id }}
+          <q-item-label v-if="shop.shopId" caption>
+            ID:{{ shop.shopId }}
           </q-item-label>
-          <q-item-label v-if="shop.email" caption>
-            {{ shop.email }}
-            <q-icon v-if="shop.isEmail ==2 " name="warning" style="color: red"/>
-          </q-item-label>
-          <q-item-label v-if="shop.isEmail ==2 " caption>
-            （点击发送邮箱验证码）
+          <q-item-label v-if="shop.shopStatus" caption>
+            状态:{{ shop.shopStatus ==-1 ? '未开通' : shop.shopStatus == 0 ? '停业中' : '营业中' }}
           </q-item-label>
         </q-item-section>
 
       </q-item>
       <q-card-section>
-        <q-item-label caption>
-          余额：{{shop.balance}}
-        </q-item-label>
-        <q-item-label caption>
-
-          <q-input
-              v-model.number="money"
-              type="number"
-              filled
-              style="max-width: 200px"
-          /><q-btn icon="payments" @click="openPayPalDialog()">充值</q-btn>
-        </q-item-label>
+        <q-item-label>手机：{{shop.mobile}}</q-item-label>
+        <q-item-label>联系电话：{{shop.tel}}</q-item-label>
+        <q-item-label>行业：{{shop.shopIndustry}}</q-item-label>
       </q-card-section>
       <q-separator/>
 
       <q-card-section  horizontal>
+        <div class="text-h6">简介</div>
         <div class="text-body2" style="padding: 10px">
           {{ shop.intro }}
         </div>
       </q-card-section>
-
       <q-separator/>
 
-      <q-card-actions>
-        <q-btn color="red-8" flat icon="favorite" round>{{shop.countAttention }}</q-btn>
-        <q-btn color="red-8" flat icon="thumb_up" round>{{shop.countLike }}</q-btn>
-        <q-btn color="red-8" flat icon="visibility" round>{{shop.countSee }}</q-btn>
-      </q-card-actions>
+      <q-card-section  horizontal>
+        <div class="text-h6">广告</div>
+        <div class="text-body2" style="padding: 10px">
+          {{ shop.shopNotice }}
+        </div>
+      </q-card-section>
+      <q-separator/>
+
+<!--      <q-card-actions>-->
+<!--        <q-btn color="red-8" flat icon="favorite" round>{{shop.countAttention }}</q-btn>-->
+<!--        <q-btn color="red-8" flat icon="thumb_up" round>{{shop.countLike }}</q-btn>-->
+<!--        <q-btn color="red-8" flat icon="visibility" round>{{shop.countSee }}</q-btn>-->
+<!--      </q-card-actions>-->
     </q-card>
 
 

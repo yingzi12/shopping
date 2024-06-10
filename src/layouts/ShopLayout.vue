@@ -7,8 +7,26 @@ const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 const $q = useQuasar();
 const token = Cookies.get("token");
 // 如果没有 token，重定向到登录页面
-if (!token) {
-  router.push('/login');
+// if (!token) {
+//   router.push('/login');
+// }
+
+if(token == null || token == '' || token == undefined ) {
+
+  $q.dialog({
+    title: '通知',
+    message: '请先登录，点击ok跳转登录.',
+    ok: {
+      push: true
+    },
+    cancel: {
+      push: true
+    },
+  }).onOk(async () => {
+    router.push('/login'); // Redirect to login page
+  }).onCancel(async () => {
+    router.push('/'); // Redirect to login page
+  });
 }
 const drawer = ref(false);
 const link = ref('detail')
@@ -35,12 +53,15 @@ async function getList() {
     }));
 
     // 确保至少有一个选项，即使API返回为空
-    if (chargeList.value.length === 0) {
+    // if (chargeList.value.length === 0) {
       addDefaultCreateShopOption();
-    }
+    // }
 
     // 设置默认选中第一个店铺的ID，注意处理空数组的情况
     charge.value = chargeList.value.length > 0 ? chargeList.value[0].value : 0;
+    if(charge.value != -1){
+      setShopId(charge.value)
+    }
   } else {
     console.error("API 返回错误码:", dataJson.code);
     // 如果API调用失败，仍然保证有默认选项
@@ -90,6 +111,11 @@ function handleSelectClick() {
   // console.log('Select component was clicked');
   // 在这里添加你希望点击时执行的逻辑
 };
+
+async function setShopId(shopId:number){
+  const response = await api.get(`/admin/shopDetail/setShopId?shopId=${shopId}`);
+
+}
 </script>
 
 <template>
@@ -113,7 +139,7 @@ function handleSelectClick() {
                     :active="link === 'detail'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/"
+                    to="/admin/shop/index"
                     @click="link = 'detail'"
             >
               <q-item-section avatar>
@@ -125,11 +151,11 @@ function handleSelectClick() {
               </q-item-section>
             </q-item>
             <q-separator/>
-            <q-item v-ripple
+            <q-item v-if="charge != -1"  v-ripple
                     :active="link === 'buy'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/buy"
+                    to="/admin/shop/product"
                     @click="link = 'buy'"
             >
               <q-item-section avatar>
@@ -140,11 +166,11 @@ function handleSelectClick() {
               </q-item-section>
             </q-item>
             <q-separator/>
-            <q-item v-ripple
+            <q-item v-if="charge != -1" v-ripple
                     :active="link === 'shop'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/shop"
+                    to="/admin/shop/order"
                     @click="link = 'shop'"
             >
               <q-item-section avatar>
@@ -154,11 +180,11 @@ function handleSelectClick() {
                 订单管理
               </q-item-section>
             </q-item>
-            <q-item v-ripple
+            <q-item v-if="charge != -1" v-ripple
                     :active="link === 'sell'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/sell"
+                    to="/admin/shop/image"
                     @click="link = 'sell'"
             >
               <q-item-section avatar>
@@ -168,11 +194,11 @@ function handleSelectClick() {
                 图片管理
               </q-item-section>
             </q-item>
-            <q-item v-ripple
+            <q-item v-if="charge != -1" v-ripple
                     :active="link === 'sell'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/sell"
+                    to="/admin/shop/category"
                     @click="link = 'sell'"
             >
               <q-item-section avatar>
@@ -182,11 +208,11 @@ function handleSelectClick() {
                  分类管理
               </q-item-section>
             </q-item>
-            <q-item v-ripple
+            <q-item v-if="charge != -1" v-ripple
                     :active="link === 'withdraw'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/withdraw"
+                    to="/admin/shop/category"
                     @click="link = 'withdraw'"
             >
               <q-item-section avatar>
@@ -197,11 +223,11 @@ function handleSelectClick() {
               </q-item-section>
             </q-item>
             <q-separator/>
-            <q-item v-ripple
+            <q-item v-if="charge != -1" v-ripple
                     :active="link === 'invite'"
                     active-class="my-menu-link"
                     clickable
-                    to="/user/shop/invite"
+                    to="/admin/shop/notice"
                     @click="link = 'invite'"
             >
               <q-item-section avatar>
@@ -232,6 +258,9 @@ function handleSelectClick() {
 
         <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
           <div class="absolute-bottom bg-transparent">
+            <div>
+              <q-btn to="/admin/users/index">个人中心</q-btn>
+            </div>
 <!--            <q-avatar  class="q-mb-sm" size="56px">-->
 <!--              <img :src="getImageUrl(imgUrl)">-->
 <!--            </q-avatar>-->

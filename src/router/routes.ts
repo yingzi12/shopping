@@ -179,6 +179,86 @@ const routes: RouteRecordRaw[] = [
             path: 'edit',
             component: () => import('pages/admin/shop/edit.vue'),
           },
+          {
+            path: 'spec',
+            component: () => import('layouts/layout.vue'),
+            children:[
+                {
+                  path: 'index',
+                  component: () => import('pages/admin/shop/spec/index.vue'),
+                }
+            ]
+          },
+          {
+            path: 'product',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/product/index.vue'),
+              }
+            ]
+          },
+          {
+            path: 'order',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/order/index.vue'),
+              }
+            ]
+          },
+          {
+            path: 'image',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/image/index.vue'),
+              }
+            ]
+          },
+          {
+            path: 'category',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/category/index.vue'),
+              }
+            ]
+          },
+          {
+            path: 'message',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/message/index.vue'),
+              }
+            ]
+          },
+          {
+            path: 'notice',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/notice/index.vue'),
+              }
+            ]
+          },
+          {
+            path: 'prodTag',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {
+                path: 'index',
+                component: () => import('pages/admin/shop/prodTag/index.vue'),
+              }
+            ]
+          },
         ]
       },
 

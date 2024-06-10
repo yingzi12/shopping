@@ -10,16 +10,17 @@ import {compressIfNeeded} from "boot/tools";
 const token = Cookies.get('token');
 const $q = useQuasar();
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
-const title = ref(null);
-const girl = ref(null);
-const intro = ref(null);
-const payIntro = ref(null);
-const tags = ref(null);
+const shopName = ref("");
+const shopType = ref(1);
+const shopIndustry = ref(1);
+
+const intro = ref("");
+const shopNotice = ref("");
+const mobile = ref("");
+const tel = ref("");
+
 const imgUrl = ref(null);
-const vipPrice = ref(0.0);
-const price = ref(0.0);
 const accept = ref(false);
-const charge = ref(1);
 const previewImage = ref("/favicon.png");
 const selectedImage = ref<File | null>(null);
 
@@ -33,28 +34,26 @@ function notify(message: string, color: string) {
 }
 
 function onReset() {
-  title.value = null;
-  girl.value = null;
-  intro.value = null;
-  tags.value = null;
+  shopName.value = "";
+  intro.value = "";
   imgUrl.value = null;
-  charge.value = 1;
+  shopType.value = 1;
   accept.value = false;
-  payIntro.value = null;
+  shopNotice.value = "";
+  mobile.value = "";
+  tel.value = "";
 
 }
 
 async function onSubmit() {
-  const response = await api.post("/admin/usershop/add", JSON.stringify({
-    title: title.value,
+  const response = await api.post("/admin/shopDetail/add", JSON.stringify({
+    shopName: shopName.value,
+    shopType: shopType.value,
     intro: intro.value,
-    payIntro: payIntro.value,
-    girl: girl.value,
-    imgUrl: imgUrl.value,
-    tags: tags.value,
-    charge: charge.value,
-    price: price.value,
-    vipPrice: vipPrice.value,
+    shopNotice: shopNotice.value,
+    shopLogo: imgUrl.value,
+    mobile: mobile.value,
+    tel: tel.value,
   }), {
     headers: {
       'Content-Type': 'application/json',
@@ -71,16 +70,18 @@ async function onSubmit() {
         push: true
       },
     }).onOk(async () => {
-      router.push('/admin/users/shop'); // Redirect to login page
+
+      router.push('/admin/shop/index'); // Redirect to login page
     }).onCancel(async () => {
-      router.push('/admin/users/shop'); // Redirect to login page
+      //刷新页面
+      router.push('/admin/shop/index'); // Redirect to login page
     });
   } else {
     $q.notify({
-      color: 'green-4',
+      color: 'red-4',
       textColor: 'white',
       icon: 'cloud_done',
-      message: '创建成功'
+      message: '创建失败'
     });
   }
 }
@@ -95,7 +96,7 @@ async function handleImageUpload(event: Event) {
       const compressedFile = await compressIfNeeded(file);
       const formData = new FormData();
       formData.append('file', compressedFile);
-      const response = await api.put( '/admin/usershop/upload',  formData);
+      const response = await api.put( '/user/systemUser/upload',  formData);
       const data = await response.data; // 确保使用 await 等待 json 解析完成
       if (data.code === 200) {
         previewImage.value = $q.config.sourceWeb + data.data;
@@ -118,32 +119,24 @@ async function handleImageUpload(event: Event) {
 }
 
 
-const chargeList = [
+const shopTypeList = [
   {
-    label: '免费',
+    label: '个人',
     value: 1
   },
   {
-    label: 'VIP免费',
+    label: '个体户',
     value: 2
   },
-
   {
-    label: 'VIP折扣',
+    label: '企业',
     value: 3
-  },
-  {
-    label: 'VIP独享',
-    value: 4
-  },
-  {
-    label: '统一价格',
-    value: 5
   }
 ]
-function updateCharge(charge: number) {
-  price.value = 1.0;
-  vipPrice.value = 1.0;
+
+
+function updateCharge() {
+
 }
 
 
@@ -152,100 +145,95 @@ function updateCharge(charge: number) {
 
 <template>
 
-  <div class="q-pa-xs" style="max-width: 400px">
+  <div class="q-pa-xs">
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">创建店铺</div>
+      </q-card-section>
+      <q-separator/>
+      <q-card-section>
+        <q-form
+            class="q-gutter-md"
+            @reset="onReset"
+            @submit="onSubmit"
+        >
+          <div class="q-pa-md q-gutter-sm">
+            <div>
+              <q-img
+                  :src="previewImage"
+                  spinner-color="white"
+                  style="height: 140px; max-width: 150px"
+              />
+            </div>
+            <input accept="image/*" type="file" @change="handleImageUpload"/>
+          </div>
+          <q-input
+              v-model="shopName"
+              :rules="[
+    (val) => {
+      const isLengthValid = val && val.length >= 2 && val.length <= 100;
+      // 允许字母、数字、中文、空格、下划线和连字符
+      const isCharValid = /^[a-zA-Z0-9\u4e00-\u9fa5\s_-]+$/.test(val);
 
-    <q-form
-        class="q-gutter-md"
-        @reset="onReset"
-        @submit="onSubmit"
-    >
-      <div class="q-pa-md q-gutter-sm">
-        <div>
-          <q-img
-              :src="previewImage"
-              spinner-color="white"
-              style="height: 140px; max-width: 150px"
+      if (!isLengthValid) {
+        return '请输入店铺名称，长度2-100';
+      }
+      if (!isCharValid) {
+        return '店铺名称不能包含特殊符号';
+      }
+
+      return true;
+    }
+  ]"
+              filled
+              hint="输入店铺名称"
+              label="店铺名称 *"
+              lazy-rules
           />
-        </div>
-        <input accept="image/*" type="file" @change="handleImageUpload"/>
-      </div>
-      <q-input
-          v-model="title"
-          :rules="[ val => val && val.length >= 2 && val.length <= 100 || '请输入图集名称，长度2-100']"
-          filled
-          hint="输入图集名称"
-          label="图集名称 *"
-          lazy-rules
-      />
-      <q-input
-          v-model="girl"
-          :rules="[ val => val && val.length >= 2  && val.length <= 50 || '请输入模特，长度2-50']"
-          filled
-          hint="Name and surname"
-          label="模特 *"
-          lazy-rules
-      />
-      <q-input
-          v-model="intro"
-          :rules="[ val => val && val.length >= 5 && val.length <= 300 || '请输入简介，长度5-300']"
-          filled
-          label="简介 *"
-          type="textarea"
-      />
-      <q-input v-if="charge !='1'"
-          v-model="payIntro"
-          filled
-          label="付费说明(购买图集之后才能看到) *"
-          type="textarea"
-      />
-      <!--      </div>-->
-      <q-input
-          v-model="tags"
-          :rules="[ val => val && val.length >= 2 && val.length <= 100 || '请输入标签，长度3-30']"
-          filled
-          label="标签 *"
-          lazy-rules
-          type="text"
-      />
-      <div>
-        <q-select v-model="charge" :options="chargeList" emit-value hint="付费方式" label="付费方式"
-                  map-options
-                  outlined
-                  @update:modelValue="updateCharge"/>
-        <q-input v-if="charge =='2' || charge =='3' || charge=='5'"
-                 v-model="price"
-                 :rules="[
-          val => (val !== null && val !== '') || '请输入金额',
-        val => (val >= 1.0 && val <= 1000) || '金额不能小与1.0大于1000'
-                  ]"
-                 fill-mask="0"
-                 filled
-                 hint="Mask: #.##"
-                 input-class="text-right"
-                 label="价格"
-                 mask="#.##"
-                 reverse-fill-mask
+          <div>
+            <q-select v-model="shopType" :options="shopTypeList" emit-value hint="店铺类型" label="店铺类型"
+                      map-options
+                      outlined
+                      @update:modelValue="updateCharge"/>
+          </div>
+          <q-input
+              v-model="mobile"
+              :rules="[ val => val && val.length >= 2 && val.length <= 100 || '请输入手机号码，长度3-30']"
+              filled
+              label="手机 *"
+              lazy-rules
+              type="text"
+          />
+          <q-input
+            v-model="tel"
+            :rules="[ val => val && val.length >= 2 && val.length <= 100 || '请输入联系方式，长度3-30']"
+            filled
+            label="联系方式 *"
+            lazy-rules
+            type="text"
         />
-        <q-input v-if="charge =='3' || charge=='4'"
-                 v-model="vipPrice"
-                 :rules="[
-          val => (val !== null && val !== '') || '请输入VIP金额',
-        val => (val >= 1.0 && val <= 1000) || '金额不能小与1.0不能大于1000'
-                  ]"
-                 fill-mask="0"
-                 filled
-                 hint="Mask: #.##"
-                 input-class="text-right"
-                 label="VIP价格"
-                 mask="#.##"
-                 reverse-fill-mask
-        />
-      </div>
-      <div>
-        <q-btn color="primary" label="Submit" type="submit"/>
-        <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
-      </div>
-    </q-form>
+          <q-input
+              v-model="intro"
+              :rules="[ val => val && val.length >= 5 && val.length <= 200 || '请输入简介，长度5-300']"
+              filled
+              label="简介 *"
+              type="textarea"
+          />
+          <q-input
+              v-model="shopNotice"
+              :rules="[ val => val && val.length >= 0 && val.length <= 50 || '请输入公告，长度5-300']"
+              filled
+              label="公告 *"
+              type="textarea"
+          />
+          <div>
+            <q-btn color="primary" label="Submit" type="submit"/>
+            <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
+          </div>
+        </q-form>
+
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 

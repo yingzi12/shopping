@@ -1,30 +1,36 @@
 <script lang="ts" setup>
-import {useQuasar} from 'quasar';
-import pica from 'pica';
+import { useQuasar } from 'quasar';
+import pica from "pica";
+import { api } from "boot/axios";
 import { compressAccurately } from 'image-conversion';
 import { Cookies } from 'quasar'
-import {useRoute, useRouter} from "vue-router";
-import {ref, watch} from "vue";
-import {api} from "boot/axios";
+import {useRouter} from "vue-router";
+import {reactive, ref, toRefs} from "vue";
+import {compressIfNeeded} from "boot/tools";
 const token = Cookies.get('token');
-
+const $q = useQuasar();
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
+const queryData = reactive({
+  addForm: {
+    shopId: -1,
+    shopName: "",
+    shopType: 1,
+    shopIndustry: 1,
+    shopLogo:"",
+    intro: '',
+    shopNotice: '',
+    mobile: '',
+    tel: '',
+  },
+  rules: {}
+});
+const {addForm, rules} = toRefs(queryData);
 
-const $q = useQuasar();
-const route = useRoute();
-const aid = ref(route.query.id);
-const title = ref(null);
-const girl = ref(null);
-const intro = ref(null);
-const payIntro = ref(null);
+const intro = ref("");
+const mobile = ref("");
 
-const tags = ref(null);
 const imgUrl = ref("");
-const vipPrice = ref(0.0);
-const price = ref(0.0);
-const accept = ref(false);
-const charge = ref(1);
 const previewImage = ref("/favicon.png");
 const selectedImage = ref<File | null>(null);
 
@@ -37,319 +43,212 @@ function notify(message: string, color: string) {
   });
 }
 
+
+
+
 function onReset() {
-  title.value = null;
-  girl.value = null;
-  intro.value = null;
-  payIntro.value = null;
-  tags.value = null;
-  imgUrl.value = "";
-  charge.value = 1;
-  accept.value = false;
-}
+  addForm.value.shopName = 1;
+  addForm.value.intro = "";
+  imgUrl.value = addForm.value.shopLogo;
+  addForm.value.shopType = 1;
+  addForm.value.shopNotice = "";
+  addForm.value.mobile = "";
+  addForm.value.tel = "";
 
-async function onSubmit() {
-  const response = await api.post("/admin/usershop/edit",
-      JSON.stringify({
-        id: aid.value,
-        title: title.value,
-        intro: intro.value,
-        payIntro: payIntro.value,
-        girl: girl.value,
-        imgUrl: imgUrl.value,
-        tags: tags.value,
-        charge: charge.value,
-        price: price.value,
-        vipPrice: vipPrice.value,
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  const data = response.data;
-  if (data.code == 200) {
-    $q.notify({
-      color: 'green-4',
-      textColor: 'white',
-      icon: 'cloud_done',
-      message: 'Create Success'
-    });
-    router.push('/admin/users/shop'); // Redirect to login page
-
-  } else {
-    $q.notify({
-      color: 'green-4',
-      textColor: 'white',
-      icon: 'cloud_done',
-      message: 'Update Error'
-    });
-  }
 }
 
 async function getDetail() {
-  const response = await api.get('/admin/usershop/getInfo/' + aid.value, {
-    method: 'get',
+  const response = await api.get(`/admin/shopDetail/info`);
+  const data = response.data;
+  if (data.code == 200) {
+    addForm.value=data.data;
+    imgUrl.value = data.data.shopLogo  ;
+    previewImage.value =data.data.shopLogo;
+  }
+}
+getDetail();
+async function onSubmit() {
+  addForm.value.shopLogo=imgUrl.value;
+  const response = await api.post("/admin/shopDetail/update", JSON.stringify(addForm.value), {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
   });
   const data = response.data;
-  //console.log(data.code)
+  //console.log(data)
   if (data.code == 200) {
-    title.value = data.data.title;
-    intro.value = data.data.intro;
-    girl.value = data.data.girl;
-    imgUrl.value = data.data.imgUrl;
-    payIntro.value = data.data.payIntro;
-    previewImage.value = $q.config.sourceWeb + data.data.imgUrl;
-    tags.value = data.data.tags;
-    charge.value = data.data.charge;
-    price.value = data.data.price;
-    vipPrice.value = data.data.vipPrice;
+    $q.dialog({
+      title: '通知',
+      message: '修改成功.',
+      ok: {
+        push: true
+      },
+    }).onOk(async () => {
+      //刷新页面
+      router.push('/admin/shop/index'); // Redirect to login page
+    }).onCancel(async () => {
+      //刷新页面
+      router.push('/admin/shop/index'); // Redirect to login page
+    });
+  } else {
+    $q.notify({
+      color: 'red-4',
+      textColor: 'white',
+      icon: 'cloud_done',
+      message: '修改失败'
+    });
   }
-
 }
 
 async function handleImageUpload(event: Event) {
-    try {
-      const file = (event.target as HTMLInputElement).files?.[0];
-      if (!file) {
-        throw new Error("No file selected");
-      }
-      selectedImage.value = file;
-      const compressedFile = await compressIfNeeded(file);
-      const formData = new FormData();
-      formData.append('file', compressedFile);
-      const response = await api.put( '/usershop/upload', formData);
-      const data = await response.data; // 确保使用 await 等待 json 解析完成
-      if (data.code === 200) {
-        previewImage.value = $q.config.sourceWeb + data.data;
-        imgUrl.value = data.data;
-      } else {
-        $q.dialog({
-          title: '错误',
-          message: data.msg,
-          ok: {
-            push: true
-          },
-        });
-        throw new Error('Image upload failed');
-      }
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      notify('Error uploading image', 'red-5');
+  try {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) {
+      throw new Error("No file selected");
     }
-}
-watch(price, (newValue, oldValue) => {
-  const regex = /^\d*\.?\d{0,2}$/;
-  if (!regex.test(newValue)) {
-    price.value = oldValue;
-  }
-});
-
-// 实时限制输入框的值只能有两位小数
-function limitDecimalPricePlaces(event) {
-  const value = event.target.value;
-  if (!/^\d*\.?\d{0,2}$/.test(value)) {
-    // 如果不匹配，则还原为最后一个有效值
-    event.target.value = price.value;
-  }
-}
-watch(vipPrice, (newValue, oldValue) => {
-  const regex = /^\d*\.?\d{0,2}$/;
-  if (!regex.test(newValue)) {
-    vipPrice.value = oldValue;
-  }
-});
-
-// 实时限制输入框的值只能有两位小数
-function limitDecimalVipPlaces(event) {
-  const value = event.target.value;
-  if (!/^\d*\.?\d{0,2}$/.test(value)) {
-    // 如果不匹配，则还原为最后一个有效值
-    event.target.value = vipPrice.value;
+    selectedImage.value = file;
+    const compressedFile = await compressIfNeeded(file);
+    const formData = new FormData();
+    formData.append('file', compressedFile);
+    const response = await api.put( '/user/systemUser/upload',  formData);
+    const data = await response.data; // 确保使用 await 等待 json 解析完成
+    if (data.code === 200) {
+      previewImage.value = $q.config.sourceWeb + data.data;
+      imgUrl.value = data.data;
+    } else {
+      $q.dialog({
+        title: '错误',
+        message: data.msg,
+        ok: {
+          push: true
+        },
+      }).onOk(async () => {
+        console.log("ok");
+      });
+      // throw new Error('Image upload failed');
+    }
+  } catch (error) {
+    notify('Error uploading image', 'red-5');
   }
 }
 
-const chargeList = [
+
+const shopTypeList = [
   {
-    label: '免费',
+    label: '个人',
     value: 1
   },
   {
-    label: 'VIP免费',
+    label: '个体户',
     value: 2
   },
-
   {
-    label: 'VIP折扣',
+    label: '企业',
     value: 3
-  },
-  {
-    label: 'VIP独享',
-    value: 4
-  },
-  {
-    label: '统一价格',
-    value: 5
   }
 ]
 
-function updateCharge(charge: number) {
-  price.value = 1.00;
-  vipPrice.value = 1.00;
+
+function updateCharge() {
+
 }
 
-getDetail()
 
-async function compressIfNeeded(file) {
-  if (file.size > 500 * 1024) {
-    return compressImage(file).catch(error => {
-      console.error('Compression failed', error);
-      return file;
-    });
-  } else {
-    return file;
-  }
-}
 
-// 压缩图片的函数
-async function compressImage(file) {
-  console.log("---------compressImage---------------");
-  const picaInstance = pica();
-
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onload = () => {
-        let targetWidth = img.width;
-        let targetHeight = img.height;
-        if (img.width > 1920) {
-          targetWidth = 1920;
-          targetHeight = (img.height / img.width) * 1920;
-        }
-
-        const canvas = document.createElement('canvas');
-        canvas.width = targetWidth;
-        canvas.height = targetHeight;
-
-        picaInstance.resize(img, canvas, {
-          unsharpAmount: 80,
-          unsharpRadius: 0.6,
-          unsharpThreshold: 2
-        })
-            .then(resizedCanvas => picaInstance.toBlob(resizedCanvas, 'image/jpeg', 0.8))
-            .then(blob => {
-              resolve(new File([blob], file.name, { type: 'image/jpeg' }));
-            })
-            .catch(error => {
-              reject(error);
-            });
-      };
-      img.onerror = () => reject(new Error('Image load error'));
-      img.src = e.target.result;
-    };
-    reader.onerror = () => reject(new Error('FileReader error'));
-    reader.readAsDataURL(file);
-  });
-}
 </script>
 
 <template>
 
-  <div class="q-pa-xs" style="max-width: 400px">
+  <div class="q-pa-xs">
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">创建店铺</div>
+      </q-card-section>
+      <q-separator/>
+      <q-card-section>
+        <q-form
+            class="q-gutter-md"
+            @reset="onReset"
+            @submit="onSubmit"
+        >
+          <div class="q-pa-md q-gutter-sm">
+            <div>
+              <q-img
+                  :src="previewImage"
+                  spinner-color="white"
+                  style="height: 140px; max-width: 150px"
+              />
+            </div>
+            <input accept="image/*" type="file" @change="handleImageUpload"/>
+          </div>
+          <q-input
+              v-model="addForm.shopName"
+              :rules="[
+    (val) => {
+      const isLengthValid = val && val.length >= 2 && val.length <= 100;
+      // 允许字母、数字、中文、空格、下划线和连字符
+      const isCharValid = /^[a-zA-Z0-9\u4e00-\u9fa5\s_-]+$/.test(val);
 
-    <q-form
-        class="q-gutter-md"
-        @reset="onReset"
-        @submit="onSubmit"
-    >
-      <div class="q-pa-md q-gutter-sm">
-        <div>
-          <q-img
-              :src="previewImage"
-              spinner-color="white"
-              style="height: 140px; max-width: 150px"
+      if (!isLengthValid) {
+        return '请输入店铺名称，长度2-100';
+      }
+      if (!isCharValid) {
+        return '店铺名称不能包含特殊符号';
+      }
+
+      return true;
+    }
+  ]"
+              filled
+              hint="输入店铺名称"
+              label="店铺名称 *"
+              lazy-rules
           />
-        </div>
-        <input accept="image/*" type="file" @change="handleImageUpload"/>
-      </div>
-      <q-input
-          v-model="title"
-          :rules="[ val => val && val.length >= 2 && val.length < 100 || '请输入图集名称，长度2-100']"
-          filled
-          hint="输入图集名称"
-          label="图集名称 *"
-          lazy-rules
-      />
-      <q-input
-          v-model="girl"
-          :rules="[ val => val && val.length >= 2 && val.length < 50 || '请输入模特，长度2-50']"
-          filled
-          hint="Name and surname"
-          label="模特 *"
-          lazy-rules
-      />
-      <q-input
-          v-model="intro"
-          :rules="[ val => val && val.length >= 5 && val.length < 300 || '请输入简介，长度5-300']"
-          filled
-          label="简介 *"
-          type="textarea"
-      />
-      <q-input v-if="charge !='1'"
-               v-model="payIntro"
-               filled
-               label="付费说明(购买图集之后才能看到) *"
-               type="textarea"
-      />
-      <!--      </div>-->
-      <q-input
-          v-model="tags"
-          :rules="[ val => val && val.length >= 2 && val.length <= 30 || '请输入标签，长度3-30']"
-          filled
-          label="标签 *"
-          lazy-rules
-          type="text"
-      />
+          <div>
+            <q-select v-model="addForm.shopType" :options="shopTypeList" emit-value hint="店铺类型" label="店铺类型"
+                      map-options
+                      outlined
+                      @update:modelValue="updateCharge"/>
+          </div>
+          <q-input
+              v-model="addForm.mobile"
+              :rules="[ val => val && val.length >= 2 && val.length <= 100 || '请输入手机号码，长度3-30']"
+              filled
+              label="手机 *"
+              lazy-rules
+              type="text"
+          />
+          <q-input
+              v-model="addForm.tel"
+              :rules="[ val => val && val.length >= 2 && val.length <= 100 || '请输入联系方式，长度3-30']"
+              filled
+              label="联系方式 *"
+              lazy-rules
+              type="text"
+          />
+          <q-input
+              v-model="addForm.intro"
+              :rules="[ val => val && val.length >= 5 && val.length <= 200 || '请输入简介，长度5-300']"
+              filled
+              label="简介 *"
+              type="textarea"
+          />
+          <q-input
+              v-model="addForm.shopNotice"
+              :rules="[ val => val && val.length >= 0 && val.length <= 50 || '请输入公告，长度5-300']"
+              filled
+              label="公告 *"
+              type="textarea"
+          />
+          <div>
+            <q-btn color="primary" label="Submit" type="submit"/>
+            <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
+          </div>
+        </q-form>
 
-      <div>
-        <q-select v-model="charge" :options="chargeList" emit-value hint="付费方式" label="付费方式"
-                  map-options
-                  outlined
-                  @update:modelValue="updateCharge"/>
-        <q-input v-if="charge =='2' || charge =='3' || charge=='5'"
-                 v-model="price"
-                 :rules="[
-          val => (val !== null && val !== '') || '请输入金额',
-        val => (val >= 1.0 && val <= 1000) || '金额不能小与1.0大于1000'
-                  ]"
-                 filled
-                 hint="Mask: #.##"
-                 input-class="text-right"
-                 label="价格"
-                 @blur="limitDecimalPricePlaces"
-        />
-        <q-input v-if="charge =='3' || charge=='4'"
-                 v-model="vipPrice"
-                 :rules="[
-          val => (val !== null && val !== '') || '请输入金额',
-        val => (val >= 1.0 && val <= 1000) || '金额不能小与1.0不能大于1000'
-                  ]"
-                 filled
-                 hint="Mask: #.##"
-                 input-class="text-right"
-                 label="VIP价格"
-                 @input="limitDecimalVipPlaces"
-        />
-      </div>
-      <div>
-        <q-btn color="primary" label="Submit" type="submit"/>
-        <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
-      </div>
-    </q-form>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 
