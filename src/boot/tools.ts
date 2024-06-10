@@ -33,6 +33,32 @@ export function compressIfNeeded(file) {
   }
 }
 
+export  function compressIfNeededBatch(files: FileList): File[] {
+    const processedFiles: File[] = []; // 用于存储处理后的文件
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (file.size > 500 * 1024) {
+            // 尝试压缩文件并处理可能的错误
+            try {
+                const compressedFile =  compressImage(file);
+                processedFiles.push(compressedFile);
+            } catch (error) {
+                console.error('Compression failed for', file.name, error);
+                // 如果压缩失败，仍然将原始文件加入列表
+                processedFiles.push(file);
+            }
+        } else {
+            // 直接添加小于等于指定大小的文件
+            processedFiles.push(file);
+        }
+    }
+
+    // 所有文件处理完毕后，返回处理后的文件列表
+    return processedFiles;
+}
+
 // 压缩图片的函数
 export function compressImage(file) {
   // console.log("---------compressImage---------------");
