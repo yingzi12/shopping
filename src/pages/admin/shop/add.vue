@@ -148,7 +148,7 @@ function updateCharge() {
   <div class="q-pa-xs">
     <q-card>
       <q-card-section>
-        <div class="text-h6">创建店铺</div>
+        <div class="text-h6">创建</div>
       </q-card-section>
       <q-separator/>
       <q-card-section>

@@ -151,6 +151,21 @@ async function setShopId(shopId:number){
               </q-item-section>
             </q-item>
             <q-separator/>
+            <q-item v-if="charge != -1" v-ripple
+                    :active="link === 'invite'"
+                    active-class="my-menu-link"
+                    clickable
+                    to="/admin/shop/spec/index"
+                    @click="link = 'invite'"
+            >
+              <q-item-section avatar>
+                <q-icon name="send"/>
+              </q-item-section>
+              <q-item-section>
+                商品规格
+              </q-item-section>
+            </q-item>
+
             <q-item v-if="charge != -1"  v-ripple
                     :active="link === 'buy'"
                     active-class="my-menu-link"
@@ -180,20 +195,20 @@ async function setShopId(shopId:number){
                 订单管理
               </q-item-section>
             </q-item>
-            <q-item v-if="charge != -1" v-ripple
-                    :active="link === 'sell'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/shop/image"
-                    @click="link = 'sell'"
-            >
-              <q-item-section avatar>
-                <q-icon name="view_headline"/>
-              </q-item-section>
-              <q-item-section>
-                图片管理
-              </q-item-section>
-            </q-item>
+<!--            <q-item v-if="charge != -1" v-ripple-->
+<!--                    :active="link === 'sell'"-->
+<!--                    active-class="my-menu-link"-->
+<!--                    clickable-->
+<!--                    to="/admin/shop/image"-->
+<!--                    @click="link = 'sell'"-->
+<!--            >-->
+<!--              <q-item-section avatar>-->
+<!--                <q-icon name="view_headline"/>-->
+<!--              </q-item-section>-->
+<!--              <q-item-section>-->
+<!--                图片管理-->
+<!--              </q-item-section>-->
+<!--            </q-item>-->
             <q-item v-if="charge != -1" v-ripple
                     :active="link === 'sell'"
                     active-class="my-menu-link"
@@ -223,20 +238,6 @@ async function setShopId(shopId:number){
               </q-item-section>
             </q-item>
             <q-separator/>
-            <q-item v-if="charge != -1" v-ripple
-                    :active="link === 'invite'"
-                    active-class="my-menu-link"
-                    clickable
-                    to="/admin/shop/notice"
-                    @click="link = 'invite'"
-            >
-              <q-item-section avatar>
-                <q-icon name="send"/>
-              </q-item-section>
-              <q-item-section>
-                规格管理
-              </q-item-section>
-            </q-item>
 
             <q-item
                 v-ripple

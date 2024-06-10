@@ -164,6 +164,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import('layouts/ShopLayout.vue'),
         children: [
           {
+            path: '',
+            component: () => import('pages/admin/shop/index.vue'),
+          },
+          {
             path: 'index',
             component: () => import('pages/admin/shop/index.vue'),
           },
@@ -193,10 +197,11 @@ const routes: RouteRecordRaw[] = [
             path: 'product',
             component: () => import('layouts/layout.vue'),
             children:[
-              {
-                path: 'index',
-                component: () => import('pages/admin/shop/product/index.vue'),
-              }
+              {path: '', component: () => import('pages/admin/shop/product/index.vue'),},
+              {path: 'index', component: () => import('pages/admin/shop/product/index.vue'),},
+              {path: 'add', component: () => import('pages/admin/shop/product/add.vue'),},
+              {path: 'edit', component: () => import('pages/admin/shop/product/edit.vue'),},
+
             ]
           },
           {
@@ -224,8 +229,10 @@ const routes: RouteRecordRaw[] = [
             component: () => import('layouts/layout.vue'),
             children:[
               {
-                path: 'index',
-                component: () => import('pages/admin/shop/category/index.vue'),
+                path: '', component: () => import('pages/admin/shop/category/index.vue'),
+              },
+              {
+                path: 'index', component: () => import('pages/admin/shop/category/index.vue'),
               }
             ]
           },
@@ -253,10 +260,17 @@ const routes: RouteRecordRaw[] = [
             path: 'prodTag',
             component: () => import('layouts/layout.vue'),
             children:[
-              {
-                path: 'index',
-                component: () => import('pages/admin/shop/prodTag/index.vue'),
-              }
+              {path: 'index', component: () => import('pages/admin/shop/prodTag/index.vue'),},
+            ]
+          },
+          {
+            path: 'spec',
+            component: () => import('layouts/layout.vue'),
+            children:[
+              {path: '', component: () => import('pages/admin/shop/spec/index.vue'),},
+              {path: 'index', component: () => import('pages/admin/shop/spec/index.vue'),},
+              {path: 'add', component: () => import('pages/admin/shop/spec/add.vue'),},
+              {path: 'edit', component: () => import('pages/admin/shop/spec/edit.vue'),},
             ]
           },
         ]

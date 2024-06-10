@@ -243,7 +243,6 @@ function updateCharge() {
           />
           <div>
             <q-btn color="primary" label="Submit" type="submit"/>
-            <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
           </div>
         </q-form>
 
