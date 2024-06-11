@@ -195,20 +195,20 @@ async function setShopId(shopId:number){
                 订单管理
               </q-item-section>
             </q-item>
-<!--            <q-item v-if="charge != -1" v-ripple-->
-<!--                    :active="link === 'sell'"-->
-<!--                    active-class="my-menu-link"-->
-<!--                    clickable-->
-<!--                    to="/admin/shop/image"-->
-<!--                    @click="link = 'sell'"-->
-<!--            >-->
-<!--              <q-item-section avatar>-->
-<!--                <q-icon name="view_headline"/>-->
-<!--              </q-item-section>-->
-<!--              <q-item-section>-->
-<!--                图片管理-->
-<!--              </q-item-section>-->
-<!--            </q-item>-->
+            <q-item v-if="charge != -1" v-ripple
+                    :active="link === 'image'"
+                    active-class="my-menu-link"
+                    clickable
+                    to="/admin/shop/image"
+                    @click="link = 'image'"
+            >
+              <q-item-section avatar>
+                <q-icon name="image"/>
+              </q-item-section>
+              <q-item-section>
+                图片管理
+              </q-item-section>
+            </q-item>
             <q-item v-if="charge != -1" v-ripple
                     :active="link === 'sell'"
                     active-class="my-menu-link"

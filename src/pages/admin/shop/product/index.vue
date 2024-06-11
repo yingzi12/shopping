@@ -30,6 +30,7 @@ const {queryParams, form, rules} = toRefs(queryData);
 
 async function getList(page: number) {
   try {
+    queryParams.value.pageNum = page;
     // 使用 get 方法发送 GET 请求
     const response = await api.get(`/admin/prod/page?`+tansParams(queryParams.value));
     const data = response.data;
@@ -46,7 +47,6 @@ async function getList(page: number) {
     console.error('获取数据失败：', error);
   }
   //console.log("token:" + token);
-  queryParams.value.pageNum = page;
 }
 
 getList(1);

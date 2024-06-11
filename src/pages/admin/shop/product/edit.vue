@@ -43,9 +43,6 @@ function notify(message: string, color: string) {
   });
 }
 
-
-
-
 function onReset() {
   addForm.value.shopName = "";
   addForm.value.intro = "";

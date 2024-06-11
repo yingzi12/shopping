@@ -3,8 +3,11 @@ import { useQuasar } from 'quasar';
 import { api } from "boot/axios";
 import { Cookies } from 'quasar'
 import {useRouter} from "vue-router";
-import {reactive, ref, toRefs} from "vue";
+import {computed, reactive, ref, toRefs} from "vue";
 import {compressIfNeeded, compressIfNeededBatch} from "boot/tools";
+import chooseComponent from "components/category/chooseComponent.vue";
+import addSpecComponent from "components/product/addSpecComponent.vue";
+
 const token = Cookies.get('token');
 const $q = useQuasar();
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
@@ -18,8 +21,11 @@ const queryData = reactive({
     totalStocks:1,
     brief: '',
     pic: '',
+    stocks:"",
     imgs: '',
     categoryId: 1,
+    status: 1,
+    isVirtual: 2,
     skuList: [{
       prodName:"",
       properties:"",
@@ -34,7 +40,6 @@ const queryData = reactive({
     }],
     content: '',
     tagList: [],
-
   },
   rules: {}
 });
@@ -57,6 +62,13 @@ function notify(message: string, color: string) {
 async function onSubmit() {
   addForm.value.pic=imgUrl.value;
   addForm.value.content=editor.value;
+  addForm.value.skuList[0].price=addForm.value.price;
+  addForm.value.skuList[0].isVirtual=addForm.value.isVirtual;
+  addForm.value.skuList[0].oriPrice=addForm.value.oriPrice;
+  addForm.value.skuList[0].prodName=addForm.value.prodName;
+  // addForm.value.skuList[0].properties=addForm.value.properties;
+  addForm.value.skuList[0].stocks=addForm.value.stocks;
+
   const response = await api.post("/admin/shopDetail/add", JSON.stringify(addForm.value
   ), {
     headers: {
@@ -124,31 +136,8 @@ async function handleImageUpload(event: Event) {
     }
 }
 
-
-const shopTypeList = [
-  {
-    label: '个人',
-    value: 1
-  },
-  {
-    label: '个体户',
-    value: 2
-  },
-  {
-    label: '企业',
-    value: 3
-  }
-]
-
-
-function updateCharge() {
-
-}
-
 const editor= ref(
-    'After you define a new button,' +
-    ' you have to make sure to put it in the toolbar too!'+
-    "<img src=\"https://image.aiavr.uk/xinshijie/image/682/c8b08d26bb838c6a983b9345597a5b63/ddc451da81cb39db235a538c95160924aa183055.webp\"/>"
+    '输入详细内容'
 );
 
  function  saveWork () {
@@ -236,60 +225,74 @@ async function uploadSelectedFiles(event: Event) {
   }
 }
 
-const  modelSingle= ref('Apple');
-const  modelMultiple = ref(['Facebook']);
-const options = [
-  {
-    id: 'goog',
-    desc: 'Google'
-  },
-  {
-    id: 'fb',
-    desc: 'Facebook'
-  },
-  {
-    id: 'twt',
-    desc: 'Twitter'
-  },
-  {
-    id: 'app',
-    desc: 'Apple'
-  },
-  {
-    id: 'ora',
-    desc: 'Oracle',
-    inactive: true
+// /prod/spec/list
+const specList = ref([]);
+async function getSpecList() {
+  try {
+    const response = await api.get(`/admin/spec/list`);
+    if (response.data.code === 200) {
+      specList.value = response.data.data;
+    }
+  } catch (error) {
+    console.error('获取数据失败：', error);
   }
-]
+}
+getSpecList();
+const categoryDialog=ref(false)
+const category=ref({});
+function handleCategorySelect(selectedCategory) {
+  console.log('选中的分类是：', selectedCategory);
+  category.value=selectedCategory;
+  // 在这里处理选中的分类数据
+}
 
-const  modelMultiple2 = ref(['Facebook']);
-const options2= [
-  {
-    id: 'goog',
-    desc: 'Google'
-  },
-  {
-    id: 'fb',
-    desc: 'Facebook'
-  },
-  {
-    id: 'twt',
-    desc: 'Twitter'
-  },
-  {
-    id: 'app',
-    desc: 'Apple'
-  },
-  {
-    id: 'ora',
-    desc: 'Oracle',
-    inactive: true
+function onClean(){
+  category.value={};
+}
+
+const addTagInput = ref({
+  propName: '',
+  selectValues: [{ propValue: '' }]
+})
+
+const unUseTags = computed(() => {
+  const res = []
+  for (let i = 0; i < specList.value.length; i++) {
+    const dbTag = specList.value[i]
+    // const specIndex = addTagInput.value.value?.findIndex(tag => tag.tagName === dbTag.propName)
+    if (dbTag.propName != addTagInput.value.propName ) {
+      res.push(dbTag)
+    }
   }
-]
+  return res;
+})
+function  onAddSKu(){
+ addForm.value.skuList.push( {
+    prodName:"",
+        properties:"",
+      oriPrice:0.0,
+      price:0.0,
+      stocks:0,
+      partyCode:"",
+      skuName:"默认",
+      weight:"",
+      isVirtual:0,
+      faceValue:0.0,
+  });
+}
+function onDeleteSKu(index:number) {
+  if(index!=0) {
+    //删除指定未知的
+    addForm.value.skuList.splice(index, 1);
+  }
+}
 </script>
 
 <template>
-
+  <q-form
+      class="q-gutter-md"
+      @submit="onSubmit"
+  >
   <div class="q-pa-xs">
     <q-card>
       <q-card-section>
@@ -297,10 +300,7 @@ const options2= [
       </q-card-section>
       <q-separator/>
       <q-card-section>
-        <q-form
-            class="q-gutter-md"
-            @submit="onSubmit"
-        >
+
           <div class="q-pa-md q-gutter-sm">
             <div>
               <q-img
@@ -311,7 +311,15 @@ const options2= [
             </div>
             <input accept="image/*" type="file" @change="handleImageUpload"/>
           </div>
-          <q-input
+        <div class="q-gutter-sm">
+         产品状态： <q-radio v-model="addForm.status" :val="1" label="上线" />
+          <q-radio v-model="addForm.status" :val="2" label="下线" />
+        </div>
+        <div class="q-gutter-sm">
+         是否虚拟产品： <q-radio v-model="addForm.isVirtual" :val="1" label="是" />
+          <q-radio v-model="addForm.isVirtual" :val="2" label="不是" />
+        </div>
+          <div> <q-input
               v-model="addForm.prodName"
               :rules="[
     (val) => {
@@ -332,78 +340,117 @@ const options2= [
               hint="输入产品名称"
               label="产品名称 *"
               lazy-rules
-          />
-          <div>
-            <q-select v-model="addForm.categoryId" :options="shopTypeList" emit-value hint="产品类型" label="产品类型"
-                      map-options
-                      outlined
-                      @update:modelValue="updateCharge"/>
+          /></div>
+          <div>产品类型:<q-chip >{{category.categoryName}}</q-chip>
+            <q-btn  flat @click="categoryDialog=true">
+               选择
+            </q-btn>
           </div>
-
           <div>
-            <q-select clearable filled color="purple-12"
-                      v-model="modelMultiple"
-                      :options="options"
-                      option-value="id"
-                      option-label="desc"
-                      option-disable="inactive"
-            />
-
-            <div style="min-width: 250px; max-width: 300px">
-              <q-badge color="secondary" class="q-mb-md">
-                Model: {{ modelMultiple2 || '[]' }}
-              </q-badge>
-
-              <q-select
-                  filled
-                  v-model="modelMultiple2"
-                  multiple
-                  :options="options2"
-                  option-value="id"
-                  option-label="desc"
-                  option-disable="inactive"
-                  use-chips
-                  stack-label
-                  label="值"
-              />
-            </div>
-          </div>
-          <q-input
-                   v-model="addForm.price"
-                   :rules="[
+            <div>
+              <div class="text-h6">商品价格 <q-btn flat @click="onAddSKu"> 添加</q-btn></div>
+              <q-list  >
+                <q-item v-for="(sku,index) in addForm.skuList" :key="index">
+                  <q-item-section>
+                    <q-input
+                        v-model="sku.skuName"
+                        fill-mask="0"
+                        label="规格"
+                        filled
+                        input-class="text-left"
+                        reverse-fill-mask
+                    />
+                  </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    <q-input
+                        v-model="sku.price"
+                        :rules="[
           val => (val !== null && val !== '') || '请输入商品价格',
         val => (val >= 1.0 && val <= 1000) || '商品价格不能小与1.0大于1000'
                   ]"
-                   fill-mask="0"
-                   filled
-                   hint="Mask: #.##"
-                   input-class="text-left"
-                   label="商品价格"
-                   mask="#.##"
-                   reverse-fill-mask
-          />
-          <q-input
-              v-model="addForm.oriPrice"
-              :rules="[
+                        fill-mask="0"
+                        filled
+                        hint="Mask: #.##"
+                        input-class="text-left"
+                        label="商品价格"
+                        mask="#.##"
+                        reverse-fill-mask
+                    />
+
+                  </q-item-label>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    <q-input
+                        v-model="sku.oriPrice"
+                        :rules="[
           val => (val !== null && val !== '') || '请输入商品原价',
         val => (val >= 1.0 && val <= 1000) || '商品价格不能小与1.0大于1000'
                   ]"
-              fill-mask="0"
-              filled
-              hint="Mask: #.##"
-              input-class="text-left"
-              label="商品原价"
-              mask="#.##"
-              reverse-fill-mask
-          />
-          <q-input
-              v-model="addForm.brief"
-              :rules="[ val => val && val.length >= 5 && val.length <= 200 || '请输入简介，长度5-300']"
-              filled
-              label="简介 *"
-              type="textarea"
-          />
-            <div class="">
+                        fill-mask="0"
+                        filled
+                        hint="Mask: #.##"
+                        input-class="text-left"
+                        label="商品原价"
+                        mask="#.##"
+                        reverse-fill-mask
+                    />
+
+                  </q-item-label>
+                </q-item-section>
+
+                <q-item-section>
+                  <q-input
+                      v-model="sku.stocks"
+                      :rules="[
+          val => (val !== null && val !== '') || '请输入库存',
+        val => (val >= 1 && val <= 1000000) || '库存价格不能小与1大于1000000'
+                  ]"
+                      fill-mask="0"
+                      type="number"
+                      label="库存"
+                      filled
+                      input-class="text-left"
+                      reverse-fill-mask
+                  />
+                </q-item-section>
+
+                  <q-item-section>
+                    <q-input
+                        v-model="sku.partyCode"
+                        fill-mask="0"
+                        type="number"
+                        label="编码"
+                        filled
+                        input-class="text-left"
+                        reverse-fill-mask
+                    />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-btn v-if="index !=0" flat @click="onDeleteSKu(index)">删除</q-btn>
+                  </q-item-section>
+                </q-item>
+
+              </q-list>
+            </div>
+
+          </div>
+        <div>
+          <q-item-label>
+            <q-input
+                v-model="addForm.brief"
+                :rules="[ val => val && val.length >= 5 && val.length <= 200 || '请输入简介，长度5-300']"
+                filled
+                label="简介 *"
+                type="textarea"
+            />
+
+          </q-item-label>
+
+        </div>
+
+        <div class="">
               <div class="text-h6">详细介绍</div>
               <!-- 文件输入隐藏，用于选择文件 -->
               <input type="file" ref="fileInput" hidden @change="uploadSelectedFiles" accept="image/*" multiple>
@@ -516,11 +563,31 @@ const options2= [
             <q-btn color="primary" label="Submit" type="submit"/>
             <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
           </div>
-        </q-form>
 
       </q-card-section>
+
     </q-card>
   </div>
+  </q-form>
+
+  <q-dialog v-model="categoryDialog" persistent>
+    <q-card style="min-width: 350px">
+      <q-card-section>
+        <div class="text-h6">选择分类</div>
+      </q-card-section>
+      <q-card-section>
+        <choose-component  @categorySelected="handleCategorySelect" :value="category"></choose-component>
+
+      </q-card-section>
+       <q-card-section>
+         已选择：{{category.categoryName}}
+       </q-card-section>
+      <q-card-actions align="right" class="text-primary">
+        <q-btn flat label="取消" v-close-popup @click="onClean"/>
+        <q-btn flat label="确认" v-close-popup />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <style scoped>

@@ -61,8 +61,6 @@ getList();
 const addDiaLog=ref(false);
 const editDiaLog=ref(false);
 
-const updateDiaLog=ref(false);
-
 async function onAddClick (id:number,grade:number) {
   addForm.value.parentId=id;
   addForm.value.grade=grade+1;
@@ -122,21 +120,21 @@ async function delCategory(id:number) {
     })
   }
 }
-function  addNewClick(){
-  let timestamp = Date.now();
-
-  const newPropObject = {
-    id: timestamp,
-    label: `Satisfied customers`,
-    avatar: 'https://example.com/new-avatar.png',
-    isOp: false,
-    children: [] // 根据需要初始化 children 数组
-  };
-
-// 将新对象添加到 state.props 数组的末尾
-  state.value.push(newPropObject);
-
-}
+// function  addNewClick(){
+//   let timestamp = Date.now();
+//
+//   const newPropObject = {
+//     id: timestamp,
+//     label: `Satisfied customers`,
+//     avatar: 'https://example.com/new-avatar.png',
+//     isOp: false,
+//     children: [] // 根据需要初始化 children 数组
+//   };
+//
+// // 将新对象添加到 state.props 数组的末尾
+//   state.value.push(newPropObject);
+//
+// }
 
 </script>
 

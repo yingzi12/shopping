@@ -4,6 +4,8 @@ import {api} from "boot/axios";
 import {defineProps, reactive, ref, toRefs} from "vue";
 import {tansParams} from "boot/tools";
 import {useRoute, useRouter} from "vue-router";
+const $q = useQuasar();
+
 // 接收url里的参数
 const route = useRoute();
 const router = useRouter();
@@ -105,7 +107,6 @@ function onConfirmReceive(ordernum:string) {
 
       });
 }
-const $q = useQuasar();
 
 function getImageUrl(imgUrl:string) {
   if (imgUrl != null && imgUrl !== undefined && imgUrl !== '') {

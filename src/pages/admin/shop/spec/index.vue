@@ -16,6 +16,7 @@ const maxPage = ref(0);
 const current=ref(1)
 async function getList() {
   try {
+    // queryParams.value.pageNum = page;
     // 使用 get 方法发送 GET 请求
     const response = await api.get(`/admin/spec/page?pageNum=${current.value}&pageSize=10`);
     const data = response.data;
@@ -52,7 +53,15 @@ function addValue() {
          :key="index">
       <admin-item-card-component :value="value"></admin-item-card-component>
     </div>
-
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+          v-model="current"
+          :max="maxPage"
+          max-pages="6"
+          direction-links
+          @update:modelValue="getList()"
+      />
+    </div>
   </div>
 
 </template>

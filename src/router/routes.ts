@@ -208,16 +208,15 @@ const routes: RouteRecordRaw[] = [
             path: 'order',
             component: () => import('layouts/layout.vue'),
             children:[
-              {
-                path: 'index',
-                component: () => import('pages/admin/shop/order/index.vue'),
-              }
+              {path: '', component: () => import('pages/admin/shop/order/index.vue'),},
+              {path: 'index', component: () => import('pages/admin/shop/order/index.vue'),}
             ]
           },
           {
             path: 'image',
             component: () => import('layouts/layout.vue'),
             children:[
+              {path: '', component: () => import('pages/admin/shop/image/index.vue'),},
               {
                 path: 'index',
                 component: () => import('pages/admin/shop/image/index.vue'),
@@ -228,9 +227,7 @@ const routes: RouteRecordRaw[] = [
             path: 'category',
             component: () => import('layouts/layout.vue'),
             children:[
-              {
-                path: '', component: () => import('pages/admin/shop/category/index.vue'),
-              },
+              {path: '', component: () => import('pages/admin/shop/category/index.vue'),},
               {
                 path: 'index', component: () => import('pages/admin/shop/category/index.vue'),
               }
