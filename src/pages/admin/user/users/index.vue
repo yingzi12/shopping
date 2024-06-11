@@ -126,7 +126,6 @@ function openPayPalDialog (){
     })
     return;
   }
-  //console.log("------------openPayPalDialog---------------------------")
   if(token !== null && token !== '' && token !== undefined ) {
     paypalDialog.value = true;
   }else {

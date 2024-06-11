@@ -29,11 +29,11 @@
       </div>
       <q-card>
         <q-card-section class="row items-center justify-evenly">
-          <q-btn  flat color="red" icon="wb_sunny"   label="新品"   stack/>
-          <q-btn  flat color="red" icon="local_fire_department"  label="热门"   stack/>
-          <q-btn  flat color="red" icon="bookmark" label="活动"   stack/>
-          <q-btn  flat color="red" icon="payments" label="充值" stack/>
-          <q-btn  flat class="red" icon="apps" label="分类" stack  />
+          <q-btn  flat color="red" icon="wb_sunny"   label="新品" to="/product/order"  stack/>
+          <q-btn  flat color="red" icon="local_fire_department"  to="/product/order" label="热门"   stack/>
+          <q-btn  flat color="red" icon="bookmark" label="活动" to="/product/order"   stack/>
+          <q-btn  flat color="red" icon="payments" label="充值" to="/product/topUp" stack/>
+<!--          <q-btn  flat class="red" icon="apps" label="分类" stack  />-->
         </q-card-section>
       </q-card>
       <q-toolbar >

@@ -15,6 +15,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'register', component: () => import('pages/system/register.vue') },
       { path: 'product', component: () => import('pages/product/index.vue') },
       { path: 'category', component: () => import('pages/category.vue') },
+
     ],
   },
   {
@@ -31,7 +32,8 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/product/index.vue') },
       { path: 'index', component: () => import('pages/product/index.vue') },
       { path: 'detail', component: () => import('pages/product/detail.vue') },
-      { path: 'order', component: () => import('pages/product/order.vue') }
+      { path: 'order', component: () => import('pages/product/order.vue') },
+      { path: 'topUp', component: () => import('pages/system/topUp.vue') }
     ],
   },
   {
