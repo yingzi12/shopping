@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {api} from "boot/axios";
-import {tansParams} from "boot/tools";
 
-const  tab =ref('97');
+const  tab =ref(1);
 const  splitterModel = ref(20);
 
 const categoryList=ref([]);

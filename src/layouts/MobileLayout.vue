@@ -21,7 +21,7 @@ function updateTable(){
   }
 
 }
-function routerDetail(url){
+function routerUrl(url){
   router.push(url);
 }
 </script>
@@ -30,11 +30,11 @@ function routerDetail(url){
     <q-header elevated>
       <q-toolbar class="bg-grey-2 text-black">
 <!--        <q-btn flat round dense icon="menu" class="q-mr-sm" />-->
-        <q-avatar >
-          <img src="/logo.jpg">
+        <q-avatar  @click="routerUrl('/')">
+          <img src="/logo.jpg" >
         </q-avatar>
 
-        <q-toolbar-title>Black White</q-toolbar-title>
+        <q-toolbar-title @click="routerUrl('/')">Black White</q-toolbar-title>
 
         <q-btn flat round dense icon="whatshot" />
       </q-toolbar>

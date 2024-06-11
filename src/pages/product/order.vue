@@ -89,53 +89,72 @@ function onOrderby(order:number){
   productList.value=[];
   getList(1);
 }
+function  goBack() {
+  // 使用JavaScript的history对象来实现返回上一页
+  window.history.back();
+}
 </script>
 
 <template>
-  <q-breadcrumbs class="text-brown q-ma-md">
-    <template v-slot:separator>
-      <q-icon
-          size="1.5em"
-          name="chevron_right"
-          color="primary"
-      />
-    </template>
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated>
+      <q-toolbar class="bg-grey-2 text-black">
+        <q-btn flat round dense icon="arrow_back" class="q-mr-sm"       @click="goBack"/>
+        <q-toolbar-title>商品详细</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+    <q-page-container>
+      <q-page>
 
-    <q-breadcrumbs-el :label="$t(`userHome`)" icon="widgets"  to="/usershop/index"/>
-    <q-breadcrumbs-el label="排行榜" icon="navigation" to="/usershop/order" />
-  </q-breadcrumbs>
-  <q-input filled bottom-slots v-model="title" :label="$t(`search`)" counter  @keyup.enter="search" >
-    <template v-slot:append>
-      <q-icon v-if="title !== ''" name="close" @click="title = ''" class="cursor-pointer" />
-      <q-icon name="search"         @click="search" />
-    </template>
-  </q-input>
-  <div class="q-gutter-xs">
-    <q-chip :selected="orderBy === 0" color="orange" text-color="white" icon="density_small" @click="onOrderby(0)">
-      默认
-    </q-chip>
-    <q-chip :selected="orderBy === 1" color="primary" text-color="white" icon="local_fire_department" @click="onOrderby(1)">
-      最热
-    </q-chip>
-    <q-chip :selected="orderBy === 2" color="teal" text-color="white" icon="refresh" @click="onOrderby(2)">
-      最新
-    </q-chip>
-    <q-chip :selected="orderBy === 4" color="orange" text-color="white" icon="cruelty_free" @click="onOrderby(4)">
-      免费
-    </q-chip>
-  </div>
-  <q-infinite-scroll :disable="disableInfiniteScroll" :offset="250" @load="onLoad">
-    <div v-for="(value, index) in productList" :key="index" class="caption">
-      <div>
-        <product-detail-card-component :value="value" />
-      </div>
-    </div>
-    <template v-slot:loading>
-      <div class="row justify-center q-my-md">
-        <q-spinner-dots color="primary" size="40px"/>
-      </div>
-    </template>
-  </q-infinite-scroll>
+        <q-input filled bottom-slots v-model="title" :label="$t(`search`)" counter  @keyup.enter="search" >
+          <template v-slot:append>
+            <q-icon v-if="title !== ''" name="close" @click="title = ''" class="cursor-pointer" />
+            <q-icon name="search"         @click="search" />
+          </template>
+        </q-input>
+        <div class="q-gutter-xs">
+          <q-chip :selected="orderBy === 0" color="orange" text-color="white" icon="density_small" @click="onOrderby(0)">
+            默认
+          </q-chip>
+          <q-chip :selected="orderBy === 1" color="primary" text-color="white" icon="local_fire_department" @click="onOrderby(1)">
+            最热
+          </q-chip>
+          <q-chip :selected="orderBy === 2" color="teal" text-color="white" icon="refresh" @click="onOrderby(2)">
+            最新
+          </q-chip>
+          <q-chip :selected="orderBy === 4" color="orange" text-color="white" icon="cruelty_free" @click="onOrderby(4)">
+            免费
+          </q-chip>
+        </div>
+        <q-infinite-scroll :disable="disableInfiniteScroll" :offset="250" @load="onLoad">
+          <div v-for="(value, index) in productList" :key="index" class="caption">
+            <div>
+              <product-detail-card-component :value="value" />
+            </div>
+          </div>
+          <template v-slot:loading>
+            <div class="row justify-center q-my-md">
+              <q-spinner-dots color="primary" size="40px"/>
+            </div>
+          </template>
+        </q-infinite-scroll>
+      </q-page>
+    </q-page-container>
+
+<!--    <q-footer elevated class="bg-grey-2">-->
+<!--      <div class="row">-->
+<!--        <div class="col-4"><q-btn flat  color="primary" icon="home" to="/" />-->
+<!--          <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" /></div>-->
+<!--        <div  class="col-8"><q-btn-group spread>-->
+<!--          <q-btn color="brown" label="加入购物车"  @click="addChangeItem"/>-->
+<!--          <q-btn color="red" label="立即购买"  @click="dialogAdd =true"/>-->
+<!--        </q-btn-group></div>-->
+<!--      </div>-->
+
+<!--    </q-footer>-->
+
+  </q-layout>
+
 </template>
 
 <style scoped>
