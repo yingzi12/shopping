@@ -1,6 +1,6 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
-import {Cookies} from "quasar";
+import {Cookies, Dialog} from "quasar";
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
@@ -16,8 +16,8 @@ declare module '@vue/runtime-core' {
 // "export default () => {}" function below (which runs individually
 // for each client)
 const api = axios.create({
-   baseURL: 'https://admin.51x.uk'
- // baseURL: "http://127.0.0.1:8098"
+   // baseURL: 'https://admin.51x.uk'
+ baseURL: "http://127.0.0.1:8098"
 });
 
 // 添加请求拦截器
@@ -75,9 +75,9 @@ api.interceptors.response.use(function (response) {
 }, function (error) {
 // 获取错误响应对象
   const response = error.response;
-  console.log("-----error---------------------");
+  // console.log("-----error---------------------");
   //
-  console.log(error);
+  // console.log(error);
   // console.log(response);
   // console.log(response.data);
 
@@ -87,7 +87,22 @@ api.interceptors.response.use(function (response) {
     Cookies.remove('token');
     Cookies.remove('id');
     Cookies.remove('userInfo');
-    showAlertAndRedirect();
+    //  message.textContent = '请登录后再操作，请点击OK跳转至登录页面,点击Cancel保持当前页面.\n\rPlease login before operation, please click OK to jump to the login page';
+    Dialog.create({
+      title: '提示',
+      message: '请登录后再操作，请点击OK跳转至登录页面,点击Cancel保持当前页面.\r\nlease login before operation, please click OK to jump to the login page',
+      ok: {
+        label: 'OK',
+        color: 'primary'
+      },
+      cancel: {
+        label: 'Cancel',
+        color: 'red'
+      }
+    }).onOk(() => {
+      // 点击OK按钮时跳转到登录页面
+      window.location.href = '/login';
+    })
     return ;
   } else {
     // 其他错误情况，可以根据需要处理或直接抛出错误
@@ -110,54 +125,4 @@ export default boot(({ app }) => {
   //       so you can easily perform requests against your app's API
 });
 
-function showAlertAndRedirect() {
-
-  // 创建对话框的HTML结构
-  var overlay = document.createElement('div');
-  overlay.style.position = 'fixed';
-  overlay.style.top = 0;
-  overlay.style.left = 0;
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
-  overlay.style.display = 'flex';
-  overlay.style.justifyContent = 'center';
-  overlay.style.alignItems = 'center';
-  overlay.style.zIndex = 9999;
-
-  var dialogBox = document.createElement('div');
-  dialogBox.style.backgroundColor = '#fff';
-  dialogBox.style.padding = '20px';
-  dialogBox.style.borderRadius = '5px';
-  dialogBox.style.textAlign = 'center';
-
-  var message = document.createElement('p');
-  message.textContent = '请登录后再操作，请点击OK跳转至登录页面,点击Cancel保持当前页面.\n\rPlease login before operation, please click OK to jump to the login page';
-  dialogBox.appendChild(message);
-
-  var buttonContainer = document.createElement('div');
-  buttonContainer.style.display = 'flex';
-  buttonContainer.style.justifyContent = 'space-between';
-
-  var okButton = document.createElement('button');
-  okButton.textContent = 'OK';
-  okButton.style.marginRight = '10px';
-  okButton.onclick = function() {
-    window.location.href = '/login';
-    overlay.remove();
-  };
-  buttonContainer.appendChild(okButton);
-
-  var cancelButton = document.createElement('button');
-  cancelButton.textContent = 'Cancel';
-  cancelButton.style.color = 'red';
-  cancelButton.onclick = function() {
-    overlay.remove();
-  };
-  buttonContainer.appendChild(cancelButton);
-
-  dialogBox.appendChild(buttonContainer);
-  overlay.appendChild(dialogBox);
-  document.body.appendChild(overlay);
-}
 export { api };
