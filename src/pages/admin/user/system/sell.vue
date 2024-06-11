@@ -50,7 +50,7 @@ getList(1)
           <q-item-section>
             <q-item-label>{{ sell.id }}</q-item-label>
             <q-item-label v-if=" sell.kind ==2" >VIP</q-item-label>
-            <q-item-label v-if=" sell.kind ==4" >图集</q-item-label>
+            <q-item-label v-if=" sell.kind ==4" >黑白</q-item-label>
             <q-item-label caption lines="2">{{ sell.productName }}</q-item-label>
           </q-item-section>
 

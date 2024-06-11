@@ -50,7 +50,7 @@ getList(1)
             <q-item-label v-if=" sell.kind ==1 ">网站会员</q-item-label>
             <q-item-label v-if=" sell.kind ==2 ">用户会员</q-item-label>
             <q-item-label v-if=" sell.kind ==3 ">网站消费</q-item-label>
-            <q-item-label v-if=" sell.kind ==4 ">购买图集</q-item-label>
+            <q-item-label v-if=" sell.kind ==4 ">购买黑白</q-item-label>
 
             <q-item-label caption lines="2">{{ sell.productName }}</q-item-label>
           </q-item-section>

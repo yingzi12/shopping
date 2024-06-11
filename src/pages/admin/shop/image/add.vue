@@ -111,7 +111,7 @@ getList(1);
 <template>
   <q-breadcrumbs gutter="none">
     <q-breadcrumbs-el >
-      <router-link to="/admin/users/shop">图集</router-link>
+      <router-link to="/admin/users/shop">黑白</router-link>
     </q-breadcrumbs-el>
     <q-breadcrumbs-el label="图片列表"/>
   </q-breadcrumbs>

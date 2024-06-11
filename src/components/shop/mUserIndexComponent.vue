@@ -23,7 +23,7 @@
         <q-toolbar >
           <q-btn flat round dense icon="menu" />
           <q-toolbar-title>
-            用户图集
+            用户黑白
           </q-toolbar-title>
           <q-btn flat round dense icon="more_horiz" to="/usershop/order"/>
         </q-toolbar>

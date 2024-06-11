@@ -99,7 +99,7 @@ export default {
     login:"Login",
     regis:"Register",
     sumbit:"Sumbit",
-    welcome:"Welcome to join the gallery and create your own gallery",
+    welcome:"Welcome to join the Black White and create your own Black White",
     refreshCode:"Click on the picture to refresh the verification code"
   },
   dow:{

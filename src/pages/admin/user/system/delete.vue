@@ -14,7 +14,7 @@ function zhuxiao(){
       <q-card-section>
         <div class="text-subtitle2">
           <q>1.其他用户购买的自己会员是否全部过期</q>
-          <q>2.已出售的图集不可删除</q>
+          <q>2.已出售的黑白不可删除</q>
           <q>3.是否已全部提现</q>
           <q>4.一旦注销不可找回</q>
           <q>5.7天内可以取消注销</q>
