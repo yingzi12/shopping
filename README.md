@@ -1,6 +1,6 @@
-# gattery-test (gattery-test)
-
-A Quasar Project
+# shopping ui
+商城系统，支持多店铺
+基于 Quasar vue3
 
 ## Install the dependencies
 ```bash

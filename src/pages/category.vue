@@ -74,7 +74,6 @@ function getImageUrl(imgUrl:string) {
                   <div
                       v-for="(value,index) in childCategoryList"
                       :key="index"
-                      class="example-item"
                   >
                     <q-card flat bordered class="q-ma-xs m-category-card">
                       <img :src="getImageUrl(value.pic)"
@@ -104,11 +103,11 @@ function getImageUrl(imgUrl:string) {
 </template>
 <style scoped>
 .m-category-card{
-  height: 100px;
-  width: 80px;
+  height: 160px;
+  width: 100px;
 }
 .m-category-card-image{
-  height: 100px;
-  width: 80px;
+  height: 120px;
+  width: 100px;
 }
 </style>
