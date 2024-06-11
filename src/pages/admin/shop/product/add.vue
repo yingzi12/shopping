@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { useQuasar } from 'quasar';
+import {Dialog, useQuasar} from 'quasar';
 import { api } from "boot/axios";
 import { Cookies } from 'quasar'
 import {useRouter} from "vue-router";
 import {computed, reactive, ref, toRefs} from "vue";
 import {compressIfNeeded, compressIfNeededBatch} from "boot/tools";
 import chooseComponent from "components/category/chooseComponent.vue";
-import addSpecComponent from "components/product/addSpecComponent.vue";
 
 const token = Cookies.get('token');
 const $q = useQuasar();
@@ -14,16 +13,14 @@ const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
 const queryData = reactive({
   addForm: {
-    shopId: -1,
     prodName: "",
     price: 0.1,
     oriPrice: 0.1,
-    totalStocks:1,
+    totalStocks:0,
     brief: '',
     pic: '',
-    stocks:"",
     imgs: '',
-    categoryId: 1,
+    categoryId: 0,
     status: 1,
     isVirtual: 2,
     skuList: [{
@@ -34,12 +31,17 @@ const queryData = reactive({
       stocks:0,
       partyCode:"",
       skuName:"默认",
-      weight:"",
+      weight:0,
       isVirtual:0,
       faceValue:0.0,
+      status:1,
     }],
+    deliveryModeVo:{
+      "hasShopDelivery": false,
+      "hasUserPickUp": true
+    },
     content: '',
-    tagList: [],
+    tagList: [1,2],
   },
   rules: {}
 });
@@ -60,16 +62,54 @@ function notify(message: string, color: string) {
 
 
 async function onSubmit() {
+  //图片不能为空
+  if(imgUrl==null||imgUrl.value==""){
+    Dialog.create({
+      title: '提示',
+      message: '请上传图片',
+      ok: {
+        push: true
+      },
+    });
+    return;
+  }
   addForm.value.pic=imgUrl.value;
-  addForm.value.content=editor.value;
-  addForm.value.skuList[0].price=addForm.value.price;
-  addForm.value.skuList[0].isVirtual=addForm.value.isVirtual;
-  addForm.value.skuList[0].oriPrice=addForm.value.oriPrice;
-  addForm.value.skuList[0].prodName=addForm.value.prodName;
-  // addForm.value.skuList[0].properties=addForm.value.properties;
-  addForm.value.skuList[0].stocks=addForm.value.stocks;
+  addForm.value.imgs=imgUrl.value;
 
-  const response = await api.post("/admin/shopDetail/add", JSON.stringify(addForm.value
+  addForm.value.content=editor.value;
+  addForm.value.price =addForm.value.skuList[0].price;
+  addForm.value.oriPrice =addForm.value.skuList[0].oriPrice;
+  //分类不能为空
+  if(addForm.value.categoryId ==null&&addForm.value.categoryId ==0){
+    Dialog.create({
+      title: '提示',
+      message: '请选择分类',
+      ok: {
+        push: true
+      },
+    });
+    return;
+  }
+  //详细介绍不能少于30字
+  if(editor.value.length<30){
+    Dialog.create({
+      title: '提示',
+      message: '详细介绍不能少于30字',
+      ok: {
+        push: true
+      },
+    });
+    return;
+  }
+  addForm.value.content=editor.value;
+  for(var i=0;i<addForm.value.skuList.length;i++){
+    addForm.value.totalStocks = Number(addForm.value.totalStocks) + Number(addForm.value.skuList[i].stocks);
+    // addForm.value.totalStocks +=  addForm.value.skuList[i].stocks;
+    addForm.value.skuList[i].isVirtual=addForm.value.isVirtual;
+    addForm.value.skuList[i].prodName=addForm.value.prodName;
+
+  }
+  const response = await api.post("/admin/prod/add", JSON.stringify(addForm.value
   ), {
     headers: {
       'Content-Type': 'application/json',
@@ -87,10 +127,10 @@ async function onSubmit() {
       },
     }).onOk(async () => {
 
-      router.push('/admin/shop/index'); // Redirect to login page
+      router.push('/admin/shop/product/index'); // Redirect to login page
     }).onCancel(async () => {
       //刷新页面
-      router.push('/admin/shop/index'); // Redirect to login page
+      router.push('/admin/shop/product/index'); // Redirect to login page
     });
   } else {
     $q.notify({
@@ -268,15 +308,16 @@ const unUseTags = computed(() => {
 })
 function  onAddSKu(){
  addForm.value.skuList.push( {
-    prodName:"",
-        properties:"",
+      prodName:addForm.value.prodName,
+      properties:"",
       oriPrice:0.0,
       price:0.0,
       stocks:0,
       partyCode:"",
       skuName:"默认",
-      weight:"",
-      isVirtual:0,
+      weight:0,
+   status: 1,
+      isVirtual:addForm.value.isVirtual,
       faceValue:0.0,
   });
 }
@@ -420,7 +461,6 @@ function onDeleteSKu(index:number) {
                     <q-input
                         v-model="sku.partyCode"
                         fill-mask="0"
-                        type="number"
                         label="编码"
                         filled
                         input-class="text-left"
