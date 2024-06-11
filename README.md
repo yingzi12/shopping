@@ -1,6 +1,7 @@
 # shopping ui
 商城系统，支持多店铺
 基于 Quasar vue3
+## 后台整理中
 
 ## Install the dependencies
 ```bash
