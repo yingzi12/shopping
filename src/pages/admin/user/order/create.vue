@@ -51,7 +51,7 @@ function  goBack() {
   window.history.back();
 }
 function onSubmit(){
-  if(!addressOk){
+  if(!addressOk.value){
     Dialog.create({
       title: '提示',
       message: '请选择收货地址',

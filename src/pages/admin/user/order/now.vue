@@ -67,7 +67,8 @@ function  goBack() {
   window.history.back();
 }
 function onSubmit(){
-  if(!addressOk){
+  console.log(addressOk.value);
+  if(!addressOk.value){
     Dialog.create({
       title: '提示',
       message: '请选择收货地址',
@@ -84,6 +85,7 @@ function onSubmit(){
     }).onCancel(() => {
       // 点击取消按钮时执行的操作
     });
+    return;
   }else {
     console.log(address.value)
     data.value.addrId=address.value.addrId;

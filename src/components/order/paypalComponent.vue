@@ -66,11 +66,11 @@ const discountAmount=ref(0);
 async function getAmount() {
   // 滚动到顶部
   const response = await api.post("/user/payments/getAmount",JSON.stringify({
-    productId: props.productId,
+    productId: props.orderNumbers,
     amount: props.amount,
-    description: props.description,
-    kind: props.kind,
-    productName: props.productName,
+    description: props.intro,
+    kind: 6,
+    productName: "订单支付",
   }),  {
     headers: {
       "Content-Type": "application/json",

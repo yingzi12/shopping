@@ -314,8 +314,8 @@ function onSkuId(sid:number){
       </q-page>
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-2">
-      <div class="row">
+    <q-footer elevated class="bg-grey-2" >
+      <div class="row" >
         <div class="col-4"><q-btn flat  color="primary" icon="home" to="/" />
           <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" /></div>
         <div  class="col-8"><q-btn-group spread>
@@ -329,7 +329,7 @@ function onSkuId(sid:number){
   </q-layout>
 
   <q-dialog v-model="dialogAdd" position="bottom">
-    <q-card >
+    <q-card style="min-width: 300px">
       <q-card-section>
         <q-item>
           <q-item-section >数量</q-item-section>
