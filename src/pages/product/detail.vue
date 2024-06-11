@@ -37,6 +37,7 @@ const orgImgae = ref("Black White")
 const tagList=ref([]);
 const product=ref({});
 const  skuId=ref(0);
+const  sku=ref({});
 
 async function getInfo() {
   // 滚动到顶部
@@ -49,6 +50,7 @@ async function getInfo() {
   if (data.code === 200) {
     product.value = data.data;
     skuId.value=product.value.skuList[0].skuId;
+    sku.value=product.value.skuList[0];
     isCollection.value=product.value.isCollection
 
     amount.value=product.value.amount
@@ -221,8 +223,9 @@ const productCount=ref(1);
 function routerOrder(){
   router.push(`/order/now?prodCount=${productCount.value}&skuId=${skuId.value}&shopId=${product.value.shopId}&prodId=${pid.value}`)
 }
-function onSkuId(sid:number){
-  skuId.value=sid;
+function onSkuId(s){
+  skuId.value=s.skuId;
+  sku.value=s;
 }
 </script>
 <template>
@@ -241,8 +244,11 @@ function onSkuId(sid:number){
               <img :src="getImageUrl(product.pic) " class="m-shop-card-image">
               <q-card-section>
                 <div class="row">
-                  <div class="col-6 text-h6">{{ product.prodName }}</div>
-                  <div class="col-6 text-right">
+                  <div class="col-9 text-h6 ">
+                   <div class="two-line-clamp"> {{ product.prodName }}</div>
+                    <div><q-chip size="m" color="grey"><del>{{ sku.oriPrice }}$</del></q-chip><q-chip size="m" color="red">{{sku.price}}$</q-chip> </div>
+                  </div>
+                  <div class="col-3 text-right">
                     <q-btn   round :color="isCollection !=1 ?'blue':'red'" icon="favorite"  @click="isCollection !=1 ? onCollection() :closeCollection()"/>
                   </div>
                 </div>
@@ -266,7 +272,7 @@ function onSkuId(sid:number){
                         text-color="white"
                         size="ms"
                         icon="bookmark"
-                        @click="onSkuId(sku.skuId)"
+                        @click="onSkuId(sku)"
               >
                 {{ sku.skuName }}
               </q-chip>
