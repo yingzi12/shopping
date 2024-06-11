@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {reactive, ref, toRefs} from "vue";
 import {api} from "boot/axios";
-import {useQuasar} from "quasar";
+import {Dialog, useQuasar} from "quasar";
 import {useRouter} from "vue-router";
 const $q = useQuasar();
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
@@ -82,8 +82,16 @@ const queryData = reactive({
     couponIds: [],
     userChangeCoupon: 1,
   },
+  addCart: {
+    basketId: 1,
+    count: 3,
+    prodId: -1,
+    shopId: -1,
+    skuId: -1,
+
+  },
 });
-const {confirm} = toRefs(queryData);
+const {confirm, addCart} = toRefs(queryData);
 
 async function  onSubmit(){
   confirm.value.basketIds = checks.value;
@@ -94,6 +102,39 @@ async function  onSubmit(){
   }
 }
 
+//修改购物车
+async function addChangeItem(cartItem) {
+  addCart.value.basketId=cartItem.basketId;
+  addCart.value.count=cartItem.prodCount;
+  addCart.value.prodId=cartItem.prodId;
+  addCart.value.shopId=cartItem.shopId;
+  addCart.value.skuId=cartItem.skuId;
+  // addCart.value.skuId=401;
+  const response = await api.post('/shopCart/changeItem', JSON.stringify(addCart.value))
+  const data = response.data;
+  if (data.code === 200) {
+    // randomList.value = data.data
+    Dialog.create({
+      title: '信息',
+      message: '操作成功',
+      cancel: true,
+      ok: {
+        label: '确定',
+        color: 'primary'
+      }
+    });
+  }else{
+    Dialog.create({
+      title: '信息',
+      message: `添加失败。${data.msg}`,
+      cancel: true,
+      ok: {
+        label: '确定',
+        color: 'primary'
+      }
+    });
+  }
+}
 function  goBack() {
   // 使用JavaScript的history对象来实现返回上一页
   window.history.back();
@@ -111,8 +152,8 @@ function  goBack() {
     </q-header>
     <q-page-container>
       <q-page>
-        <div class="text-center">
-           <div class="text-red">无数据</div>
+        <div class="text-center" v-if="shopCartList.length==0">
+           <div class="text-red">还没商品加入购物车</div>
         </div>
 <!--        <q-toolbar >-->
 <!--          <q-toolbar-title>-->
@@ -146,7 +187,7 @@ function  goBack() {
               <q-item-section caption>
                 <q-item-label>{{ cartItem.prodName }}</q-item-label>
                 <q-item-label>
-                  {{ cartItem.price }}
+                 <q-chip >{{cartItem.skuName}}</q-chip> {{ cartItem.price }}
 <!--                  <div class="row">-->
 <!--                    <div class="col-6 left">{{ cartItem.price }}</div>-->
 <!--                    <div class="col-6 right">-->
@@ -167,6 +208,7 @@ function  goBack() {
                       type="number"
                       filled
                       style="max-width: 50px;"
+                      @update:model-value="addChangeItem(cartItem)"
                   />
                 </q-item-label>
               </q-item-section>

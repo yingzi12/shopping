@@ -8,7 +8,7 @@
 
     <q-card-actions >
       <q-btn  class="left-3" flat>价格：{{props.amount}}</q-btn>
-      <q-btn  class="left-3" flat>付款金额：{{discountAmount}}</q-btn>
+      <q-btn  class="left-3" flat>付款金额：{{props.amount}}</q-btn>
     </q-card-actions>
     <q-card-actions >
       <q-btn  class="left-3" flat>账户余额：{{user.balance}}</q-btn>

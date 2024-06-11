@@ -120,7 +120,6 @@ const queryData = reactive({
   //{"basketId":0,"count":1,"prodId":74,"shopId":1,"skuId":401}
 
   addCart: {
-    basketId: 1,
     count: 3,
     prodId: pid.value,
     shopId: -1,
@@ -175,7 +174,6 @@ async function getRandom() {
 getRandom();
 getInfo();
 async function addChangeItem() {
-  addCart.value.basketId=0;
   addCart.value.count=1;
   addCart.value.prodId=pid.value;
   addCart.value.shopId=product.value.shopId;
@@ -215,10 +213,7 @@ function  goBack() {
   window.history.back();
 }
 function getImageUrl(imgUrl) {
-  if (imgUrl != null && imgUrl !== undefined && imgUrl !== '') {
     return `${$q.config.sourceWeb}${imgUrl}`;
-  }
-  return `/empty.png`; // Default image URL when imgUrl is null, undefined, or empty
 } // immediate: true 确保在挂载时立即触发一次
 const dialogAdd=ref(false);
 
@@ -243,9 +238,7 @@ function onSkuId(sid:number){
         <div class="q-pa-xs">
           <div >
             <q-card flat bordered >
-              <!--          <q-card-section>-->
-              <img :src="getImageUrl(product.imgUrl) " class="m-shop-card-image">
-              <!--          </q-card-section>-->
+              <img :src="getImageUrl(product.pic) " class="m-shop-card-image">
               <q-card-section>
                 <div class="row">
                   <div class="col-6 text-h6">{{ product.prodName }}</div>

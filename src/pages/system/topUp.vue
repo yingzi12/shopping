@@ -36,7 +36,7 @@
 
 <!--    </q-footer>-->
     <q-dialog v-model="paypalDialog">
-      <PayaplCard :amount="money" :productId="user.id" :kind="5" intro="充值余额" productName="充值余额" url='/'/>
+      <payapl-card :amount="money" :productId="user.id" :kind="5" intro="充值余额" productName="充值余额" url='/'/>
     </q-dialog>
   </q-layout>
 
