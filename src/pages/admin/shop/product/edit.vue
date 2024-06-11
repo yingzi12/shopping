@@ -242,7 +242,7 @@ async function simulateUpload(files: FileList) {
 
   if (data.code === 200) {
     for(let i = 0; i < data.data.length; i++){
-      editor.value=editor.value+ "<img src=\""+ $q.config.sourceWeb + data.data[i]+"\"/>"
+      editor.value=editor.value+ "<img src=\""+ $q.config.sourceWeb + data.data[i]+"\"  style=\"width:100vw\" />"
     }
   } else {
     $q.dialog({

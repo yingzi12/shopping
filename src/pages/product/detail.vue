@@ -273,7 +273,9 @@ function onSkuId(sid:number){
             </div>
           </div>
           <div class="q-ma-sm bg-grey-2">
+            <q-card flat bordered  class="main-content">
             <div v-html="product.content"></div>
+            </q-card>
           </div>
           <div class="bg-grey-2 q-ma-sm">
             <q-toolbar >
@@ -410,28 +412,8 @@ function onSkuId(sid:number){
 .headImage
   max-width: 200px
   height: 302px
-.vedioimage
-  width: 300px
-  height: 200px
+
+.main-content img
+  max-width:100vw
 </style>
-<style lang="scss" scoped>
-.fullscreen-image {
-  max-width: 100%; /* 设置照片的最大宽度为容器的宽度 */
-  max-height: 100%; /* 设置照片的最大高度为容器的高度 */
-  object-fit: contain; /* 确保照片按比例缩放并完全显示在容器内 */
-}
-.fullscreen-image-container {
-  width: 100%; /* 设置容器的宽度为100%，确保填满父容器 */
-  height: 100%; /* 设置容器的高度为100%，确保填满父容器 */
-  overflow: hidden; /* 确保超出部分被隐藏 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%; /* 确保图片容器与父容器高度相同 */
-}
-</style>
+
