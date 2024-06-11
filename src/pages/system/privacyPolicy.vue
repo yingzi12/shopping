@@ -49,7 +49,7 @@
     <p align="left" class="MsoNormal"><span>上次更新时间为</span><span lang="EN-US">
 March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>本隐私声明描述了</span><span lang="EN-US">
-心世界未来 </span><span>如何管理个人数据和个人信息并尊重您的隐私。本政策随时都可进行修改。我们鼓励本网站的访客和用户定期查看我们的隐私政策。</span><span
+Black White </span><span>如何管理个人数据和个人信息并尊重您的隐私。本政策随时都可进行修改。我们鼓励本网站的访客和用户定期查看我们的隐私政策。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>我们收集和维护的所有</span><span
         lang="EN-US">“</span><b><span>个人信息</span></b><span lang="EN-US">”</span><span>（</span><span
@@ -59,12 +59,12 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
                            style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">更新您的个人信息和隐私首选项</span></span><span>” </span></a></span><span>的一节。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span
-        lang="EN-US">心世界未来 </span><span>由不同合法组织组成。本隐私声明代表</span><span
-        lang="EN-US"> 心世界未来 </span><span>集团各公司发出。本隐私声明中，我们谈及的</span><span
-        lang="EN-US">“心世界未来”</span><span>、</span><span lang="EN-US">“</span><span>我们</span><span
+        lang="EN-US">Black White </span><span>由不同合法组织组成。本隐私声明代表</span><span
+        lang="EN-US"> Black White </span><span>集团各公司发出。本隐私声明中，我们谈及的</span><span
+        lang="EN-US">“Black White”</span><span>、</span><span lang="EN-US">“</span><span>我们</span><span
         lang="EN-US">”</span><span>或</span><span lang="EN-US">“</span><span>我们的</span><span
         lang="EN-US">”</span><span>，是指作为您信息管理员的</span><span lang="EN-US">
-心世界未来 </span><span>实体，更多详细信息请参见以下标题为</span><span lang="EN-US">“</span><span
+Black White </span><span>实体，更多详细信息请参见以下标题为</span><span lang="EN-US">“</span><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">收集个人信息之实体</span><span
         lang="EN-US">”</span><span>的一节。</span><span lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
@@ -73,7 +73,7 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>作为网站的访客，在不提供任何个人信息的情况下就能参与许多活动。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>但是，当您注册成为</span><span lang="EN-US">
-心世界未来 </span><span>订阅者使用</span><span lang="EN-US"> 心世界未来 </span><span>网站和其他产品或服务时，为向您提供这些服务，我们可能会向您收集以下个人信息：</span><span
+Black White </span><span>订阅者使用</span><span lang="EN-US"> Black White </span><span>网站和其他产品或服务时，为向您提供这些服务，我们可能会向您收集以下个人信息：</span><span
         lang="EN-US"></span></p>
     <ul type="disc">
       <li class="MsoNormal"><span>联系信息，如您的姓名、电话和传真号码、住址和电子邮件地址；以及</span><span
@@ -86,7 +86,7 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
           lang="EN-US"></span></li>
     </ul>
     <p align="left" class="MsoNormal"><span>如果您向</span><span lang="EN-US">
-心世界未来 </span><span>提交内容以获得许可，可能会要求您提供以下信息：</span><span lang="EN-US"></span></p>
+Black White </span><span>提交内容以获得许可，可能会要求您提供以下信息：</span><span lang="EN-US"></span></p>
     <ul type="disc">
       <li class="MsoNormal"><span>联系信息，如您的姓名、电话号码、主要地址和电子邮件地址。</span><span lang="EN-US"></span>
       </li>
@@ -98,13 +98,13 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
       <span>根据活动，我们要求您提供的某些信息是必须提供的，有些则是自愿提供的。如果您不提供某个特定活动所必需的数据，您将无法参与该活动。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>正如大多数网站那样，您在使用网站时，</span><span
-        lang="EN-US">心世界未来 </span><span>或与其签约的第三方辅助处理机构可能也会收集有关您的计算机的特定技术和路由信息，以便您使用网站及其服务。例如，我们可能会记录环境变量，如计算机的浏览器类型、操作系统、</span><span
+        lang="EN-US">Black White </span><span>或与其签约的第三方辅助处理机构可能也会收集有关您的计算机的特定技术和路由信息，以便您使用网站及其服务。例如，我们可能会记录环境变量，如计算机的浏览器类型、操作系统、</span><span
         lang="EN-US">CPU </span><span>速度以及互联网协议</span><span lang="EN-US"> (IP) </span><span>地址。我们使用这些环境变量来促进和跟踪您对本网站及其服务的使用。</span><span
-        lang="EN-US">心世界未来 </span><span>还使用上述环境变量测量网站的流量模式。为了更好地了解访客对网站的需求，我们偶尔可能会将此类信息与您的个人信息匹配。</span><span
+        lang="EN-US">Black White </span><span>还使用上述环境变量测量网站的流量模式。为了更好地了解访客对网站的需求，我们偶尔可能会将此类信息与您的个人信息匹配。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>为了减少数据库中的错误，验证用户的身份并防止对系统的滥用，我们在必要时可能会用第三方来源信息补充您提交给我们的个人信息。例如，我们将用美国邮政总局提供的地址信息补充您的联系信息，以此证明您的信息合格，并防止数据库出错。我们可能会使用存储在第三方数据库中的信息补充直接从您那收集的信息，如人口统计信息或公司信息，旨在确保我们发送的是相关的营销传播信息，且您会感兴趣的信息。您可以在</span><span
         lang="EN-US"><a
-        href="https://assets.ctfassets.net/hrltx12pl8hq/7f4qqCOpNuCUSmUeKAeaCW/c66b3ae0dd21b70fd6482dd6c53ed17d/心世界未来_List_of_Subprocessors_zh.pdf"><span
+        href="https://assets.ctfassets.net/hrltx12pl8hq/7f4qqCOpNuCUSmUeKAeaCW/c66b3ae0dd21b70fd6482dd6c53ed17d/Black White_List_of_Subprocessors_zh.pdf"><span
         lang="EN-US"><span
         lang="EN-US">此处</span></span></a></span><span>找到我们用于处理信息的任何第三方辅助处理机构列表。</span><span
         lang="EN-US"></span></p>
@@ -112,18 +112,18 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span>更新您的个人信息和隐私首选项</span></b><b><span lang="EN-US"></span></b>
     </p>
-    <p align="left" class="MsoNormal"><span>根据要求，</span><span lang="EN-US">心世界未来
+    <p align="left" class="MsoNormal"><span>根据要求，</span><span lang="EN-US">Black White
 </span><span>将为您提供我们获得您个人信息的有关途径。如需此类信息，请通过</span><span lang="EN-US"> <a
-        href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a> </span><span>联系我们。</span><span
+        href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a> </span><span>联系我们。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>您有权随时访问和更正或删除您的个人信息和隐私首选项。单击</span><span
-        lang="EN-US"><a href="https://www.aiavr.uk/account/profile"><span>“</span><span lang="EN-US"><span lang="EN-US">我的帐户</span></span><span>”</span></a></span><span>链接即可完成此操作，在</span><span
+        lang="EN-US"><a href="https://www.51x.uk/account/profile"><span>“</span><span lang="EN-US"><span lang="EN-US">我的帐户</span></span><span>”</span></a></span><span>链接即可完成此操作，在</span><span
         lang="EN-US">“</span><span>我的帐户</span><span lang="EN-US">”</span><span>中，您可以立即查看并更改您的大部分个人信息。如果您希望删除自己的帐户，或要求我们不再使用您的信息为您提供服务，请访问网站上的</span><span
         lang="EN-US"><a href="/privacyPolicy/privacy"><span>“</span><span lang="EN-US"><span
         lang="EN-US">我的帐户首选项</span></span><span>”</span></a></span><span>链接，然后按照</span><span
         lang="EN-US">“</span><span>删除我的帐户</span><span
         lang="EN-US">”</span><span>部分中的说明操作。如果您是投稿者，您可以在</span><span lang="EN-US"><a
-        href="https://submit.心世界未来.com/account/settings"><span lang="EN-US"><span
+        href="https://submit.Black White.com/account/settings"><span lang="EN-US"><span
         lang="EN-US">此处</span></span></a></span><span>更改您的用户资料。出于安全目的，某些个人信息只能通过</span><span
         lang="EN-US"><a href="/privacyPolicy/help"><span lang="EN-US"><span lang="EN-US">联系支持部门</span></span></a></span><span>才能进行更改。我们会在合理时间段内立刻回复您的请求。</span><span
         lang="EN-US"></span></p>
@@ -131,11 +131,11 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">如何使用您的个人信息</span></b><b><span
         lang="EN-US"></span></b></p>
     <p align="left" class="MsoNormal"><span>为了向您提供服务、履行我们的法律义务并提升我们的产品和服务，</span><span
-        lang="EN-US">心世界未来 </span><span>会收集您的信息。我们不以任何并非本隐私政策所披露的任何其他方式向第三方出售、租赁或分享您的个人身份信息。</span><span
-        lang="EN-US">心世界未来 </span><span>可能会对该信息做如下处理：</span><span lang="EN-US"></span></p>
+        lang="EN-US">Black White </span><span>会收集您的信息。我们不以任何并非本隐私政策所披露的任何其他方式向第三方出售、租赁或分享您的个人身份信息。</span><span
+        lang="EN-US">Black White </span><span>可能会对该信息做如下处理：</span><span lang="EN-US"></span></p>
     <ul type="disc">
       <li class="MsoNormal"><span>验证并提供对</span><span
-          lang="EN-US"> 心世界未来 </span><span>网站、移动应用程序和服务的访问。</span><span lang="EN-US"></span></li>
+          lang="EN-US"> Black White </span><span>网站、移动应用程序和服务的访问。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal"><span>处理您的金融交易。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal"><span>向您发送订单</span><span lang="EN-US">/</span><span>续约确认。</span><span
           lang="EN-US"></span></li>
@@ -145,7 +145,7 @@ March 15, 2021</span><span>。</span><span lang="EN-US"></span></p>
       <li class="MsoNormal"><span>管理您的帐户。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal"><span>向您发送请求的产品或服务信息。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal"><span>向您通知</span><span
-          lang="EN-US"> 心世界未来 </span><span>及所选第三方的特殊优惠和服务。</span><span lang="EN-US"></span></li>
+          lang="EN-US"> Black White </span><span>及所选第三方的特殊优惠和服务。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal"><span>管理您参加的促销和抽奖，并将结果通知您。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal"><span>对非法活动和</span><span
           lang="EN-US">/</span><span>或违反服务条款的活动进行调查、阻止或采取相应措施。</span><span lang="EN-US"></span>
@@ -160,11 +160,11 @@ Cookie</span><span>、日志文件、透明图片和</span><span
         lang="EN-US">/</span><span>或第三方来源收集到的信息，用于创建您的首选项摘要。我们将您的可识别个人身份的信息和</span><span
         lang="EN-US">/</span><span>或会员使用历史记录与摘要中的信息关联，以便提供量身定制的促销和营销产品与服务，改进网站内容并</span><span
         lang="EN-US">/</span><span>或确定您的首选项。</span><span lang="EN-US"></span></p>
-    <p align="left" class="MsoNormal"><span>在特定情况下，</span><span lang="EN-US">心世界未来
+    <p align="left" class="MsoNormal"><span>在特定情况下，</span><span lang="EN-US">Black White
 </span><span>可能需要遵守法律义务，根据公共当局的合法请求披露个人数据，包括为了符合国家安全或执法要求。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>我们还可在法律要求（如送达</span><span lang="EN-US">
-心世界未来 </span><span>的传唤、保证、法庭判令或诉讼程序）时以及我们认为有必要进行披露以保护我们的权利、避免诉讼、保护您或他人的安全、调查欺诈事件和</span><span
+Black White </span><span>的传唤、保证、法庭判令或诉讼程序）时以及我们认为有必要进行披露以保护我们的权利、避免诉讼、保护您或他人的安全、调查欺诈事件和</span><span
         lang="EN-US">/</span><span>或响应政府要求时，披露您的信息。为履行我们的法律义务，如果我们确定此类披露是出于国家安全、执法或其他公共重要事项的原因，我们也可能披露您的信息。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
@@ -176,12 +176,12 @@ Cookie</span><span>、日志文件、透明图片和</span><span
       <li class="MsoNormal"><span>为履行与您签订的合同，需要进行数据处理时：</span><span lang="EN-US"></span></li>
       <ul type="circle">
         <li class="MsoNormal"><span>提供对</span><span
-            lang="EN-US"> 心世界未来 </span><span>网站、移动应用和服务的访问，以履行合同条款；</span><span
+            lang="EN-US"> Black White </span><span>网站、移动应用和服务的访问，以履行合同条款；</span><span
             lang="EN-US"></span></li>
         <li class="MsoNormal"><span>自定义您的体验，包括为您定制我们的服务、搜索结果和产品。</span><span
             lang="EN-US"></span></li>
         <li class="MsoNormal"><span>提供信息，以便您可以对</span><span
-            lang="EN-US"> 心世界未来 </span><span>服务做出决定；</span><span lang="EN-US"></span></li>
+            lang="EN-US"> Black White </span><span>服务做出决定；</span><span lang="EN-US"></span></li>
         <li class="MsoNormal"><span>处理您的财务交易，并向您发送订单</span><span
             lang="EN-US">/</span><span>续订确认；</span><span lang="EN-US"></span></li>
         <li class="MsoNormal"><span>向技术支持部门注册您的权益（如有）或其他可供注册用户使用的福利。</span><span
@@ -193,13 +193,13 @@ Cookie</span><span>、日志文件、透明图片和</span><span
       </li>
       <ul type="circle">
         <li class="MsoNormal"><span>调查和防范知识产权侵权；</span><span lang="EN-US"></span></li>
-        <li class="MsoNormal"><span>确认</span><span lang="EN-US"> 心世界未来 </span><span>内容许可的有效性；</span><span
+        <li class="MsoNormal"><span>确认</span><span lang="EN-US"> Black White </span><span>内容许可的有效性；</span><span
             lang="EN-US"></span></li>
         <li class="MsoNormal"><span>对违反我们服务条款的行为进行调查、预防或采取措施。</span><span lang="EN-US"></span>
         </li>
       </ul>
       <li class="MsoNormal"><span>数据处理将促进</span><span
-          lang="EN-US"> 心世界未来 </span><span>的合法利益：</span><span lang="EN-US"></span></li>
+          lang="EN-US"> Black White </span><span>的合法利益：</span><span lang="EN-US"></span></li>
       <ul type="circle">
         <li class="MsoNormal"><span>提供、改进和定制我们的网站和服务；</span><span lang="EN-US"></span></li>
         <li class="MsoNormal"><span>管理我们的运营，并履行我们对客户和投稿者的合同义务；</span><span lang="EN-US"></span>
@@ -208,13 +208,13 @@ Cookie</span><span>、日志文件、透明图片和</span><span
         <li class="MsoNormal"><span>维护我们网站、移动应用和其他服务的安全性和完整性；</span><span lang="EN-US"></span>
         </li>
         <li class="MsoNormal"><span>向您发送所需产品或服务信息，并随时向您通报</span><span
-            lang="EN-US">心世界未来 </span><span>和选定第三方的特别优惠和服务；</span><span lang="EN-US"></span></li>
+            lang="EN-US">Black White </span><span>和选定第三方的特别优惠和服务；</span><span lang="EN-US"></span></li>
         <li class="MsoNormal"><span>管理促销活动和抽奖活动；</span><span lang="EN-US"></span></li>
         <li class="MsoNormal"><span>研究和产品</span><span
             lang="EN-US">/</span><span>服务开发，以改进我们的网站、服务和产品。</span><span lang="EN-US"></span></li>
       </ul>
       <li class="MsoNormal"><span>数据处理是</span><span
-          lang="EN-US"> 心世界未来 </span><span>必须履行的法律义务，包括：</span><span lang="EN-US"></span></li>
+          lang="EN-US"> Black White </span><span>必须履行的法律义务，包括：</span><span lang="EN-US"></span></li>
       <ul type="circle">
         <li class="MsoNormal"><span>调查和防范知识产权侵权、欺诈、垃圾邮件、骚扰、犯罪和安全风险；</span><span
             lang="EN-US"></span></li>
@@ -226,11 +226,11 @@ Cookie</span><span>、日志文件、透明图片和</span><span
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">与服务提供商</span></b><b><span
         lang="EN-US">/</span></b><b><span>代理共享信息</span></b><b><span lang="EN-US"></span></b></p>
-    <p align="left" class="MsoNormal"><span lang="EN-US">心世界未来 </span><span>使用一个或多个外部信用卡处理公司向您收取我们商品和服务的费用。据我们所知，这些公司不会出于任何其他目的而保留、分享、存储和使用可识别个人身份的信息。</span><span
+    <p align="left" class="MsoNormal"><span lang="EN-US">Black White </span><span>使用一个或多个外部信用卡处理公司向您收取我们商品和服务的费用。据我们所知，这些公司不会出于任何其他目的而保留、分享、存储和使用可识别个人身份的信息。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>我们还与代表我们执行服务的一些公司分享个人信息。我们只向他们分享执行这些服务所必需的个人信息。我们要求任何与我们共享个人信息的公司按照符合本政策的方式保护数据，并限制使用此类个人信息执行</span><span
-        lang="EN-US"> 心世界未来 </span><span>的服务。您可以在</span><span lang="EN-US"><a
-        href="https://assets.ctfassets.net/hrltx12pl8hq/7f4qqCOpNuCUSmUeKAeaCW/c66b3ae0dd21b70fd6482dd6c53ed17d/心世界未来_List_of_Subprocessors_zh.pdf"><span
+        lang="EN-US"> Black White </span><span>的服务。您可以在</span><span lang="EN-US"><a
+        href="https://assets.ctfassets.net/hrltx12pl8hq/7f4qqCOpNuCUSmUeKAeaCW/c66b3ae0dd21b70fd6482dd6c53ed17d/Black White_List_of_Subprocessors_zh.pdf"><span
         lang="EN-US"><span lang="EN-US">此处</span></span></a></span><span>找到这些第三方辅助处理机构的列表。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal">
@@ -244,33 +244,33 @@ Cookie</span><span>、日志文件、透明图片和</span><span
         lang="EN-US">我的帐户首选项</span></span><span>”</span></a></span><span>链接，然后按照</span><span
         lang="EN-US">“</span><span>删除我的帐户</span><span
         lang="EN-US">”</span><span>部分中的说明操作。如果您无法访问自己的帐户，请与我们联系</span><span lang="EN-US"><a
-        href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span><span>。我们将在</span><span lang="EN-US">
+        href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a></span><span>。我们将在</span><span lang="EN-US">
 30 </span><span>天内回复您的请求。我们将根据需要保留和使用您的信息，以遵守法律义务、解决争议并执行协议。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>如果您已从</span><span
-        lang="EN-US"> 心世界未来 </span><span>获得许可内容，则可通过访问您的</span><span lang="EN-US"><a
+        lang="EN-US"> Black White </span><span>获得许可内容，则可通过访问您的</span><span lang="EN-US"><a
         href="/privacyPolicy/privacy"><span lang="EN-US"><span lang="EN-US">许可历史记录</span></span></a></span><span>来访问许可历史记录。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">您的选择（退出）</span></b><b><span
         lang="EN-US"></span></b></p>
-    <p align="left" class="MsoNormal"><span lang="EN-US">心世界未来 </span><span>不会将您的个人数据或个人信息出售给任何第三方。我们会使用第三方广告服务方管理我们网站的广告。我们的第三方合作伙伴可能会使用</span><span
+    <p align="left" class="MsoNormal"><span lang="EN-US">Black White </span><span>不会将您的个人数据或个人信息出售给任何第三方。我们会使用第三方广告服务方管理我们网站的广告。我们的第三方合作伙伴可能会使用</span><span
         lang="EN-US"> Cookie </span><span>和跟踪程序等技术来收集与您在本网站或其他网站上活动有关的信息，从而根据您的浏览活动和兴趣，向您提供广告。如果您并不希望这种信息被用于向您提供基于兴趣的广告，您可以选择拒绝，方法是单击</span><span
         lang="EN-US"><a href="http://preferences-mgr.truste.com/"><span lang="EN-US"><span
         lang="EN-US">此处</span></span></a></span><span>（或者，如果您身处欧盟地区，则可以单击</span><span lang="EN-US"><a
         href="https://www.youronlinechoices.com/"><span lang="EN-US"><span
         lang="EN-US">此处</span></span></a></span><span>）。请注意，这样并不会使您不再接收广告。您会继续收到一般性广告。</span><span
         lang="EN-US"></span></p>
-    <p align="left" class="MsoNormal"><span lang="EN-US">心世界未来 </span><span>只会将您的个人信息用于本隐私声明中所描述的目的，而不会在未经您明确授权下用于没有实质性差异的目的中。</span><span
+    <p align="left" class="MsoNormal"><span lang="EN-US">Black White </span><span>只会将您的个人信息用于本隐私声明中所描述的目的，而不会在未经您明确授权下用于没有实质性差异的目的中。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>您可以通过点击网站上的</span><span lang="EN-US"><a
-        href="https://www.aiavr.uk/account/profile"><span>“</span><span lang="EN-US"><span lang="EN-US">我的帐户</span></span><span>”</span></a></span><span>链接并进行相应选择，</span><span
+        href="https://www.51x.uk/account/profile"><span>“</span><span lang="EN-US"><span lang="EN-US">我的帐户</span></span><span>”</span></a></span><span>链接并进行相应选择，</span><span
         lang="EN-US">“</span><span>拒绝</span><span lang="EN-US">”</span><span>接收</span><span lang="EN-US">
-心世界未来 </span><span>的电子邮件更新、简报和</span><span lang="EN-US">/</span><span>或合作伙伴电子邮件。拒绝接收此类邮件的选项一般也在注册过程中提供。如果适用，当服务条款或提供者服务条款发生变更时，</span><span
-        lang="EN-US">心世界未来 </span><span>仍会与您联系。此外，我们仍会向您发送与服务相关的公告，包括但不限于注册邮件、优惠通知邮件、由您在网站中执行的操作自动触发的邮件以及与账单相关的通知。一般来说，您不能拒绝接收这些非宣传性质的通讯内容。如果您确实不想接收这些邮件，您可以选择停用您的帐户</span><span
+Black White </span><span>的电子邮件更新、简报和</span><span lang="EN-US">/</span><span>或合作伙伴电子邮件。拒绝接收此类邮件的选项一般也在注册过程中提供。如果适用，当服务条款或提供者服务条款发生变更时，</span><span
+        lang="EN-US">Black White </span><span>仍会与您联系。此外，我们仍会向您发送与服务相关的公告，包括但不限于注册邮件、优惠通知邮件、由您在网站中执行的操作自动触发的邮件以及与账单相关的通知。一般来说，您不能拒绝接收这些非宣传性质的通讯内容。如果您确实不想接收这些邮件，您可以选择停用您的帐户</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>如果您使用</span><span lang="EN-US">
-心世界未来 </span><span>移动应用，我们可能会不时向您发送推送通知，以告知您我们正在运营的任何活动或促销。如果您不希望再收到此类通知消息，您可以在设备中关闭此功能。</span><span
+Black White </span><span>移动应用，我们可能会不时向您发送推送通知，以告知您我们正在运营的任何活动或促销。如果您不希望再收到此类通知消息，您可以在设备中关闭此功能。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>您可通过访问</span><span lang="EN-US"><a
         href="/privacyPolicy/privacy"><span>“</span><span lang="EN-US"><span
@@ -279,7 +279,7 @@ Cookie</span><span>、日志文件、透明图片和</span><span
         lang="EN-US">“</span><span>删除我的个人数据</span><span
         lang="EN-US">”</span><span>部分下的说明，要求从我们的系统中删除您的个人数据和</span><span
         lang="EN-US">/</span><span>或选择不再处理您的个人数据。如果您无法访问自己的帐户，请与我们联系</span><span
-        lang="EN-US"><a href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span><span>。</span><span
+        lang="EN-US"><a href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a></span><span>。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">您个人信息的保护</span></b><b><span
@@ -290,10 +290,10 @@ Cookie</span><span>、日志文件、透明图片和</span><span
       <li class="MsoNormal"><span>您通过自行选择的密码和唯一客户</span><span lang="EN-US"> ID </span><span>来访问自己的帐户个人资料。该密码经过加密。您应该尽量使用由字母和数字组成的强密码，不应将密码透露给任何人。</span><span
           lang="EN-US"></span></li>
       <li class="MsoNormal"><span>您的个人信息存放在安全的服务器上，只有指定的</span><span
-          lang="EN-US"> 心世界未来 </span><span>人员和承包商才有权通过密码进行访问。</span><span lang="EN-US"></span>
+          lang="EN-US"> Black White </span><span>人员和承包商才有权通过密码进行访问。</span><span lang="EN-US"></span>
       </li>
       <li class="MsoNormal"><span>您的个人信息在被传输到</span><span
-          lang="EN-US"> 心世界未来 </span><span>时被加密。</span><span lang="EN-US"></span></li>
+          lang="EN-US"> Black White </span><span>时被加密。</span><span lang="EN-US"></span></li>
       <li class="MsoNormal">
         <span>当您在我们的注册表或订购单上输入敏感信息（如信用卡号）时，我们会通过传输层安全技术加密该信息</span><span
           lang="EN-US"></span></li>
@@ -303,7 +303,7 @@ Cookie</span><span>、日志文件、透明图片和</span><span
         lang="EN-US"> 100% </span><span>安全的。虽然我们考虑了我们所收集、处理和存储的个人信息的敏感性，并将采用最新技术来保护您的个人信息，但我们无法保证它是绝对安全的。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>如果您对我们网站的安全性存有任何疑问，可以发送电子邮件给我们：</span><span
-        lang="EN-US"><a href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span><span>。</span><span
+        lang="EN-US"><a href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a></span><span>。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span lang="EN-US">Cookie
 </span></b><b><span
@@ -316,7 +316,7 @@ Cookie</span><span>、日志文件、透明图片和</span><span
       <span>我们可能会将这些自动收集的日志信息与我们收集的有关于您的其他信息相结合。我们这样做的目的是为了改进为您提供的服务，改进营销和分析，并提供网站功能。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span
-        lang="EN-US">心世界未来 </span><span>以及我们的附属公司、分析服务部门和服务使用</span><span
+        lang="EN-US">Black White </span><span>以及我们的附属公司、分析服务部门和服务使用</span><span
         lang="EN-US"> Cookie</span><span>、信标、标签和脚本等技术来提供网站特性和功能。这些技术用于分析趋势、管理网站、跟踪用户在本网站的动向并收集与我们的整体用户群体有关的人口统计信息。我们可能会收到以这些公司对这些技术之使用为依据的单独或汇总报告。</span><span
         lang="EN-US"></span></p>
     <ul type="disc">
@@ -339,16 +339,16 @@ Cookie</span><span>、日志文件、透明图片和</span><span
           lang="EN-US"></span></li>
     </ul>
     <p align="left" class="MsoNormal"><span>您可以在我们的</span><span lang="EN-US"><a
-        href="https://www.aiavr.uk/cookies"><span> Cookie </span><span lang="EN-US"><span
+        href="https://www.51x.uk/cookies"><span> Cookie </span><span lang="EN-US"><span
         lang="EN-US">声明</span></span></a></span><span>中找到有关</span><span lang="EN-US">
 Cookie </span><span>和第三方广告合作伙伴的更多信息</span><span lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>我们允许您创建个人资料用于访问博客或在线社区，以便分享消息、照片和视频等信息。请注意，对于您可能选择与之分享网页和信息的其他人，我们并不能控制他们的行为。您发布到公告板或聊天室（例如投稿人论坛</span><span
         lang="EN-US"> [</span><span>简称</span><span lang="EN-US">“</span><span>论坛</span><span
         lang="EN-US">”]</span><span>）的任何信息都可以被所有访问该位置的人看到。要申请从我们的博客或社区论坛上删除您的个人信息，请通过</span><span
-        lang="EN-US"> <a href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a> </span><span>联系我们。在某些情况下，我们可能无法删除您的个人信息，在这种情况下我们会让您了解我们是否无法做到这一点以及无法做到的原因。另外，如果您使用第三方应用程序发布此类信息，您可以通过登录到所述应用程序删除信息或通过联系相应的第三方应用程序来删除它。</span><span
+        lang="EN-US"> <a href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a> </span><span>联系我们。在某些情况下，我们可能无法删除您的个人信息，在这种情况下我们会让您了解我们是否无法做到这一点以及无法做到的原因。另外，如果您使用第三方应用程序发布此类信息，您可以通过登录到所述应用程序删除信息或通过联系相应的第三方应用程序来删除它。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>您的电子邮件地址不会自动发布在论坛上，除非您修改默认设置加以允许。此时，所有访问该论坛的人均可以看到您的电子邮件地址。此外，该论坛的所有访客可以查看您选择收录在个人资料中的任何信息。您可以点击</span><span
-        lang="EN-US"><a href="https://submit.心世界未来.com/forum/profile.php?mode=editprofile%27"><span
+        lang="EN-US"><a href="https://submit.Black White.com/forum/profile.php?mode=editprofile%27"><span
         lang="EN-US"><span lang="EN-US">此处</span></span></a></span><span>修改您的个人资料。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>我们使用移动分析软件来更好地了解我们的移动软件在您手机上的功能表现。该分析软件可能会记录如下信息：您使用应用的频率、应用内发生的事件、总体使用情况、性能数据，以及您从哪里下载的应用。我们不会将该分析软件内存储的信息与您在移动应用内提供的可识别个人身份的信息相关联。</span><span
@@ -357,29 +357,29 @@ Cookie </span><span>和第三方广告合作伙伴的更多信息</span><span la
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">隐私政策的变更</span></b><b><span
         lang="EN-US"></span></b></p>
     <p align="left" class="MsoNormal"><span
-        lang="EN-US">心世界未来 </span><span>保留随时自行决定修改隐私政策的权利，并且，当我们对本隐私政策进行重大变更时，</span><span
-        lang="EN-US">心世界未来 </span><span>将在变更生效之前通过电子邮件或在本网站的主页上提供通知。如果您因为此类变更想要更改</span><span
-        lang="EN-US"> 心世界未来 </span><span>可使用您个人信息的方式，您可以按照标题为</span><span lang="EN-US"><a
+        lang="EN-US">Black White </span><span>保留随时自行决定修改隐私政策的权利，并且，当我们对本隐私政策进行重大变更时，</span><span
+        lang="EN-US">Black White </span><span>将在变更生效之前通过电子邮件或在本网站的主页上提供通知。如果您因为此类变更想要更改</span><span
+        lang="EN-US"> Black White </span><span>可使用您个人信息的方式，您可以按照标题为</span><span lang="EN-US"><a
         href="/privacyPolicy/privacy#anchor_updating_personal_information"><span>“</span><span lang="EN-US"><span
         lang="EN-US">更新您的个人信息和隐私首选项</span></span><span>”</span></a></span><span>一节中所述的步骤操作。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal">
       <span>当此类通知公布后，您将被视为知晓并将遵守隐私政策的任何实质性更改，以下情况除外：如果您在向</span><span
-        lang="EN-US"> 心世界未来 </span><span>提供个人信息时有机会（正如目前这样）限制</span><span
-        lang="EN-US"> 心世界未来 </span><span>或第三方使用此类信息与您通信的方式，则未经您的明确同意，</span><span
-        lang="EN-US">心世界未来 </span><span>或第三方不得更改您在这方面的首选项。然而，如果</span><span lang="EN-US"> 心世界未来 </span><span>被其他实体收购或并购，它可以在未得到您同意的情况下，将与其他实体购买或并购的那部分业务相关的客户信息提供给该实体，但</span><span
-        lang="EN-US"> 心世界未来 </span><span>将在网站上张贴此类资产销售、收购或并购的通知。</span><span
+        lang="EN-US"> Black White </span><span>提供个人信息时有机会（正如目前这样）限制</span><span
+        lang="EN-US"> Black White </span><span>或第三方使用此类信息与您通信的方式，则未经您的明确同意，</span><span
+        lang="EN-US">Black White </span><span>或第三方不得更改您在这方面的首选项。然而，如果</span><span lang="EN-US"> Black White </span><span>被其他实体收购或并购，它可以在未得到您同意的情况下，将与其他实体购买或并购的那部分业务相关的客户信息提供给该实体，但</span><span
+        lang="EN-US"> Black White </span><span>将在网站上张贴此类资产销售、收购或并购的通知。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">非歧视</span></b><b><span
         lang="EN-US"></span></b></p>
-    <p align="left" class="MsoNormal"><span lang="EN-US">心世界未来 </span><span>不会歧视任何用户，用户可以根据《加利福尼亚消费隐私法案》或者其他隐私、数据保护法行使自己权利。我们不会拒绝根据隐私法行使权利的用户提供的服务，我们也不会向根据适用的隐私法行使权利的用户进行差异化收费。</span><span
+    <p align="left" class="MsoNormal"><span lang="EN-US">Black White </span><span>不会歧视任何用户，用户可以根据《加利福尼亚消费隐私法案》或者其他隐私、数据保护法行使自己权利。我们不会拒绝根据隐私法行使权利的用户提供的服务，我们也不会向根据适用的隐私法行使权利的用户进行差异化收费。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">第三方网站链接</span></b><b><span
         lang="EN-US"></span></b></p>
     <p align="left" class="MsoNormal"><span>我们的网站中包含了其他网站的链接，而这些网站的隐私保护制度可能与</span><span
-        lang="EN-US"> 心世界未来 </span><span>有所差异。如果您向其中任何一个网站提交个人信息，您的信息将受其隐私政策的管辖。我们鼓励您仔细阅读您所访问的任何网站的隐私政策。</span><span
+        lang="EN-US"> Black White </span><span>有所差异。如果您向其中任何一个网站提交个人信息，您的信息将受其隐私政策的管辖。我们鼓励您仔细阅读您所访问的任何网站的隐私政策。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">社交媒体小部件</span></b><b><span
@@ -400,10 +400,10 @@ Facebook Connect </span><span>或开放</span><span lang="EN-US"> ID </span><spa
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">推荐计划电子邮件</span></b><b><span
         lang="EN-US"></span></b></p>
     <p align="left" class="MsoNormal"><span>如果您选择使用我们的推荐服务告诉同事们本网站，分享一个收藏，或邀请某人加入团队帐户，我们将询问您的同事的姓名和电子邮件地址。我们会自动向您的同事发送一封一次性的电子邮件，邀请他</span><span
-        lang="EN-US">/</span><span>她访问我们的网站。</span><span lang="EN-US">心世界未来 </span><span>存储此信息仅用于发送此一次性电子邮件、跟踪我们的推荐计划是否成功，以及管理对收藏的访问。</span><span
+        lang="EN-US">/</span><span>她访问我们的网站。</span><span lang="EN-US">Black White </span><span>存储此信息仅用于发送此一次性电子邮件、跟踪我们的推荐计划是否成功，以及管理对收藏的访问。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>您的同事可以联系</span><span lang="EN-US"> <a
-        href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a> </span><span>要求我们从数据库中删除此信息。</span><span
+        href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a> </span><span>要求我们从数据库中删除此信息。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">儿童</span></b><b><span
@@ -411,33 +411,33 @@ Facebook Connect </span><span>或开放</span><span lang="EN-US"> ID </span><spa
     <p align="left" class="MsoNormal"><span>我们无意索取或收集未满</span><span lang="EN-US"> 18 </span><span>岁用户的个人信息。如果您未满</span><span
         lang="EN-US"> 18 </span><span>岁，请勿在本网站上输入信息或使用我们的服务。如果您认为您未满</span><span
         lang="EN-US"> 18 </span><span>岁的孩子已经输入个人信息，请联系</span><span lang="EN-US"> <a
-        href="mailto:support@aiavr.uk.com"><span>support@aiavr.uk.com</span></a> </span><span>请其删除这些数据并终止您孩子的帐户。</span><span
+        href="mailto:support@51x.uk.com"><span>support@51x.uk.com</span></a> </span><span>请其删除这些数据并终止您孩子的帐户。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span>收集个人信息之实体</span></b><b><span lang="EN-US"></span></b></p>
     <p align="left" class="MsoNormal">Black White，shop Gallery App</p>
     <p align="left" class="MsoNormal"><i><span>电子邮件：</span></i><i><span lang="EN-US"><a
-        href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span></i><i><span lang="EN-US"></span></i></p>
+        href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a></span></i><i><span lang="EN-US"></span></i></p>
     <p align="left" class="MsoNormal"><span>我们已为</span><span lang="EN-US">
-心世界未来 Group </span><span>指定了一名数据保护官</span><span lang="EN-US"> (DPO)</span><span>，负责审查与本隐私声明相关的问题。如果您对本隐私声明、我们管理您个人信息的方式或与您个人信息相关的任何其他问题存在任何疑问、担忧或请求，请通过以下地址联系我们的</span><span
-        lang="EN-US"> DPO</span><span>：</span><span lang="EN-US"><a href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span><span>。</span><span
+Black White Group </span><span>指定了一名数据保护官</span><span lang="EN-US"> (DPO)</span><span>，负责审查与本隐私声明相关的问题。如果您对本隐私声明、我们管理您个人信息的方式或与您个人信息相关的任何其他问题存在任何疑问、担忧或请求，请通过以下地址联系我们的</span><span
+        lang="EN-US"> DPO</span><span>：</span><span lang="EN-US"><a href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a></span><span>。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span
-        lang="EN-US">心世界未来 </span><span>集团公司的其他成员可能会参与个人信息的处理，具体请参阅</span><span
+        lang="EN-US">Black White </span><span>集团公司的其他成员可能会参与个人信息的处理，具体请参阅</span><span
         lang="EN-US"> <a
-        href="https://assets.ctfassets.net/hrltx12pl8hq/7f4qqCOpNuCUSmUeKAeaCW/c66b3ae0dd21b70fd6482dd6c53ed17d/心世界未来_List_of_Subprocessors_zh.pdf"><span>心世界未来 </span><span
+        href="https://assets.ctfassets.net/hrltx12pl8hq/7f4qqCOpNuCUSmUeKAeaCW/c66b3ae0dd21b70fd6482dd6c53ed17d/Black White_List_of_Subprocessors_zh.pdf"><span>Black White </span><span
         lang="EN-US"><span lang="EN-US">集团内部子处理过程</span></span></a></span><span>的信息。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><b><span>隐私投诉</span></b><b><span lang="EN-US"></span></b></p>
     <p align="left" class="MsoNormal"><span>某些国家</span><span lang="EN-US">/</span><span>地区（包括欧洲经济区）的个人对其个人数据拥有某些法定权益。除法律规定的任何豁免条款外，您有权要求访问个人数据，要求更新、删除或更正此信息，并要求限制对您的个人数据做进一步处理。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>如果</span><span lang="EN-US">
-心世界未来 </span><span>处理您的个人数据受《欧盟一般数据保护条例》约束，则</span><span
-        lang="EN-US"> 心世界未来 </span><span>将根据其上述合法权益处理您的数据。在</span><span
-        lang="EN-US"> 心世界未来 </span><span>出于自身直接营销目的处理某些个人数据时，您随时可以通过点击链接</span><span
-        lang="EN-US">“<a href="https://www.aiavr.uk/account/profile"><span lang="EN-US"><span
+Black White </span><span>处理您的个人数据受《欧盟一般数据保护条例》约束，则</span><span
+        lang="EN-US"> Black White </span><span>将根据其上述合法权益处理您的数据。在</span><span
+        lang="EN-US"> Black White </span><span>出于自身直接营销目的处理某些个人数据时，您随时可以通过点击链接</span><span
+        lang="EN-US">“<a href="https://www.51x.uk/account/profile"><span lang="EN-US"><span
         lang="EN-US">我的帐户</span></span></a>”</span><span>和拒绝接收所有电子邮件来反对</span><span lang="EN-US">
-心世界未来 </span><span>将您的个人数据用于上述目的。如果您是投稿人，您可以在</span><span lang="EN-US"><a
-        href="https://submit.心世界未来.com/forum/profile.php?mode=editprofile%27"><span lang="EN-US"><span
+Black White </span><span>将您的个人数据用于上述目的。如果您是投稿人，您可以在</span><span lang="EN-US"><a
+        href="https://submit.Black White.com/forum/profile.php?mode=editprofile%27"><span lang="EN-US"><span
         lang="EN-US">此处</span></span></a></span><span>更改您的个人资料。</span><span lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span>您可通过访问</span><span lang="EN-US"><a
         href="/privacyPolicy/privacy"><span>“</span><span lang="EN-US"><span
@@ -448,19 +448,19 @@ Facebook Connect </span><span>或开放</span><span lang="EN-US"> ID </span><spa
         lang="EN-US">/</span><span>或选择不再处理您的个人数据</span><span lang="EN-US"></span></p>
     <p align="left" class="MsoNormal">
       <span>如果您希望对处理者的个人数据提出任何其他异议，您也可以通过电子邮件</span><span lang="EN-US"><a
-        href="mailto:privacy@aiavr.uk"><span> privacy@aiavr.uk </span></a></span><span>反对处理。</span><span
+        href="mailto:privacy@51x.uk"><span> privacy@51x.uk </span></a></span><span>反对处理。</span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span
-        lang="EN-US">心世界未来 </span><span>重视用户的隐私问题。如果您就本隐私政策抱有任何疑问，或者您认为</span><span
-        lang="EN-US"> 心世界未来 </span><span>在您的个人信息方面没有遵守本隐私政策，您可以通过以下地址联系数据保护官：</span><span
-        lang="EN-US"><a href="mailto:privacy@aiavr.uk"><span>privacy@aiavr.uk</span></a></span><span
+        lang="EN-US">Black White </span><span>重视用户的隐私问题。如果您就本隐私政策抱有任何疑问，或者您认为</span><span
+        lang="EN-US"> Black White </span><span>在您的个人信息方面没有遵守本隐私政策，您可以通过以下地址联系数据保护官：</span><span
+        lang="EN-US"><a href="mailto:privacy@51x.uk"><span>privacy@51x.uk</span></a></span><span
         lang="EN-US"></span></p>
     <p align="left" class="MsoNormal"><span
         style="font-size:18.0pt;font-family:宋体;mso-ascii-font-family:Roboto;mso-hansi-font-family:Roboto;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;mso-ligatures:none;">数据控制器（公司或组织的位置）</span><span
         lang="EN-US"></span></p>
-    <p align="left" class="MsoNormal"><i><span lang="EN-US">心世界未来, Inc. (US)<br/>
+    <p align="left" class="MsoNormal"><i><span lang="EN-US">Black White, Inc. (US)<br/>
         <p align="left" class="MsoNormal"><i><span>电子邮件：</span></i><i><span lang="EN-US"><a
-            href="mailto:info@dataprotection.ie"><span>info@aiavr.uk</span></a></span></i><i><span lang="EN-US"></span></i></p>
+            href="mailto:info@dataprotection.ie"><span>info@51x.uk</span></a></span></i><i><span lang="EN-US"></span></i></p>
         <p class="MsoNormal"><span lang="EN-US"></span></p>
         </span>
     </i>
@@ -487,14 +487,14 @@ Facebook Connect </span><span>或开放</span><span lang="EN-US"> ID </span><spa
         <router-link to="">漏洞提交</router-link>
         |
       </div>
-      <div class="footerText text-weight-thin"><p>Copyright © 2002-2022 www.aiavr.uk Rights Reserved 版权所有
-        心世界未来科技有限公司</p></div>
-      <div class="footerText text-weight-thin"><p>图片,美女,写真,黑白</p></div>
+      <div class="footerText text-weight-thin"><p>Copyright © 2002-2022 www.51x.uk Rights Reserved 版权所有
+        Black White科技有限公司</p></div>
+      <div class="footerText text-weight-thin"><p>购物,黑白</p></div>
       <div class="footerText text-weight-light"><p>
         本站所收录的作品、社区话题、用户评论、用户上传内容或图片等均属用户个人行为。如前述内容侵害您的权益，欢迎举报投诉，一经核实，立即删除，本站不承担任何责任</p>
       </div>
-      <div class="footerText text-weight-thin"><a href="https://www.51k.uk">心世界小说网</a>|<a
-          href="https://www.30dizhi.uk">30导航</a>|<a href="https://www.aravrw.com">心世界</a></div>
+      <div class="footerText text-weight-thin"><a href="https://www.51k.uk">Black White</a>|<a
+          href="https://www.30dizhi.uk">30导航</a>|<a href="https://www.aravrw.com">Black White</a></div>
     </div>
     <div class="col-2"></div>
   </div>
