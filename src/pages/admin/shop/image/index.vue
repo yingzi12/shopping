@@ -32,7 +32,7 @@ async function getList(page: number) {
     queryParams.value.pageNum = page;
 
     // 使用 get 方法发送 GET 请求
-    const response = await api.get(`/admin/image/list?`+tansParams(queryParams.value));
+    const response = await api.get(`/admin/shopImage/list?`+tansParams(queryParams.value));
     const data = response.data;
     // 更新数据
     if (data.code === 200) {

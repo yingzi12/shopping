@@ -96,7 +96,7 @@ async function handleImageUpload(event: Event) {
       const compressedFile = await compressIfNeeded(file);
       const formData = new FormData();
       formData.append('file', compressedFile);
-      const response = await api.put( '/user/systemUser/upload',  formData);
+      const response = await api.put( '/admin/file/upload',  formData);
       const data = await response.data; // 确保使用 await 等待 json 解析完成
       if (data.code === 200) {
         previewImage.value = $q.config.sourceWeb + data.data;

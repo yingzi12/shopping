@@ -51,7 +51,7 @@ async function onSubmit() {
     const data = response.data;
     if (data.code == 200) {
       $q.cookies.set('token',data.token,{path:"/"});
-      $q.cookies.set('id',data.id,{path:"/"});
+      $q.cookies.set('id',data.user.id,{path:"/"});
       $q.cookies.set('userInfo',data.user,{path:"/"});
       router.push('/'); // 或者其他页面
     } else {

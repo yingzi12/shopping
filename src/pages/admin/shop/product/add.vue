@@ -17,6 +17,7 @@ const queryData = reactive({
     price: 0.1,
     oriPrice: 0.1,
     totalStocks:0,
+    categoryName: "",
     brief: '',
     pic: '',
     imgs: '',
@@ -36,7 +37,7 @@ const queryData = reactive({
       faceValue:0.0,
       status:1,
     }],
-    deliveryModeVo:{
+    deliveryMode:{
       "hasShopDelivery": false,
       "hasUserPickUp": true
     },
@@ -75,7 +76,6 @@ async function onSubmit() {
   }
   addForm.value.pic=imgUrl.value;
   addForm.value.imgs=imgUrl.value;
-
   addForm.value.content=editor.value;
   addForm.value.price =addForm.value.skuList[0].price;
   addForm.value.oriPrice =addForm.value.skuList[0].oriPrice;
@@ -90,6 +90,9 @@ async function onSubmit() {
     });
     return;
   }
+  addForm.value.categoryId=category.value.id;
+  addForm.value.categoryName=category.value.categoryName;
+
   //详细介绍不能少于30字
   if(editor.value.length<30){
     Dialog.create({
@@ -154,10 +157,10 @@ async function handleImageUpload(event: Event) {
       const formData = new FormData();
       formData.append('file', compressedFile);
 
-      const response = await api.put( '/user/systemUser/upload',  formData);
+      const response = await api.put( '/admin/file/upload',  formData);
       const data = await response.data; // 确保使用 await 等待 json 解析完成
       if (data.code === 200) {
-        previewImage.value = $q.config.sourceWeb + data.data;
+        previewImage.value =  data.data;
         imgUrl.value = data.data;
       } else {
         $q.dialog({
@@ -327,6 +330,9 @@ function onDeleteSKu(index:number) {
     addForm.value.skuList.splice(index, 1);
   }
 }
+function getImageUrl(url:string) {
+  return `https://image.51x.uk/blackwhite${url}`;
+}
 </script>
 
 <template>
@@ -345,7 +351,7 @@ function onDeleteSKu(index:number) {
           <div class="q-pa-md q-gutter-sm">
             <div>
               <q-img
-                  :src="previewImage"
+                  :src="getImageUrl(previewImage)"
                   spinner-color="white"
                   style="height: 140px; max-width: 150px"
               />

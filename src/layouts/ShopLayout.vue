@@ -6,6 +6,8 @@ import {useRouter} from "vue-router";
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 const $q = useQuasar();
 const token = Cookies.get("token");
+const userInfo = Cookies.get("userInfo");
+console.log(userInfo)
 // 如果没有 token，重定向到登录页面
 // if (!token) {
 //   router.push('/login');
@@ -151,7 +153,7 @@ async function setShopId(shopId:number){
               </q-item-section>
             </q-item>
             <q-separator/>
-            <q-item v-if="charge != -1" v-ripple
+            <q-item v-if="charge != -1 && userInfo.id==1 " v-ripple
                     :active="link === 'invite'"
                     active-class="my-menu-link"
                     clickable
@@ -209,7 +211,7 @@ async function setShopId(shopId:number){
                 图片管理
               </q-item-section>
             </q-item>
-            <q-item v-if="charge != -1" v-ripple
+            <q-item v-if="charge != -1 && userInfo.id==1" v-ripple
                     :active="link === 'sell'"
                     active-class="my-menu-link"
                     clickable
@@ -223,7 +225,7 @@ async function setShopId(shopId:number){
                  分类管理
               </q-item-section>
             </q-item>
-            <q-item v-if="charge != -1" v-ripple
+            <q-item v-if="charge != -1 " v-ripple
                     :active="link === 'withdraw'"
                     active-class="my-menu-link"
                     clickable

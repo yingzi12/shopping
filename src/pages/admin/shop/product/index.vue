@@ -39,7 +39,6 @@ async function getList(page: number) {
       total.value = data.data.total;
       valueList.value = data.data.records;
       if (total.value > 0) {
-        total.value = data.total;
         maxPage.value = total.value / queryParams.value.pageSize + 1;
       }
     }

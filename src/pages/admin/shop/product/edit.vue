@@ -2,7 +2,7 @@
 import {Dialog, useQuasar} from 'quasar';
 import { api } from "boot/axios";
 import { Cookies } from 'quasar'
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {computed, reactive, ref, toRefs} from "vue";
 import {compressIfNeeded, compressIfNeededBatch} from "boot/tools";
 import chooseComponent from "components/category/chooseComponent.vue";
@@ -10,6 +10,10 @@ import chooseComponent from "components/category/chooseComponent.vue";
 const token = Cookies.get('token');
 const $q = useQuasar();
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
+const route = useRoute();
+
+const id = ref(route.query.pid);
+
 
 const queryData = reactive({
   addForm: {
@@ -21,6 +25,7 @@ const queryData = reactive({
     pic: '',
     imgs: '',
     categoryId: 0,
+    categoryName: "",
     status: 1,
     isVirtual: 2,
     skuList: [{
@@ -36,7 +41,7 @@ const queryData = reactive({
       faceValue:0.0,
       status:1,
     }],
-    deliveryModeVo:{
+    deliveryMode:{
       "hasShopDelivery": false,
       "hasUserPickUp": true
     },
@@ -46,7 +51,20 @@ const queryData = reactive({
   rules: {}
 });
 const {addForm, rules} = toRefs(queryData);
+async function getDetail() {
+  const response = await api.get(`/admin/prod/info/${id.value}`);
+  const data = response.data;
+  if (data.code == 200) {
+    addForm.value=data.data;
+    editor.value=addForm.value.content;
+    previewImage.value=addForm.value.pic;
+    imgUrl.value=addForm.value.pic;
+    category.value.id=addForm.value.categoryId;
+    category.value.categoryName=addForm.value.categoryName;
 
+  }
+}
+getDetail();
 const imgUrl = ref("");
 const previewImage = ref("/favicon.png");
 const selectedImage = ref<File | null>(null);
@@ -90,6 +108,14 @@ async function onSubmit() {
     });
     return;
   }
+  addForm.value.deliveryMode={
+    "hasShopDelivery": false,
+    "hasUserPickUp": true
+  };
+  addForm.value.tagList=[1,2];
+
+      addForm.value.categoryId=category.value.id;
+  addForm.value.categoryName=category.value.categoryName;
   //详细介绍不能少于30字
   if(editor.value.length<30){
     Dialog.create({
@@ -109,7 +135,7 @@ async function onSubmit() {
     addForm.value.skuList[i].prodName=addForm.value.prodName;
 
   }
-  const response = await api.post("/admin/prod/add", JSON.stringify(addForm.value
+  const response = await api.post("/admin/prod/update", JSON.stringify(addForm.value
   ), {
     headers: {
       'Content-Type': 'application/json',
@@ -154,10 +180,10 @@ async function handleImageUpload(event: Event) {
     const formData = new FormData();
     formData.append('file', compressedFile);
 
-    const response = await api.put( '/user/systemUser/upload',  formData);
+    const response = await api.put( '/admin/file/upload',  formData);
     const data = await response.data; // 确保使用 await 等待 json 解析完成
     if (data.code === 200) {
-      previewImage.value = $q.config.sourceWeb + data.data;
+      previewImage.value =  data.data;
       imgUrl.value = data.data;
     } else {
       $q.dialog({
@@ -327,6 +353,10 @@ function onDeleteSKu(index:number) {
     addForm.value.skuList.splice(index, 1);
   }
 }
+
+function getImageUrl(url:string) {
+  return `https://image.51x.uk/blackwhite${url}`;
+}
 </script>
 
 <template>
@@ -345,7 +375,7 @@ function onDeleteSKu(index:number) {
           <div class="q-pa-md q-gutter-sm">
             <div>
               <q-img
-                  :src="previewImage"
+                  :src="getImageUrl(previewImage)"
                   spinner-color="white"
                   style="height: 140px; max-width: 150px"
               />
