@@ -203,7 +203,7 @@ async function handleImageUpload(event: Event) {
 }
 
 const editor= ref(
-    '输入详细内容'
+    ''
 );
 
 function  saveWork () {
