@@ -39,9 +39,14 @@ function routerUrl(url){
         <q-btn flat round dense icon="whatshot" />
       </q-toolbar>
     </q-header>
-    <q-page-container class="text-center">
-      <q-page style="max-width: 600px">
-      <router-view />
+    <q-page-container >
+      <q-page >
+        <div class="div-center" >
+          <div class="div-center-child" style="max-width: 600px">
+            <router-view />
+          </div>
+        </div>
+<!--      <router-view />-->
       </q-page>
     </q-page-container>
 
@@ -64,3 +69,11 @@ function routerUrl(url){
   </q-layout>
 </template>
 
+<style lang="sass" scoped>
+.div-center
+  pxdisplay: flex
+  flex-direction: column
+  justify-content: center
+.div-center-child
+  margin: auto
+</style>
