@@ -4,7 +4,7 @@ import {Cookies, useQuasar} from "quasar";
 import {reactive, ref, toRefs} from "vue";
 import {tansParams} from "boot/tools";
 import {api} from "boot/axios";
-import productDetailCardComponent from "components/product/productDetailCardComponent.vue"
+import orderItemCardComponent from "components/product/orderItemCardComponent.vue"
 const token = Cookies.get("token");
 const route = useRoute();
 const $q = useQuasar();
@@ -100,7 +100,7 @@ function  goBack() {
     <q-header elevated>
       <q-toolbar class="bg-grey-2 text-black">
         <q-btn flat round dense icon="arrow_back" class="q-mr-sm"       @click="goBack"/>
-        <q-toolbar-title>商品详细</q-toolbar-title>
+        <q-toolbar-title>产品列表</q-toolbar-title>
       </q-toolbar>
     </q-header>
     <q-page-container>
@@ -128,8 +128,8 @@ function  goBack() {
         </div>
         <q-infinite-scroll :disable="disableInfiniteScroll" :offset="250" @load="onLoad">
           <div v-for="(value, index) in productList" :key="index" class="caption">
-            <div>
-              <product-detail-card-component :value="value" />
+            <div >
+              <order-item-card-component :value="value" />
             </div>
           </div>
           <template v-slot:loading>

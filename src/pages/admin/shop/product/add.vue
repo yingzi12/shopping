@@ -330,6 +330,7 @@ function onDeleteSKu(index:number) {
     addForm.value.skuList.splice(index, 1);
   }
 }
+
 function getImageUrl(url:string) {
   return `https://image.51x.uk/blackwhite${url}`;
 }
@@ -368,21 +369,6 @@ function getImageUrl(url:string) {
         </div>
           <div> <q-input
               v-model="addForm.prodName"
-              :rules="[
-    (val) => {
-      const isLengthValid = val && val.length >= 2 && val.length <= 100;
-      // 允许字母、数字、中文、空格、下划线和连字符
-      const isCharValid = /^[a-zA-Z0-9\u4e00-\u9fa5\s_-]+$/.test(val);
-
-      if (!isLengthValid) {
-        return '请输入产品名称，长度2-100';
-      }
-      if (!isCharValid) {
-        return '产品名称不能包含特殊符号';
-      }
-      return true;
-    }
-  ]"
               filled
               hint="输入产品名称"
               label="产品名称 *"
@@ -397,8 +383,8 @@ function getImageUrl(url:string) {
             <div>
               <div class="text-h6">商品价格 <q-btn flat @click="onAddSKu"> 添加</q-btn></div>
               <q-list  >
-                <q-item v-for="(sku,index) in addForm.skuList" :key="index">
-                  <q-item-section>
+                <div class="row" v-for="(sku,index) in addForm.skuList" :key="index">
+                  <div class="rol" style="min-width: 100px">
                     <q-input
                         v-model="sku.skuName"
                         fill-mask="0"
@@ -407,9 +393,8 @@ function getImageUrl(url:string) {
                         input-class="text-left"
                         reverse-fill-mask
                     />
-                  </q-item-section>
-                <q-item-section>
-                  <q-item-label>
+                  </div>
+                <div  class="rol" style="min-width: 100px">
                     <q-input
                         v-model="sku.price"
                         :rules="[
@@ -425,10 +410,8 @@ function getImageUrl(url:string) {
                         reverse-fill-mask
                     />
 
-                  </q-item-label>
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>
+                </div>
+                <div  class="rol" style="min-width: 100px">
                     <q-input
                         v-model="sku.oriPrice"
                         :rules="[
@@ -444,10 +427,9 @@ function getImageUrl(url:string) {
                         reverse-fill-mask
                     />
 
-                  </q-item-label>
-                </q-item-section>
+                </div>
 
-                <q-item-section>
+                <div  class="rol" style="min-width: 100px">
                   <q-input
                       v-model="sku.stocks"
                       :rules="[
@@ -461,9 +443,9 @@ function getImageUrl(url:string) {
                       input-class="text-left"
                       reverse-fill-mask
                   />
-                </q-item-section>
+                </div>
 
-                  <q-item-section>
+                  <div  class="rol" style="min-width: 100px">
                     <q-input
                         v-model="sku.partyCode"
                         fill-mask="0"
@@ -472,11 +454,11 @@ function getImageUrl(url:string) {
                         input-class="text-left"
                         reverse-fill-mask
                     />
-                  </q-item-section>
-                  <q-item-section>
+                  </div>
+                  <div  class="rol" style="min-width: 100px">
                     <q-btn v-if="index !=0" flat @click="onDeleteSKu(index)">删除</q-btn>
-                  </q-item-section>
-                </q-item>
+                  </div>
+                </div>
 
               </q-list>
             </div>
