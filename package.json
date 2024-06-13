@@ -1,9 +1,9 @@
 {
-  "name": "gattery-ui",
+  "name": "shopping-ui",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "Gallery shop",
-  "author": "卢煌 <xun335610@hotmail.com>",
+  "description": "Black White shopping",
+  "productName": "Black White",
+  "author": "<xun335610@hotmail.com>",
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",

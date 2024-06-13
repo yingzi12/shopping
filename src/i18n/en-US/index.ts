@@ -15,7 +15,7 @@ export default {
   privateTerms: 'Privacy Policy',
   introTerms: 'I accept the license and terms',
   welcome: 'Welcome',
-  title: 'shop Gallery',
+  title: 'Black White',
   search:'Search',
   home:'Home',
   shopHome:"shop",
