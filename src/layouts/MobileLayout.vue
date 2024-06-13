@@ -39,8 +39,8 @@ function routerUrl(url){
         <q-btn flat round dense icon="whatshot" />
       </q-toolbar>
     </q-header>
-    <q-page-container>
-      <q-page>
+    <q-page-container class="text-center">
+      <q-page style="max-width: 600px">
       <router-view />
       </q-page>
     </q-page-container>

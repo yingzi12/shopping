@@ -52,7 +52,7 @@
       <div>
         <div class="row items-start q-gutter-sm justify-center"> <!-- 修改为items-start以防止内容顶部对齐 -->
           <q-intersection
-              v-for="(value ,index) in randomList"
+              v-for="(value ,index) in shopProductList"
               :key="index"
               class="col-auto m-shop-item-list"
               once
