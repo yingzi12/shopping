@@ -31,13 +31,9 @@ function routerDel() {
     title: '提示',
     message: '确定删除该商品吗？',
     cancel: true,
-    ok: {
-      label: '确定',
-      color: 'primary',
-      handler: () => {
-        delProd();
-      }
-    }
+  }).onOk(() => {
+    delProd();
+    // console.log('OK')
   })
 }
 async function delProd() {
