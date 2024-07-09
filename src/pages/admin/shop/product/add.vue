@@ -196,13 +196,7 @@ const fileInput = ref(null);
 
 // 模拟上传图片的方法，现在接受一个FileList作为参数
 async function simulateUpload(files: FileList) {
-  console.log("-------------ddd2-------------------");
-  console.log(files);
-  // console.log(files);
-
-  //
   const compressedFile = await compressIfNeededBatch(files);
-  console.log("-------------ddd-------------------");
   console.log(compressedFile);
   const formData = new FormData();
   for (let i = 0; i < compressedFile.length; i++) {
@@ -247,9 +241,7 @@ async function uploadSelectedFiles(event: Event) {
 
   if (files) {
     try {
-      console.log('开始上传多个文件');
       await simulateUpload(files);
-      console.log('所有文件上传成功');
       $q.notify({
         message: '图片上传成功',
         color: 'positive',
@@ -257,7 +249,6 @@ async function uploadSelectedFiles(event: Event) {
         icon: 'cloud_upload',
       });
     } catch (error) {
-      console.error('上传失败:', error);
       $q.notify({
         message: '图片上传失败，请重试',
         color: 'negative',
@@ -399,7 +390,7 @@ function getImageUrl(url:string) {
                         v-model="sku.price"
                         :rules="[
           val => (val !== null && val !== '') || '请输入商品价格',
-        val => (val >= 1.0 && val <= 1000) || '商品价格不能小与1.0大于1000'
+        val => (val >= 1.0 && val <= 1000000) || '商品价格不能小与1.0大于1，000，000'
                   ]"
                         fill-mask="0"
                         filled
@@ -416,7 +407,7 @@ function getImageUrl(url:string) {
                         v-model="sku.oriPrice"
                         :rules="[
           val => (val !== null && val !== '') || '请输入商品原价',
-        val => (val >= 1.0 && val <= 1000) || '商品价格不能小与1.0大于1000'
+        val => (val >= 1.0 && val <= 1000000) || '商品价格不能小与1.0大于1，000，000'
                   ]"
                         fill-mask="0"
                         filled
@@ -434,7 +425,7 @@ function getImageUrl(url:string) {
                       v-model="sku.stocks"
                       :rules="[
           val => (val !== null && val !== '') || '请输入库存',
-        val => (val >= 1 && val <= 1000000) || '库存价格不能小与1大于1000000'
+        val => (val >= 1 && val <= 1000000) || '库存不能小与1大于1000000'
                   ]"
                       fill-mask="0"
                       type="number"

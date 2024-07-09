@@ -54,13 +54,6 @@ onMounted(() => {
   getList(1); // 在组件挂载时获取列表
 });
 
-function editAlbum(id: number) {
-  router.push("/admin/users/editAlbum?id=" + id.toString());
-}
-
-function addAlbum() {
-  router.push("/admin/users/addAlbum");
-}
 </script>
 
 
