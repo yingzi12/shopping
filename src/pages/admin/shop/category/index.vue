@@ -4,8 +4,8 @@ import { findAndModify, removeNodeById } from 'boot/TreeUtils';
 import {api} from "boot/axios";
 import {Dialog} from "quasar";
 import {useRouter} from "vue-router";
-import addCategoryComponenet from "components/product/addCategoryComponenet.vue";
-import editCategoryComponenet from "components/product/editCategoryComponenet.vue";
+import addCategoryComponenet from "components/category/addCategoryComponenet.vue";
+import editCategoryComponenet from "components/category/editCategoryComponenet.vue";
 
 const router = useRouter(); // 使用 Vue Router 的 useRouter 函数
 
@@ -120,21 +120,6 @@ async function delCategory(id:number) {
     })
   }
 }
-// function  addNewClick(){
-//   let timestamp = Date.now();
-//
-//   const newPropObject = {
-//     id: timestamp,
-//     label: `Satisfied customers`,
-//     avatar: 'https://example.com/new-avatar.png',
-//     isOp: false,
-//     children: [] // 根据需要初始化 children 数组
-//   };
-//
-// // 将新对象添加到 state.props 数组的末尾
-//   state.value.push(newPropObject);
-//
-// }
 
 </script>
 
@@ -153,8 +138,6 @@ async function delCategory(id:number) {
       <div>
         <div class="q-gutter-sm">
           <q-btn size="sm" color="primary"  label="添加一级分类" @click="onAddClick(0,0)"/>
-<!--          <q-btn size="sm" color="primary" @click="selectGoodService" label="Select 'Good service'" />-->
-<!--          <q-btn v-if="selected" size="sm" color="red" @click="unselectNode" label="Unselect node" />-->
         </div>
       </div>
       <q-tree
@@ -169,9 +152,6 @@ async function delCategory(id:number) {
             <img :src="imageUrl(prop.node.avatar)" class="q-mr-sm" style="width:50px;height:50px">
             <!--                      <q-icon :name="prop.node.icon || 'share'" color="orange" size="28px" class="q-mr-sm" />-->
             <div class="text-weight-bold text-primary">{{prop.node.label}}
-<!--              <q-popup-edit v-model=" prop.node.label" auto-save v-slot="scope">-->
-<!--                <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set" />-->
-<!--              </q-popup-edit>-->
             </div>
             <q-icon name="eco" color="orange" size="28px" class="q-mr-sm" />
             <q-fab

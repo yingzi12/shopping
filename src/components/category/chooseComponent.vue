@@ -1,9 +1,4 @@
 <template>
-<!--  <div>-->
-<!--    <div class="q-gutter-sm">-->
-<!--      <q-btn v-if="selected" size="sm" color="red" @click="unselectNode" label="Unselect node" />-->
-<!--    </div>-->
-<!--  </div>-->
   <div>
     <q-tree
         ref="treeRef"

@@ -438,7 +438,7 @@ function getImageUrl(url:string) {
                           v-model="sku.price"
                           :rules="[
           val => (val !== null && val !== '') || '请输入商品价格',
-        val => (val >= 1.0 && val <= 1000) || '商品价格不能小与1.0大于1000'
+        val => (val >= 1.0 && val <= 1000000) || '商品价格不能小与1.0大于1，000，000'
                   ]"
                           fill-mask="0"
                           filled
@@ -457,7 +457,7 @@ function getImageUrl(url:string) {
                           v-model="sku.oriPrice"
                           :rules="[
           val => (val !== null && val !== '') || '请输入商品原价',
-        val => (val >= 1.0 && val <= 1000) || '商品价格不能小与1.0大于1000'
+        val => (val >= 1.0 && val <= 1000000) || '商品价格不能小与1.0大于1，000，000'
                   ]"
                           fill-mask="0"
                           filled
@@ -476,7 +476,7 @@ function getImageUrl(url:string) {
                         v-model="sku.stocks"
                         :rules="[
           val => (val !== null && val !== '') || '请输入库存',
-        val => (val >= 1 && val <= 1000000) || '库存价格不能小与1大于1000000'
+        val => (val >= 1 && val <= 1000000) || '库存不能小与1大于1000000'
                   ]"
                         fill-mask="0"
                         type="number"
