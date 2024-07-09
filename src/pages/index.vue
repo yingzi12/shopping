@@ -40,6 +40,8 @@
         <q-toolbar-title>
           商品推荐
         </q-toolbar-title>
+        <q-btn flat round dense icon="more_horiz" to="/product/order"/>
+
       </q-toolbar>
       <div class="scroll-container">
         <div class="scroll-content">
@@ -49,6 +51,13 @@
           </div>
         </div>
       </div>
+      <q-toolbar >
+        <q-toolbar-title>
+          热门商品
+        </q-toolbar-title>
+        <q-btn flat round dense icon="more_horiz" to="/product/order"/>
+
+      </q-toolbar>
       <div>
         <div class="row items-start q-gutter-sm justify-center"> <!-- 修改为items-start以防止内容顶部对齐 -->
           <q-intersection
