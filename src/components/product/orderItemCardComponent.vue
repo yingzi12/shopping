@@ -21,23 +21,20 @@ const props = defineProps<{ value: Product }>();
 function imageUrl() {
   return `https://image.51x.uk/blackwhite${props.value.pic}`;
 }
-function routerEdit() {
-  router.push(`/admin/shop/product/edit?pid=${props.value.prodId}`)
-}
 function routerDetail() {
   router.push(`/product/detail?pid=?pid=${props.value.prodId}`)
 }
 </script>
 
 <template>
-  <q-card flat bordered class="q-ma-sm ">
+  <q-card flat bordered class="q-ma-sm " @click="routerDetail">
 
     <q-card-section>
-      <q-item @click="routerDetail">
+      <q-item >
         <q-item-section avatar>
-            <img :src="imageUrl()"
+            <q-img :src="imageUrl()"
                  class="shop-card-image"
-            >
+           />
         </q-item-section>
         <q-item-section>
           <q-item-label>
