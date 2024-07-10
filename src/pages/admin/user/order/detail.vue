@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {reactive, ref, toRefs} from "vue";
+import { ref,  watch} from "vue";
 import {api} from "boot/axios";
 import {Dialog, useQuasar} from "quasar";
 import {useRoute, useRouter} from "vue-router";
@@ -106,6 +106,15 @@ function onConfirmReceive(ordernum:string) {
         }
       });
 }
+watch(() => route.query.ordernum, async (newOrdernum, oldOrdernum) => {
+  if (newOrdernum !== oldOrdernum) {
+    // 当wid变化时，重新加载数据
+    ordernum.value = newOrdernum;
+    await getOrderDetail(); // 重新获取世界详细信息
+    // await getAllWorldComment(); // 重新获取评论列表
+  }
+}, { immediate: true }); // immediate: true 确保在初始渲染时也触发watcher
+
 </script>
 
 <template>

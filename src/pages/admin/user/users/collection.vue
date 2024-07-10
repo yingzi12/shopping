@@ -13,7 +13,6 @@ const maxPage = ref(0);
 
 const current=ref(1)
 const collectionSystemList = ref([]);
-const collectionUserList = ref([]);
 
 const queryData = reactive({
   queryParams: {

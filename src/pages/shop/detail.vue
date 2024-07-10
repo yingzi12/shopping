@@ -14,7 +14,7 @@ const token = Cookies.get("token");
 
 // 接收url里的参数
 const route = useRoute();
-const aid = ref(route.query.aid);
+const sid = ref(route.query.sid);
 const userId = ref(route.query.userId);
 
 const $q = useQuasar();
@@ -84,7 +84,7 @@ const tagList=ref([]);
 
 async function getInfo() {
   // 滚动到顶部
-  const response = await api.get("/usershop/getInfo/" + aid.value, {
+  const response = await api.get("/usershop/getInfo/" + sid.value, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -118,10 +118,10 @@ async function getInfo() {
 }
 
 async function getList(page: number) {
-  // queryParams.value.aid = aid.value;
+  // queryParams.value.sid = sid.value;
   // queryParams.value.pageNum = page;
   try {
-    const response = await api.get(`/userImage/list?aid=${aid.value}&pageNum=` + page, {
+    const response = await api.get(`/userImage/list?sid=${sid.value}&pageNum=` + page, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -151,7 +151,7 @@ async function onCollection() {
     isCollection.value=1;
   }
   // 滚动到顶部
-  const response = await api.get(`/user/userCollection/on?aid=${aid.value}&ctype=2`)
+  const response = await api.get(`/user/userCollection/on?sid=${sid.value}&ctype=2`)
   const data = response.data;
   if (data.code == 200) {
     isCollection.value=1;
@@ -168,7 +168,7 @@ async function onLike() {
     isLike.value=1;
   }
   // 滚动到顶部
-  const response = await api.get(`/usershop/like?aid=${aid.value}`)
+  const response = await api.get(`/usershop/like?sid=${sid.value}`)
   const data = response.data;
   if (data.code == 200) {
     isLike.value = 1;
@@ -181,7 +181,7 @@ async function closeCollection() {
     return; // 如果已经在处理收藏请求，则不执行任何操作
   }
   // 滚动到顶部
-  const response = await api.get(`/user/userCollection/close?aid=${aid.value}&ctype=2`)
+  const response = await api.get(`/user/userCollection/close?sid=${sid.value}&ctype=2`)
   const data = response.data;
   if (data.code == 200) {
     isCollection.value=2;
@@ -320,15 +320,7 @@ function nextSlide() {
     }
   }
 }
-// 监听isSee的值
-watch(isSee, (newValue, oldValue) => {
-  if (newValue === true) {
-    //console.log(` onLoad  isSee:${isSee.value}  disableInfiniteScroll:${disableInfiniteScroll.value}  1`)
-    onLoad(0, () => {
-    });
-    // getVideoList();
-  }
-}, {immediate: true}); // immediate: true 确保在挂载时立即触发一次
+
 onMounted(() => {
   window.addEventListener('keydown', handleKeyPress);
 });
@@ -336,6 +328,15 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyPress);
 })
+watch(() => route.query.sid, async (newSid, oldSid) => {
+  if (newSid !== oldSid) {
+    // 当wid变化时，重新加载数据
+    sid.value = newSid;
+    await getInfo(); // 重新获取世界详细信息
+    // await getAllWorldComment(); // 重新获取评论列表
+  }
+}, { immediate: true }); // immediate: true 确保在初始渲染时也触发watcher
+
 </script>
 <template>
   <q-page>
@@ -441,7 +442,7 @@ onBeforeUnmount(() => {
                       <span v-if="video.status == -1" style="color: red">锁定</span>
                     </q-btn>
                     <q-btn v-if="video.status != -1" color="blue" >
-                      <a :href="'/usershop/playvideo?aid=' + shop.id+'&vid='+video.id">播放</a>
+                      <a :href="'/usershop/playvideo?sid=' + shop.id+'&vid='+video.id">播放</a>
                     </q-btn>
 
                   </q-card-section>
@@ -518,9 +519,9 @@ onBeforeUnmount(() => {
 
         </div>
         <div style=" text-align: center;font-size: large">
-          <a v-if="shop.pre != null " :href='"/usershop/detail?aid="+shop.pre.id'
+          <a v-if="shop.pre != null " :href='"/usershop/detail?sid="+shop.pre.id'
              style="margin: 20px;font-size: large">{{ shop.pre.title }}</a>
-          <a v-if="shop.next != null " :href='"/usershop/detail?aid="+shop.next.id'
+          <a v-if="shop.next != null " :href='"/usershop/detail?sid="+shop.next.id'
              style="margin: 20px;font-size: large">{{ shop.next.title }}</a>
         </div>
       <div>
@@ -537,7 +538,7 @@ onBeforeUnmount(() => {
   </q-page>
 
   <q-dialog v-model="paypalDialog">
-    <PayaplCard :amount="shop.amount" :productId="shop.id" :kind="4" :intro="shop.intro" :productName="shop.title" :url='"/usershop/detail?aid="+aid'/>
+    <PayaplCard :amount="shop.amount" :productId="shop.id" :kind="4" :intro="shop.intro" :productName="shop.title" :url='"/usershop/detail?sid="+sid'/>
   </q-dialog>
 </template>
 

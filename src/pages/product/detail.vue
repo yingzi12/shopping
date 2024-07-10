@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from "vue-router";
 import {Cookies, Dialog, useQuasar} from "quasar";
-import {reactive, ref, toRefs} from "vue";
+import {reactive, ref, toRefs, watch} from "vue";
 import {api} from "boot/axios";
 import PayaplCard from "pages/system/payment.vue";
 import productCardComponent from "components/product/productCardComponent.vue"
@@ -24,7 +24,6 @@ const isSee = ref(false);
 
 const isCollection = ref(2)
 const pageNum = ref(0);
-
 
 // 防抖函数定义
 const title = ref("Black White")
@@ -227,6 +226,17 @@ function onSkuId(s){
   skuId.value=s.skuId;
   sku.value=s;
 }
+
+// 添加watch来监听wid的变化
+watch(() => route.query.pid, async (newPid, oldPid) => {
+  if (newPid !== oldPid) {
+    // 当wid变化时，重新加载数据
+    pid.value = newPid;
+    await getInfo(); // 重新获取世界详细信息
+    // await getAllWorldComment(); // 重新获取评论列表
+  }
+}, { immediate: true }); // immediate: true 确保在初始渲染时也触发watcher
+
 </script>
 <template>
   <q-layout view="hHh lpR fFf">

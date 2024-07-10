@@ -109,12 +109,7 @@ function notify(message: string, color: string) {
   });
 }
 getDetail();
-function getImageUrl(url) {
-  if (url != null) {
-    return `${$q.config.sourceWeb}${url}`;
-  }
-  return "/favicon.png";
-}
+
 const  money=ref(0.0);
 const paypalDialog = ref(false);
 
