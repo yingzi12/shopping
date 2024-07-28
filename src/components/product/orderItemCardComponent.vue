@@ -22,7 +22,7 @@ function imageUrl() {
   return `https://image.51x.uk/blackwhite${props.value.pic}`;
 }
 function routerDetail() {
-  router.push(`/product/detail?pid=?pid=${props.value.prodId}`)
+  router.push(`/product/detail?pid=${props.value.prodId}`)
 }
 </script>
 

@@ -140,19 +140,6 @@ function  goBack() {
         </q-infinite-scroll>
       </q-page>
     </q-page-container>
-
-<!--    <q-footer elevated class="bg-grey-2">-->
-<!--      <div class="row">-->
-<!--        <div class="col-4"><q-btn flat  color="primary" icon="home" to="/" />-->
-<!--          <q-btn flat  color="purple" glossy icon="local_grocery_store" to="/shoppingCart" /></div>-->
-<!--        <div  class="col-8"><q-btn-group spread>-->
-<!--          <q-btn color="brown" label="加入购物车"  @click="addChangeItem"/>-->
-<!--          <q-btn color="red" label="立即购买"  @click="dialogAdd =true"/>-->
-<!--        </q-btn-group></div>-->
-<!--      </div>-->
-
-<!--    </q-footer>-->
-
   </q-layout>
 
 </template>
