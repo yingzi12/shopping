@@ -14,7 +14,8 @@
             <q-btn  class="left-3" flat>账户余额：{{user.balance}}</q-btn>
           </q-card-actions>
           <q-card-actions >
-            <q-btn  class="left-3" flat><q-input  label="充值金额" outlined v-model="money" type="number"></q-input></q-btn>
+           <q-input  label="充值金额"  v-model.number="money"                 type="number"
+           ></q-input>
           </q-card-actions>
           <q-card-actions >
             <q-btn  class="left-3" @click="openPayPalDialog()">支付</q-btn>
